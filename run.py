@@ -11,8 +11,38 @@ import function
 import os
 from optparse import OptionParser
 
+
+def attack(target,target_port,cmd,get_flag):
+    is_vuln = 1
+    flag = "hello world!"
+    info = "success"
+    reserve = 0    
+
+    if check_shell(target,target_port,""):
+	dump_success("check_shell success",target+":"+str(target_port),"function.py check_shell")
+	res = execute_shell(target,target_port,cmd)
+    else:
+	dump_warning("check_shell failed",target+":"+str(target_port),"function.py check_shell")
+    
+    # Here we use the vulnerability we found in the source code
+    res = vulnerable_attack(target,target_port,cmd)
+    res = res_filter(res)
+    if get_flag:
+	if check_flag(res):
+	    flag = res
+	    dump_info("flag => " + res.replace(" ","").replace("\n",""))
+	else:
+	    dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"sample.py attack")
+    elif res=="error":
+	pass
+    else:
+	dump_success("execution cmd",target+":"+str(target_port),"sample.py")
+        dump_context(res)
+
+    return flag,is_vuln,info,reserve 
+
 def run():
-    global cmd,first_run
+    global raw_cmd,cmd,first_run
     cmd_split_prefix = "/bin/echo %s;"%cmd_prefix
     cmd_split_postfix = ";/bin/echo %s"%cmd_postfix
     # if the target list exsists, load it. or regard it as ip addr
@@ -27,30 +57,36 @@ def run():
 	is_vuln = 1
 	info = "error"
 	flag = "hello world!"
+
 	try:
-	    if func:
-		cmd = func(target,target_port,"")
-            if first_run:
-                cmd = cmd_split_prefix + cmd + cmd_split_postfix
+	    # Save the raw cmd
+	    if first_run:
+		raw_cmd = cmd
                 first_run = 0
-            if debug:
-                print cmd
+	    dump_success("**** start attack %s with %s ****"%(target+":"+target_port,raw_cmd))
+	    # Use the func in function.py to translate the cmd to real cmd
+	    if func:
+		cmd = cmd_split_prefix + func(target,target_port,"") + cmd_split_postfix
+            else:
+                cmd = cmd_split_prefix + raw_cmd + cmd_split_postfix
+	    debug_print(cmd)
             flag,is_vuln,info,reserve = attack(target,target_port,cmd,run_for_flag)
 	except Exception,e:
-	    if debug:
-		print traceback.format_exc()
+	    debug_print(traceback.format_exc())
 	    dump_error(str(e),target,load_script)
+	
+	dump_success("**** finish attack %s with %s ****"%(target+":"+target_port,raw_cmd))
 	#set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
 	if not reserve and  is_vuln and flag!="hello world!":
 	    res = post_flag(flag)
 	    if res:
-		dump_success("get flag success",target,load_script)
+		dump_success("get flag success",target+":"+str(target_port),load_script)
 	    else:
-		dump_error("flag check error",target,load_script)
+		dump_error("flag check error",target+":"+str(target_port),load_script)
 	elif is_vuln == 0:
-	    dump_error("server not vulnerable",target,load_script)
+	    dump_error("server not vulnerable",target+":"+str(target_port),load_script)
 	elif reserve==1:
-	    dump_error("reverse flag has been set",target,load_script)
+	    dump_error("reverse flag has been set",target+":"+str(target_port),load_script)
     
     dump_success("one round finished! sleeping...")
     time.sleep(script_runtime_span)
@@ -70,6 +106,7 @@ def banner():
 
 if __name__ == '__main__':
     banner()
+    dump_info("Start the AWD Intel to hack the planet :)")
     parser = OptionParser()
     parser.add_option("-m", "--module",\
                      dest="module", default="sample",\
@@ -87,7 +124,7 @@ if __name__ == '__main__':
     cmd = options.command
     if cmd=="get_flag":
 	run_for_flag = 1
-    attack = __import__(load_script).attack
+    vulnerable_attack = __import__(load_script).vulnerable_attack
 
 # if the attack fails, the possible reasons are:
 # 1. the server has fixed up that vuln, then add that server to the fail_list
@@ -105,4 +142,6 @@ if __name__ == '__main__':
         except  KeyboardInterrupt:
 	    dump_error("Program stoped by user, existing...")
 	    exit()
-        dump_success("------------------------- one round finish -------------------------")
+	print ""
+        dump_info("--------------------- one round finish -----------------------")
+	print ""

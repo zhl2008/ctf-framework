@@ -12,7 +12,7 @@ class Log():
 
     @staticmethod
     def info(word):
-        Log._print("[+] %s\n" % color.lightPurple(word))
+        Log._print("[+] %s\n" % color.green(word))
 
     @staticmethod
     def warning(word):
@@ -32,4 +32,4 @@ class Log():
 
     @staticmethod
     def context(context):
-        Log._print("%s" % (color.red(context)))
+        Log._print("%s\n" % (color.blue(context)))

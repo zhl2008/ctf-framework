@@ -8,8 +8,8 @@ cmd = "whoami"
 debug = 0
 headers = {"User-agent":"Hence Zhang"}
 run_for_flag = 0
-cmd_prefix = "HENCE"
-cmd_postfix = "ZHANG"
+cmd_prefix = "HENCE666"
+cmd_postfix = "ZHANG777"
 #####################
 
 #############################
@@ -23,8 +23,8 @@ status_list = "data/status.data"
 # get flag
 flag_server = "172.17.0.1"
 flag_port = 83
-flag_url = "/flag.php"
-flag_token = "paomachang" # for user Xyth
+flag_url = "/flag2.php"
+flag_token = "haozigege" # for user Xyth
 flag_path = '/flag'
 ##########################################
 
@@ -44,15 +44,15 @@ shell_type = 2
 
 #######################
 #config for web path and file path
-shell_path = "/uploads/"
-shell_absolute_path = "/var/www/html/uploads/"
+shell_path = "/Uploads/"
+shell_absolute_path = "/var/www/html/Uploads/"
 crontab_path = "/tmp/"
 ######################
 
 
 ######################
 #config for reverse_shell
-reverse_ip = '127.0.0.1'
+reverse_ip = '172.17.0.1'
 reverse_port  =  6666
 #####################
 
