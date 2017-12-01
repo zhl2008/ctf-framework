@@ -28,7 +28,6 @@ def http(method,host,port,url,data,headers):
     con.close()
     return a
 
-
 def https(method,host,port,url,data,headers):
     url = 'https://' + host + ":" + str(port) + url
     req = urllib2.Request(url,data,headers)

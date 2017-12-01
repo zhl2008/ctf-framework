@@ -9,7 +9,8 @@ from flag import *
 from function import *
 import function
 import os
-'''
+
+__doc__ = '''
 usage: run.py [attack] [cmd] (target_list)
 
 '''
@@ -19,8 +20,10 @@ if len(sys.argv) > 2:
     cmd = sys.argv[2]
     if cmd=="get_flag":
 	run_for_flag = 1
-if len(sys.argv) > 3:
+elif len(sys.argv) > 3:
     target_list = sys.argv[3]
+else:
+    Log.error(__doc__)
 attack = __import__(load_script).attack
 
 # if the attack fails, the possible reasons are:
@@ -51,7 +54,8 @@ def run():
 		cmd = func(target,"")
 	    flag,is_vuln,info,reserve = attack(target,cmd,run_for_flag)
 	except Exception,e:
-	    print traceback.format_exc()
+	    if debug:
+		print traceback.format_exc()
 	    dump_error(target,str(e),load_script)
 	#set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
 	if not reserve and  is_vuln and flag!="hello world!":
@@ -65,11 +69,15 @@ def run():
 	elif reserve==1:
 	    dump_error(target, "reverse flag has been set",load_script)
     
-    print "[info] one round finished! sleeping..."
+    Log.success("one round finished! sleeping...")
     time.sleep(script_runtime_span)
 		 
 
 
 while 1:
-    run()
+    try:
+	run()
+    except  KeyboardInterrupt:
+	Log.error("Program stoped by user, existing...")
+	exit()
     print "--------------------------------------------------"

@@ -10,13 +10,12 @@ from function import *
 def post_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
     try:
-	#res = http("post",flag_server,9000,flag_url,"flag="+flag+"&token="+flag_token,{}) 
-	res = http("post",flag_server,flag_port,flag_url,"flag="+flag+"&token="+flag_token,{})
+	res = http("post",flag_server,flag_port,flag_url,"flag="+flag+"&token="+flag_token,headers)
     except Exception,e:
 	dump_error("flag server","flag post error","flag.py post_flag")
 	return False
     if "success" in res:
-	print '[!info] get flag success'
+	dump_success('flag server','get flag success','flag.py post_flag')
 	return True
     return False
 

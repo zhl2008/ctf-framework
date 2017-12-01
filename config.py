@@ -5,12 +5,13 @@
 script_runtime_span = 3
 cmd = "whoami"
 debug = 0
+headers = {"User-agent":"Hence Zhang"}
 #####################
 
 #############################
 # config for target 
-target_list = "./ip.txt"
-fail_list_pre = "./fail_"
+target_list = "data/ip.data"
+status_list = "data/status.data"
 target_port = 10080
 ############################
 
