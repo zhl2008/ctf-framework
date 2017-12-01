@@ -2,10 +2,14 @@
 
 #####################
 #config for basic
+first_run = 1
 script_runtime_span = 3
 cmd = "whoami"
 debug = 0
 headers = {"User-agent":"Hence Zhang"}
+run_for_flag = 0
+cmd_prefix = "HENCE"
+cmd_postfix = "ZHANG"
 #####################
 
 #############################

