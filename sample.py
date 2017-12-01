@@ -6,7 +6,9 @@ from function import *
 import urllib
 
 '''
-this is the payload script for vuln shellshock
+this is the payload script for vuln:
+
+include "php://input";
 
 '''
 
@@ -48,7 +50,6 @@ def attack(target,target_port,cmd,get_flag):
 	dump_success(target,"execution cmd","sample.py")
         print res_filter(res)
 
-    print "testing ..........."
     return flag,is_vuln,info,reserve 
 
 

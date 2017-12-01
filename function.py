@@ -177,6 +177,8 @@ def crontab_flag_ip(target,target_port,cmd):
     print cmd
     return cmd
 
+def crontab_rm(target,target_port,cmd):
+
 #check wether the format of a flag is correct, suppose the format of a flag must be a string with hex value
 def check_flag(flag):
     flag = flag.replace(" ","").replace("\n","")

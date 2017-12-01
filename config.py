@@ -16,13 +16,12 @@ cmd_postfix = "ZHANG"
 # config for target 
 target_list = "data/ip.data"
 status_list = "data/status.data"
-target_port = 10080
 ############################
 
 
 ###########################################
 # get flag
-flag_server = "192.168.2.113"
+flag_server = "172.17.0.1"
 flag_port = 83
 flag_url = "/flag.php"
 flag_token = "paomachang" # for user Xyth
@@ -53,7 +52,7 @@ crontab_path = "/tmp/"
 
 ######################
 #config for reverse_shell
-reverse_ip = '118.190.78.155'
+reverse_ip = '127.0.0.1'
 reverse_port  =  6666
 #####################
 
