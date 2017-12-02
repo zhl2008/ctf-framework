@@ -48,7 +48,7 @@ def send_thread():
 	time.sleep(1)
 #end def
 
-for i in xrange(100):
+for i in xrange(10):
         conn_th=threading.Thread(target=conn_thread,args=())
         send_th=threading.Thread(target=send_thread,args=())
         conn_th.start()

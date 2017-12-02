@@ -145,3 +145,89 @@
 2017-12-02 00:11:03  [-] check shell fail
 2017-12-02 00:11:03  [-] execute cmd fail
 2017-12-02 00:11:03  [-] server is not vulnerable to current payload
+2017-12-02 00:26:41  [-] check shell fail
+2017-12-02 00:26:41  [-] execute cmd fail
+2017-12-02 00:26:41  [-] server is not vulnerable to current payload
+2017-12-02 00:29:18  [-] check shell fail
+2017-12-02 00:29:18  [-] execute cmd fail
+2017-12-02 00:29:18  [-] server is not vulnerable to current payload
+2017-12-02 00:31:23  [-] check shell fail
+2017-12-02 00:31:24  [-] execute cmd fail
+2017-12-02 00:31:24  [-] server is not vulnerable to current payload
+2017-12-02 00:34:52  [-] connect timeout
+2017-12-02 00:34:52  [-] execute cmd fail
+2017-12-02 00:34:52  [-] server is not vulnerable to current payload
+2017-12-02 00:35:31  [-] connect timeout
+2017-12-02 00:35:31  [-] execute cmd fail
+2017-12-02 00:35:31  [-] server is not vulnerable to current payload
+2017-12-02 00:35:57  [-] check shell fail
+2017-12-02 00:35:57  [-] execute cmd fail
+2017-12-02 00:35:57  [-] server is not vulnerable to current payload
+2017-12-02 00:36:22  [-] check shell fail
+2017-12-02 00:36:22  [-] execute cmd fail
+2017-12-02 00:36:22  [-] server is not vulnerable to current payload
+2017-12-02 00:36:47  [-] check shell fail
+2017-12-02 00:36:47  [-] execute cmd fail
+2017-12-02 00:36:47  [-] server is not vulnerable to current payload
+2017-12-02 00:37:11  [-] check shell fail
+2017-12-02 00:37:12  [-] execute cmd fail
+2017-12-02 00:37:12  [-] server is not vulnerable to current payload
+2017-12-02 00:37:36  [-] check shell fail
+2017-12-02 00:37:38  [-] execute cmd fail
+2017-12-02 00:37:38  [-] server is not vulnerable to current payload
+2017-12-02 00:38:02  [-] check shell fail
+2017-12-02 00:38:02  [-] execute cmd fail
+2017-12-02 00:38:02  [-] server is not vulnerable to current payload
+2017-12-02 00:38:28  [-] connect timeout
+2017-12-02 00:38:28  [-] execute cmd fail
+2017-12-02 00:38:28  [-] server is not vulnerable to current payload
+2017-12-02 00:38:53  [-] check shell fail
+2017-12-02 00:38:53  [-] execute cmd fail
+2017-12-02 00:38:53  [-] server is not vulnerable to current payload
+2017-12-02 00:39:10  [-] check shell fail
+2017-12-02 00:39:10  [-] execute cmd fail
+2017-12-02 00:39:10  [-] server is not vulnerable to current payload
+2017-12-02 00:39:20  [-] check shell fail
+2017-12-02 00:39:20  [-] execute cmd fail
+2017-12-02 00:39:20  [-] server is not vulnerable to current payload
+2017-12-02 00:40:23  [-] check shell fail
+2017-12-02 00:40:23  [-] execute cmd fail
+2017-12-02 00:40:23  [-] server is not vulnerable to current payload
+2017-12-02 00:40:46  [-] check shell fail
+2017-12-02 00:40:46  [-] execute cmd fail
+2017-12-02 00:40:46  [-] server is not vulnerable to current payload
+2017-12-02 00:41:16  [-] check shell fail
+2017-12-02 00:41:18  [-] execute cmd fail
+2017-12-02 00:41:18  [-] server is not vulnerable to current payload
+2017-12-02 00:41:48  [-] check shell fail
+2017-12-02 00:41:48  [-] execute cmd fail
+2017-12-02 00:41:48  [-] server is not vulnerable to current payload
+2017-12-02 00:42:18  [-] check shell fail
+2017-12-02 00:42:19  [-] execute cmd fail
+2017-12-02 00:42:19  [-] server is not vulnerable to current payload
+2017-12-02 00:42:50  [-] check shell fail
+2017-12-02 00:42:50  [-] execute cmd fail
+2017-12-02 00:42:50  [-] server is not vulnerable to current payload
+2017-12-02 01:03:01  [-] connect timeout
+2017-12-02 01:03:01  [-] execute cmd fail
+2017-12-02 01:03:01  [-] server is not vulnerable to current payload
+2017-12-02 01:04:09  [-] connect timeout
+2017-12-02 01:04:09  [-] flag format wrong
+2017-12-02 01:05:49  [-] connect timeout
+2017-12-02 01:05:49  [-] flag format wrong
+2017-12-02 01:08:25  [-] connect timeout
+2017-12-02 01:08:25  [-] flag format wrong
+2017-12-02 01:14:38  [-] connect timeout
+2017-12-02 01:14:38  [-] flag format wrong
+2017-12-02 01:15:13  [-] connect timeout
+2017-12-02 01:15:13  [-] flag format wrong
+2017-12-02 01:15:48  [-] connect timeout
+2017-12-02 01:15:48  [-] flag format wrong
+2017-12-02 01:16:23  [-] connect timeout
+2017-12-02 01:16:23  [-] flag format wrong
+2017-12-02 01:16:58  [-] connect timeout
+2017-12-02 01:16:58  [-] flag format wrong
+2017-12-02 01:17:33  [-] connect timeout
+2017-12-02 01:17:33  [-] flag format wrong
+2017-12-02 01:18:08  [-] connect timeout
+2017-12-02 01:18:08  [-] flag format wrong

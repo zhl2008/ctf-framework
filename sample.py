@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from http import http
-from config import *
-from function import *
+from framework.http import http
+from framework.config import *
+from framework.function import *
 import urllib
 import traceback
 

@@ -22,7 +22,7 @@ class Log():
 
     @staticmethod
     def info(word):
-        Log._print("[+] %s\n" % color.green(Log.beauty(word)))
+        Log._print("[+] %s\n" % color.green(word))
 
     @staticmethod
     def warning(word):
@@ -42,4 +42,4 @@ class Log():
 
     @staticmethod
     def context(word):
-        Log._print("%s\n" % (color.blue(Log.beauty(word))))
+        Log._print("%s\n" % (color.blue(word)))

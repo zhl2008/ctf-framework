@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import traceback
-from http import http
-from config import *
+from framework.http import http
+from framework.config import *
+from framework.flag import *
+from framework.function import *
+import framework.function as function
+import os
 import sys
 import time
-from flag import *
-from function import *
-import function
-import os
 from optparse import OptionParser
 
 
@@ -17,6 +17,7 @@ def attack(target,target_port,cmd,get_flag):
     is_vuln = 1
     is_shell = True
     is_alive = 1
+    is_flag = 0
     flag = "hello world!"
     info = "success"
     reserve = 0    
@@ -45,6 +46,7 @@ def attack(target,target_port,cmd,get_flag):
     if get_flag:
 	if check_flag(res):
 	    flag = res
+	    is_flag = 1
 	    dump_info("flag => " + res.replace(" ","").replace("\n",""))
 	else:
 	    dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"run.py attack")
@@ -65,6 +67,8 @@ def attack(target,target_port,cmd,get_flag):
 	    now_status += "|vuln|"
 	if is_shell:
 	    now_status += "|shell|"
+	if is_flag:
+	    now_status += "|flag|"
     else:
 	now_status += '|timeout|'
     now_status += '\n'
