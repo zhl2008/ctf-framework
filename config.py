@@ -6,16 +6,18 @@ first_run = 1
 script_runtime_span = 3
 cmd = "whoami"
 debug = 0
-headers = {"User-agent":"Hence Zhang"}
+headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
 cmd_postfix = "ZHANG777"
 #####################
 
 #############################
-# config for target 
+# config for data and log
 target_list = "data/ip.data"
 status_list = "data/status.data"
+sys_log = "log/sys.log"
+specific_status_log = "log/spec/"
 ############################
 
 
@@ -26,6 +28,8 @@ flag_port = 83
 flag_url = "/flag2.php"
 flag_token = "haozigege" # for user Xyth
 flag_path = '/flag'
+# the server you need to visit to get the flag
+get_flag_url = "http://172.17.0.4:80/flag.php" 
 ##########################################
 
 

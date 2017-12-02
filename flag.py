@@ -11,6 +11,8 @@ from function import *
 #check wether the format of a flag is correct, suppose the format of a flag must be a string with hex value
 def check_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
+    if not flag:
+	return False
     for char in flag:
         if (char<"0" or char>"9") and (char>"f" or char<"a"):
 	    dump_warning("flag => "+flag)

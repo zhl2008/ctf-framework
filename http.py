@@ -10,7 +10,7 @@ __doc__ = 'http(method,host,port,url,data,headers)'
 def http(method,host,port,url,data,headers):
     con=httplib.HTTPConnection(host,port,timeout=2)
     if method=='post' or method=='POST':
-        headers['Content-Length']=len(data)
+        headers['Content-Length']=str(len(data))
 	headers['Content-Type']='application/x-www-form-urlencoded'  
 	con.request("POST",url,data,headers=headers)
     else:
