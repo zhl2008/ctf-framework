@@ -23,9 +23,11 @@ def attack(target,target_port,cmd,get_flag):
 
     if check_shell(target,target_port,""):
 	dump_success("check_shell success",target+":"+str(target_port),"function.py check_shell")
+	write_specific_log(target,target_port,"[+] check shell success")
 	res = execute_shell(target,target_port,cmd)
     else:
 	dump_warning("check_shell failed",target+":"+str(target_port),"function.py check_shell")
+	write_specific_log(target,target_port,"[-] check shell fail")
 	# Here we use the vulnerability we found in the source code
 	res = vulnerable_attack(target,target_port,cmd)
     debug_print(res)
@@ -36,10 +38,14 @@ def attack(target,target_port,cmd,get_flag):
 	    dump_info("flag => " + res.replace(" ","").replace("\n",""))
 	else:
 	    dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"run.py attack")
+	    write_specific_log(target,target_port,"[-] flag format wrong")
     elif "error" in res:
 	dump_warning("execution cmd failed",target+":"+str(target_port),"run.py")
+	is_vuln = 0
+	write_specific_log(target,target_port,"[-] execute cmd fail")
     else:
 	dump_success("execution cmd",target+":"+str(target_port),"run.py")
+	write_specific_log(target,target_port,"[+] execute cmd success")
     dump_context(res)
 
     return flag,is_vuln,info,reserve 
@@ -85,17 +91,22 @@ def run():
 	    res = post_flag(flag)
 	    if res:
 		dump_success("get flag success",target+":"+str(target_port),"run.py")
+		write_specific_log(target,target_port,"[+] get flag success")
 	    else:
-		dump_error("flag check error",target+":"+str(target_port),"run.py")
+		# flag server check error may result from the duplicate submission of the flag 
+		dump_warning("flag server check error",target+":"+str(target_port),"run.py")
+		write_specific_log(target,target_port,"[-] flag server check error")
 	elif is_vuln == 0:
-	    dump_error("server not vulnerable",target+":"+str(target_port),"run.py")
+	    dump_error("server is not vulnerable",target+":"+str(target_port),"run.py")
+	    write_specific_log(target,target_port,"[-] server is not vulnerable to current payload")
 	elif reserve==1:
 	    dump_error("reverse flag has been set",target+":"+str(target_port),"run.py")
+	    write_specific_log(target,target_port,"[-] reverse flag has been set")
 	dump_success("**** finish attack %s with %s ****"%(target+":"+target_port,raw_cmd))
 	print ""
 	print ""
 	print ""
-	print ""
+    dump_info("sleeping ...")
     time.sleep(script_runtime_span)
 		 
 def banner():

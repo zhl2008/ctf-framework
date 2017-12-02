@@ -9,27 +9,37 @@ class Log():
     def _print(word):
         sys.stdout.write(word)
         sys.stdout.flush()
+    
+    @staticmethod
+    def beauty(word):
+	res = ''
+	beauty_length = 75
+	loop = len(word)/beauty_length
+	for i in range(loop):
+	    res += word[i*beauty_length:i*beauty_length+beauty_length-1] + "\n*** "
+	res += word[loop*beauty_length:]
+	return res
 
     @staticmethod
     def info(word):
-        Log._print("[+] %s\n" % color.green(word))
+        Log._print("[+] %s\n" % color.green(Log.beauty(word)))
 
     @staticmethod
     def warning(word):
-        Log._print("[!] %s\n" % color.yellow(word))
+        Log._print("[!] %s\n" % color.yellow(Log.beauty(word)))
 
     @staticmethod
     def error(word):
-        Log._print("[-] %s\n" % color.red(word))
+        Log._print("[-] %s\n" % color.red(Log.beauty(word)))
 
     @staticmethod
     def success(word):
-        Log._print("[+] %s\n" % color.purple(word))
+        Log._print("[+] %s\n" % color.purple(Log.beauty(word)))
 
     @staticmethod
     def query(word):
-        Log._print("[?] %s\n" % color.underline(word))
+        Log._print("[?] %s\n" % color.underline(Log.beauty(word)))
 
     @staticmethod
-    def context(context):
-        Log._print("%s\n" % (color.blue(context)))
+    def context(word):
+        Log._print("%s\n" % (color.blue(Log.beauty(word))))

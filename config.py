@@ -3,7 +3,7 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 3
+script_runtime_span = 20
 cmd = "whoami"
 debug = 0
 headers = {"User-Agent":"Hence Zhang"}

