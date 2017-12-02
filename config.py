@@ -18,6 +18,7 @@ target_list = "data/ip.data"
 status_list = "data/status.data"
 sys_log = "log/sys.log"
 specific_status_log = "log/spec/"
+targets_status = ''
 ############################
 
 
@@ -29,7 +30,7 @@ flag_url = "/flag2.php"
 flag_token = "haozigege" # for user Xyth
 flag_path = '/flag'
 # the server you need to visit to get the flag
-get_flag_url = "http://172.17.0.4:80/flag.php" 
+get_flag_url = "http://172.17.0.2:80/flag.php" 
 ##########################################
 
 

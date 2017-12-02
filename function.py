@@ -27,6 +27,13 @@ def write_specific_log(target,target_port,msg):
     sys_time = time.strftime('%Y-%m-%d %H:%M:%S',(time.localtime(time.time())))
     open(specific_status_log + target + ":" + target_port,'a').write(sys_time + "  " + msg + '\n')
 
+def record_status(status):
+    sys_time = time.strftime('%Y-%m-%d %H:%M:%S',(time.localtime(time.time())))
+    res = sys_time + "\n" + status + '\n'
+    open(status_list,'w').write(res)
+    dump_info("Targets status:")
+    print res
+
 def dump_error(e,target="",load_script=""):
     if not target and not load_script:
         return Log.error(str(e))
@@ -116,7 +123,11 @@ def check_shell(target,target_port,cmd):
 	    return True
 	return False    
     if shell_type==2:
-	return visit_shell(target,target_port,"")
+	try:
+	    res = visit_shell(target,target_port,"")
+	except Exception:
+	    return "timeout" 
+	return res
     return True
 
 def visit_shell(target,target_port,cmd):
