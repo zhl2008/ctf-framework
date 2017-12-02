@@ -3,7 +3,7 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 20
+script_runtime_span = 5
 cmd = "whoami"
 debug = 0
 headers = {"User-Agent":"Hence Zhang"}
@@ -53,6 +53,7 @@ shell_type = 2
 shell_path = "/Uploads/"
 shell_absolute_path = "/var/www/html/Uploads/"
 crontab_path = "/tmp/"
+web_path = '/var/www/html/'
 ######################
 
 
@@ -70,5 +71,15 @@ upload_file_name = ''
 executor = ''
 ####################
 
+####################
+#config for rm file
+rm_paths = '/var/www/html/* /tmp/* /home/ctf/*'
+rm_index = '/var/www/html/index.php'
+###################
 
-
+####################
+#config for rm database
+db_user = 'root'
+db_passwd = 'haozi'
+db_name = ['performance_schema','mysql','onethink']
+###################

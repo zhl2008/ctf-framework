@@ -206,3 +206,25 @@
 2017-12-02 02:36:38  [+] execute cmd success
 2017-12-02 02:37:28  [+] check shell success
 2017-12-02 02:37:28  [+] execute cmd success
+2017-12-02 05:36:06  [+] check shell success
+2017-12-02 05:36:09  [+] execute cmd success
+2017-12-02 05:40:37  [-] check shell fail
+2017-12-02 05:40:38  [+] execute cmd success
+2017-12-02 05:42:10  [-] check shell fail
+2017-12-02 05:42:11  [+] execute cmd success
+2017-12-02 05:42:56  [-] check shell fail
+2017-12-02 05:42:57  [+] execute cmd success
+2017-12-02 05:45:09  [-] check shell fail
+2017-12-02 05:45:11  [+] execute cmd success
+2017-12-02 05:46:09  [-] check shell fail
+2017-12-02 05:46:09  [+] execute cmd success
+2017-12-02 05:46:45  [-] execute cmd fail
+2017-12-02 05:46:45  [-] server is not vulnerable to current payload
+2017-12-02 05:48:19  [+] check shell success
+2017-12-02 05:48:19  [+] execute cmd success
+2017-12-02 05:48:52  [+] check shell success
+2017-12-02 05:48:52  [+] execute cmd success
+2017-12-02 06:08:05  [+] check shell success
+2017-12-02 06:08:06  [+] execute cmd success
+2017-12-02 06:15:56  [+] check shell success
+2017-12-02 06:15:56  [+] execute cmd success

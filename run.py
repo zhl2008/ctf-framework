@@ -18,7 +18,6 @@ def test_attack(target,target_port):
     except Exception,e:
 	pass
     return False
-	    
 
 def attack(target,target_port,cmd,get_flag):
     global headers,targets_status
@@ -110,7 +109,7 @@ def run():
 	    if first_run:
 		raw_cmd = cmd
                 first_run = 0
-	    dump_success("**** start attack %s with %s ****"%(target+":"+target_port,raw_cmd))
+	    dump_success("start attack %s with %s "%(target+":"+target_port,raw_cmd))
 	    # Use the func in function.py to translate the cmd to real cmd
 	    if func:
 		cmd = cmd_split_prefix + func(target,target_port,"") + cmd_split_postfix
@@ -138,7 +137,7 @@ def run():
 	elif reserve==1:
 	    dump_error("reverse flag has been set",target+":"+str(target_port),"run.py")
 	    write_specific_log(target,target_port,"[-] reverse flag has been set")
-	dump_success("**** finish attack %s with %s ****"%(target+":"+target_port,raw_cmd))
+	dump_success("finish attack %s with %s"%(target+":"+target_port,raw_cmd))
 	print ""
 	print ""
 	print ""
@@ -208,7 +207,7 @@ if __name__ == '__main__':
         except  KeyboardInterrupt:
 	    dump_error("Program stoped by user, existing...")
 	    exit()
-        dump_info("--------------------- one round finish -----------------------")
+        dump_info("---------------------------- one round finish -----------------------------")
 	print ""
 	loop_count -= 1
     dump_info("finish all tasks, have a nice day :)")

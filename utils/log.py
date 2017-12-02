@@ -16,7 +16,7 @@ class Log():
 	beauty_length = 75
 	loop = len(word)/beauty_length
 	for i in range(loop):
-	    res += word[i*beauty_length:i*beauty_length+beauty_length] + "\n*** "
+	    res += word[i*beauty_length:i*beauty_length+beauty_length] + "\n    "
 	res += word[loop*beauty_length:]
 	return res
 
