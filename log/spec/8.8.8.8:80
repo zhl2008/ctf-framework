@@ -204,3 +204,9 @@
 2017-12-02 02:37:38  [-] connect timeout
 2017-12-02 02:37:38  [-] execute cmd fail
 2017-12-02 02:37:38  [-] server is not vulnerable to current payload
+2017-12-02 06:44:31  [-] connect timeout
+2017-12-02 06:44:31  [-] execute cmd fail
+2017-12-02 06:44:31  [-] server is not vulnerable to current payload
+2017-12-02 06:45:33  [-] connect timeout
+2017-12-02 06:45:33  [-] execute cmd fail
+2017-12-02 06:45:33  [-] server is not vulnerable to current payload

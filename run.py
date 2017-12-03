@@ -51,6 +51,7 @@ def attack(target,target_port,cmd,get_flag):
 	write_specific_log(target,target_port,"[-] check shell fail")
 	# Here we use the vulnerability we found in the source code
 	res = vulnerable_attack(target,target_port,cmd)
+	    
     debug_print(res)
     res = res_filter(res)
     if get_flag:
@@ -117,6 +118,11 @@ def run():
                 cmd = cmd_split_prefix + raw_cmd + cmd_split_postfix
 	    debug_print(cmd)
             flag,is_vuln,info,reserve = attack(target,target_port,cmd,run_for_flag)
+	    
+	    # Try to visit the undead shell after it generates
+	    if shell_type == 2 and raw_cmd == 'get_shell':
+		visit_shell(target,target_port,'')
+
 	except Exception,e:
 	    debug_print(traceback.format_exc())
 	    dump_error(str(e),target,"run.py")

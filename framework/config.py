@@ -5,7 +5,7 @@
 first_run = 1
 script_runtime_span = 5
 cmd = "whoami"
-debug = 0
+debug = 1
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
@@ -50,8 +50,8 @@ shell_type = 2
 
 #######################
 #config for web path and file path
-shell_path = "/Uploads/"
-shell_absolute_path = "/var/www/html/Uploads/"
+shell_path = "/"
+shell_absolute_path = "/var/www/html/"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################
@@ -73,7 +73,7 @@ executor = ''
 
 ####################
 #config for rm file
-rm_paths = '/var/www/html/* /tmp/* /home/ctf/*'
+rm_paths = '/var/www/html/index.php /tmp/* /home/ctf/*'
 rm_index = '/var/www/html/index.php'
 ###################
 

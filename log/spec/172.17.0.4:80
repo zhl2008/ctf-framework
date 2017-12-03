@@ -283,3 +283,12 @@
 2017-12-02 06:30:20  [+] execute cmd success
 2017-12-02 06:31:09  [+] check shell success
 2017-12-02 06:31:09  [+] execute cmd success
+2017-12-02 06:44:18  [+] check shell success
+2017-12-02 06:44:18  [+] execute cmd success
+2017-12-02 06:44:25  [+] check shell success
+2017-12-02 06:44:25  [+] execute cmd success
+2017-12-02 06:45:23  [+] check shell success
+2017-12-02 06:45:23  [+] execute cmd success
+2017-12-02 06:51:20  [-] check shell fail
+2017-12-02 06:51:20  [-] execute cmd fail
+2017-12-02 06:51:20  [-] server is not vulnerable to current payload
