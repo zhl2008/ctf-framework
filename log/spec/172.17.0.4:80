@@ -292,3 +292,8 @@
 2017-12-02 06:51:20  [-] check shell fail
 2017-12-02 06:51:20  [-] execute cmd fail
 2017-12-02 06:51:20  [-] server is not vulnerable to current payload
+2017-12-04 11:06:49  [-] connect timeout
+2017-12-04 11:06:49  [-] execute cmd fail
+2017-12-04 11:06:49  [-] server is not vulnerable to current payload
+2017-12-04 11:49:04  [-] check shell fail
+2017-12-04 11:49:04  [-] flag format wrong

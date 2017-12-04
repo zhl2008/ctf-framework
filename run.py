@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import traceback
+import importlib
 from framework.http import http
 from framework.config import *
 from framework.flag import *
@@ -51,7 +52,6 @@ def attack(target,target_port,cmd,get_flag):
 	write_specific_log(target,target_port,"[-] check shell fail")
 	# Here we use the vulnerability we found in the source code
 	res = vulnerable_attack(target,target_port,cmd)
-	    
     debug_print(res)
     res = res_filter(res)
     if get_flag:
@@ -121,6 +121,7 @@ def run():
 	    
 	    # Try to visit the undead shell after it generates
 	    if shell_type == 2 and raw_cmd == 'get_shell':
+                dump_info("Visting the undead shell...")
 		visit_shell(target,target_port,'')
 
 	except Exception,e:
@@ -162,6 +163,7 @@ def banner():
 
 
 if __name__ == '__main__':
+    #sys.path.append('./')
     banner()
     parser = OptionParser()
     parser.add_option("-m", "--module",\
@@ -191,7 +193,7 @@ if __name__ == '__main__':
 	dump_info("enable feature random user-agent")
     if cmd=="get_flag" or cmd=="get_flag_2":
 	run_for_flag = 1
-    vulnerable_attack = __import__(load_script).vulnerable_attack
+    vulnerable_attack = importlib.import_module('samples.' + load_script).vulnerable_attack
 
 # if the attack fails, the possible reasons are:
 # 1. the server has fixed up that vuln, then add that server to the fail_list

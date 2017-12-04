@@ -6,7 +6,6 @@ from framework.config import *
 import importlib
 import requests
 from optparse import OptionParser
-from urllib import quote
 import re
 
 
@@ -98,14 +97,14 @@ def parse_response(http_response,number):
 def sequence_attack(target,target_port,my_cmd,seq_name='test',number=1):
     global cmd,s,seq
     s = requests.Session()
+    cmd = my_cmd
     seq = importlib.import_module('seq.' + seq_name + '.config')    
-    cmd = quote(my_cmd)
     dump_info("Using sequence payload to attack")
     for i in range(number):
 	i += 1
 	res = parse_response(send_http(parse_http('seq/%s/%d.txt'%(seq_name,i),'%d'%i),target,target_port),'%d'%i)
     return res
 	   
-#sequence_attack('mut-orff.org',8080,'ls -la','test',4) 
+#aprint sequence_attack('mut-orff.org',8080,'ls%20-la','test',4) 
 
 

