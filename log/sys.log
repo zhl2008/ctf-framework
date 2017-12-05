@@ -2777,3 +2777,5 @@
 2017-12-05 20:17:35  [warning] fail to attack: 10.137.52.88:80 with error: check_shell failed with the script: function.py check_shell
 2017-12-05 20:17:35  [warning] fail to attack: 10.137.52.88:80 with error: execution cmd failed with the script: run.py
 2017-12-05 20:17:35  [error] fail to attack: 10.137.52.88:80 with error: server is not vulnerable with the script: run.py
+2017-12-05 22:11:05  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 22:11:05  [success] success to execution cmd from mut-orff.org:12345 with the script:run.py
