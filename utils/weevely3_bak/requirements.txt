@@ -1,0 +1,6 @@
+prettytable
+Mako
+PyYAML
+python-dateutil
+PySocks
+
