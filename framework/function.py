@@ -202,7 +202,7 @@ def rm_file(target,target_port,cmd):
     return "/bin/rm " + " -rf %s"%rm_paths
 
 def rm_db(target,target_port,cmd):
-    cmd = "/usr/bin/mysql -u%s -p%s -e '"%(db_user,db_passwd)
+    cmd = "/usr/bin/mysql -h localhost -u%s -p%s -e '"%(db_user,db_passwd)
     for db in db_name:
 	cmd += "drop database %s;"%db
     cmd += "'"

@@ -29,7 +29,7 @@ flag_server = "mut-orff.org"
 flag_port = 80
 flag_url = "/flag.php"
 flag_token = "haozigege" # for user Xyth
-flag_path = '/flag'
+flag_path = '/var/www/html/222/flag.txt'
 # the server you need to visit to get the flag
 get_flag_url = "http://172.17.0.2:80/flag.php" 
 ##########################################
@@ -59,7 +59,7 @@ web_path = '/var/www/html/'
 
 ######################
 #config for reverse_shell
-reverse_ip = '172.17.0.1'
+reverse_ip = '10.138.56.176'
 reverse_port  =  6666
 #####################
 
@@ -80,6 +80,6 @@ rm_index = '/var/www/html/index.php'
 ####################
 #config for rm database
 db_user = 'root'
-db_passwd = 'haozi'
+db_passwd = 'asas'
 db_name = ['performance_schema','mysql','onethink']
 ###################
