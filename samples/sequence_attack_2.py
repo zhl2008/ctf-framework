@@ -23,7 +23,7 @@ def vulnerable_attack(target,target_port,cmd):
 	res = sequence_attack(target,target_port,cmd,'php_eval',1)	 
     except Exception,e:
 	debug_print(traceback.format_exc())	
-	dump_error(target,"attack failed","sample.py attack")
+        dump_error("attack failed",target,"vulnerable attack")
 	res = "error"
 
     return res

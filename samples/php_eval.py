@@ -22,7 +22,7 @@ def vulnerable_attack(target,target_port,cmd):
 	res = http("post",target,target_port,"/index.php",data,headers)
     except Exception,e:
 	debug_print(traceback.format_exc())	
-	dump_error(target,"attack failed","sample.py attack")
+        dump_error("attack failed",target,"vulnerable attack")
 	res = "error"
 
     return res

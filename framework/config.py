@@ -5,7 +5,7 @@
 first_run = 1
 script_runtime_span = 5
 cmd = "whoami"
-debug = 0
+debug = 1
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
@@ -25,9 +25,9 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "172.17.0.1"
-flag_port = 83
-flag_url = "/flag2.php"
+flag_server = "mut-orff.org"
+flag_port = 80
+flag_url = "/flag.php"
 flag_token = "haozigege" # for user Xyth
 flag_path = '/flag'
 # the server you need to visit to get the flag

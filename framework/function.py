@@ -115,12 +115,17 @@ def execute_shell(target,target_port,cmd):
 	    res = http("post",target,target_port,shell_path + "/" +  shell_name ,data,headers)
 	except Exception,e:
 	    dump_error(e,target,"function.py execute_shell")
+            # execute shell timeout
+            if 'timed out' in str(e):
+                return "timeout"
 	    return "error occurs"
 	return res
 
 def check_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
     res = execute_shell(target,target_port,"echo hell0W0r1d")
+    if res == 'timeout':
+        return res
     if "hell0W0r1d" in res:
 	return True
     return False    

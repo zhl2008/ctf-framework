@@ -2419,3 +2419,78 @@
 2017-12-05 12:22:46  [success] success to execution cmd from mut-orff.org:12345 with the script:run.py
 2017-12-05 12:23:39  [success] success to check_shell success from mut-orff.org:12345 with the script:function.py check_shell
 2017-12-05 12:23:40  [success] success to execution cmd from mut-orff.org:12345 with the script:run.py
+2017-12-05 14:45:05  [success] success to check_shell success from mut-orff.org:12345 with the script:function.py check_shell
+2017-12-05 14:45:05  [error] fail to attack: flag server with error: flag post error with the script: flag.py post_flag
+2017-12-05 14:45:05  [warning] fail to attack: mut-orff.org:12345 with error: flag server check error with the script: run.py
+2017-12-05 14:46:39  [success] success to check_shell success from mut-orff.org:12345 with the script:function.py check_shell
+2017-12-05 14:46:39  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-05 14:46:39  [success] success to get flag success from mut-orff.org:12345 with the script:run.py
+2017-12-05 14:47:38  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 14:47:38  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:47:38  [error] fail to attack: attack failed with error: mut-orff.org with the script: sample.py attack
+2017-12-05 14:47:38  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:47:56  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 14:47:56  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:47:56  [error] fail to attack: attack failed with error: mut-orff.org with the script: sample.py attack
+2017-12-05 14:47:56  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:48:31  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:48:31  [error] fail to attack: attack failed with error: mut-orff.org with the script: sample.py attack
+2017-12-05 14:48:31  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:49:01  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:49:01  [error] fail to attack: attack failed with error: mut-orff.org with the script: sample.py attack
+2017-12-05 14:49:01  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:49:34  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:49:34  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:50:01  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:50:02  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:50:14  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:50:15  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:52:58  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:52:58  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:54:14  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 14:54:14  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:54:19  [error] fail to attack: attack failed with error: mut-orff.org with the script: sample.py attack
+2017-12-05 14:54:19  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 14:56:59  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 14:56:59  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 14:57:04  [error] fail to attack: attack failed with error: mut-orff.org with the script: sample.py attack
+2017-12-05 14:57:04  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 15:03:29  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:03:29  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:03:34  [error] fail to attack: mut-orff.org with error: attack failed with the script: vulnerable attack
+2017-12-05 15:03:34  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 15:03:34  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:03:53  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:03:53  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:03:58  [error] fail to attack: mut-orff.org with error: attack failed with the script: vulnerable attack
+2017-12-05 15:03:58  [warning] fail to attack: mut-orff.org:12345 with error: execution cmd failed with the script: run.py
+2017-12-05 15:03:58  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:06:15  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:06:15  [error] fail to attack: mut-orff.org with error: cannot concatenate 'str' and 'bool' objects with the script: run.py
+2017-12-05 15:10:11  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:10:11  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:10:16  [error] fail to attack: mut-orff.org with error: attack failed with the script: vulnerable attack
+2017-12-05 15:10:16  [warning] fail to attack: mut-orff.org:12345 with error: execution cmd failed with the script: run.py
+2017-12-05 15:10:16  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:10:48  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:10:48  [error] fail to attack: mut-orff.org with error: cannot concatenate 'str' and 'bool' objects with the script: run.py
+2017-12-05 15:11:46  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:11:46  [error] fail to attack: mut-orff.org with error: cannot concatenate 'str' and 'bool' objects with the script: run.py
+2017-12-05 15:12:36  [error] fail to attack: mut-orff.org with error: timed out with the script: function.py execute_shell
+2017-12-05 15:12:36  [error] fail to attack: mut-orff.org:12345 with error: connect timeout with the script: function.py check_shell
+2017-12-05 15:12:36  [warning] fail to attack: mut-orff.org:12345 with error: execution cmd failed with the script: run.py
+2017-12-05 15:12:36  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:13:29  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:13:30  [success] success to execution cmd from mut-orff.org:12345 with the script:run.py
+2017-12-05 15:14:09  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:14:09  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 15:14:09  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:27:44  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:27:44  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 15:27:44  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:27:57  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:27:57  [warning] fail to attack: mut-orff.org:12345 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-05 15:27:57  [error] fail to attack: mut-orff.org:12345 with error: server is not vulnerable with the script: run.py
+2017-12-05 15:29:07  [warning] fail to attack: mut-orff.org:12345 with error: check_shell failed with the script: function.py check_shell
+2017-12-05 15:29:08  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-05 15:29:08  [success] success to get flag success from mut-orff.org:12345 with the script:run.py
