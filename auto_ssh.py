@@ -9,6 +9,7 @@ import hashlib
 import string
 import sys
 from framework.config import *
+from framework.flag import *
 # from submit_flag import submit_flag
 
 ##################
@@ -26,6 +27,7 @@ db_name = 'test'
 
 def submit_flag(flag):
     print "[+] Submiting flag : %s" % (flag)
+    post_flag(flag)
     return True
 
 timeout = 3
@@ -158,7 +160,6 @@ def main():
     if len(sys.argv) != 3:
         print "Usage : \n\tpython %s [FILENAME] [cmd]" % (sys.argv[0])
         exit(1)
-    round_time = 60
     filename = sys.argv[1]
     cmd = sys.argv[2]
     print "[+] Loading file : %s" % (filename)
@@ -199,9 +200,9 @@ def main():
 	    # Try to execute cmd 
 	    print "[+] Execute user cmd:%s" % cmd
 	    extend_cmd_exec(ssh_client,cmd)
-        for i in range(round_time):
-            print "[+] Waiting : %s seconds..." % (round_time - i)
-            time.sleep(i)
+        for i in range(script_runtime_span):
+            print "[+] Waiting : %s seconds..." % (script_runtime_span - i)
+            time.sleep(1)
 
 def command_info():
     print ""

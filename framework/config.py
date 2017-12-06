@@ -29,7 +29,7 @@ flag_server = "mut-orff.org"
 flag_port = 80
 flag_url = "/flag.php"
 flag_token = "haozigege" # for user Xyth
-flag_path = '/var/www/html/222/flag.txt'
+flag_path = '/flag'
 # the server you need to visit to get the flag
 get_flag_url = "http://172.17.0.2:80/flag.php" 
 ##########################################
