@@ -59,7 +59,7 @@ web_path = '/var/www/html/'
 
 ######################
 #config for reverse_shell
-reverse_ip = '10.138.56.176'
+reverse_ip = '192.168.37.133'
 reverse_port  =  6666
 #####################
 
@@ -80,6 +80,6 @@ rm_index = '/var/www/html/index.php'
 ####################
 #config for rm database
 db_user = 'root'
-db_passwd = 'asas'
+db_passwd = ''
 db_name = ['performance_schema','mysql','onethink']
 ###################
