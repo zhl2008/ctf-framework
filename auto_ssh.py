@@ -9,6 +9,7 @@ import hashlib
 import string
 import sys
 from framework.config import *
+from framework.flag import *
 # from submit_flag import submit_flag
 
 ##################
@@ -25,6 +26,7 @@ db_name = 'test'
 #################
 
 def submit_flag(flag):
+    post_flag(flag)
     print "[+] Submiting flag : %s" % (flag)
     return True
 
@@ -115,7 +117,7 @@ class SSHClient():
 
 
 def get_flag(ssh_client):
-    flag = ssh_client.exec_command("cat " + flag_path)[1].read().strip("\n\t ")
+    flag = ssh_client.exec_command("curl " + get_flag_url)[1].read().strip("\n\t ")
     return flag
 
 
@@ -137,7 +139,7 @@ def extend_cmd_exec(ssh_client,cmd):
 	return
     elif cmd == "change_password":
 	print '[+] start to change password in the remote host'
-	new_password = md5(random_string(0x20))
+	new_password = md5(ssh_password)
 	if ssh_client.change_password(new_password):
 	    ssh_client.save_info("autossh/success.log")
 	    ssh_client.save_info('autossh/now.txt')

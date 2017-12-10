@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 5
+script_runtime_span = 150
 cmd = "whoami"
 debug = 1
 headers = {"User-Agent":"Hence Zhang"}
@@ -25,15 +26,17 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "mut-orff.org"
+flag_server = "172.16.0.30"
 flag_port = 80
-flag_url = "/flag.php"
-flag_token = "haozigege" # for user Xyth
+flag_url = "/index.php/wargame/submit"
+flag_token = "haozigege"
+flag_cookie = "PHPSESSID=haozigege-test"
 flag_path = '/var/www/html/222/flag.txt'
 # the server you need to visit to get the flag
-get_flag_url = "http://172.17.0.2:80/flag.php" 
+get_flag_url = "http://172.16.0.30:8000/flag" 
+flag_string = ['flagFLAGabcdef0123456789ABCDEF{}-_']
+flag_match_string = 'success'
 ##########################################
-
 
 ########################################
 #config for shell
@@ -50,8 +53,8 @@ shell_type = 2
 
 #######################
 #config for web path and file path
-shell_path = "/"
-shell_absolute_path = "/var/www/html/"
+shell_path = "/runtime/temp"
+shell_absolute_path = "/var/www/html/runtime/temp"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################
@@ -80,6 +83,11 @@ rm_index = '/var/www/html/index.php'
 ####################
 #config for rm database
 db_user = 'root'
-db_passwd = ''
-db_name = ['performance_schema','mysql','onethink']
+db_passwd = 'root'
+db_name = ['performance_schema','mysql','tpshop2.0']
+###################
+
+####################
+#config for autossh
+ssh_password = 'Hence666'
 ###################

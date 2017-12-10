@@ -1,0 +1,7 @@
+POST /index.php?s=Admin-Login-Check HTTP/1.1
+Host: 172.16.0.194
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 34
+
+user_name=admin&user_pwd=haozigege
+

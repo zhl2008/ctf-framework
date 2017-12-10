@@ -8,6 +8,7 @@
 import requests
 
 friend_label = '/humensec.txt'
+chat_label = '/server53936ce6eef01d89d066ae900e9a1de5.php'
 chat_label = '/humen.txt'
 url_label = '/shell.php'
 timeout = 3

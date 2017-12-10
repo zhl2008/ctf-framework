@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 
 from http import http
 from config import *
@@ -14,7 +16,7 @@ def check_flag(flag):
     if not flag:
 	return False
     for char in flag:
-        if (char<"0" or char>"9") and (char>"f" or char<"a"):
+	    if char not in flag_string: 
 	    dump_warning("flag => "+flag)
             return False
     return True
@@ -22,11 +24,12 @@ def check_flag(flag):
 def post_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
     try:
-	res = http("post",flag_server,flag_port,flag_url,"flag="+flag+"&token="+flag_token,headers)
+	headers['Cookie'] = flag_cookie
+	res = http("post",flag_server,flag_port,flag_url,"key="+flag+"&token="+flag_token,headers)
     except Exception,e:
         dump_error("flag post error","flag server","flag.py post_flag")
 	return False
-    if "success" in res:
+    if flag_success_match in res:
 	dump_success('get flag success','flag server','flag.py post_flag')
 	return True
     return False
