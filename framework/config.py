@@ -32,6 +32,9 @@ flag_url = "/index.php/wargame/submit"
 flag_token = "haozigege"
 flag_cookie = "PHPSESSID=haozigege-test"
 flag_path = '/var/www/html/222/flag.txt'
+flag_url = "/flag.php"
+flag_token = "haozigege" # for user Xyth
+flag_path = '/flag'
 # the server you need to visit to get the flag
 get_flag_url = "http://172.16.0.30:8000/flag" 
 flag_string = ['flagFLAGabcdef0123456789ABCDEF{}-_']
@@ -53,8 +56,8 @@ shell_type = 2
 
 #######################
 #config for web path and file path
-shell_path = "/runtime/temp"
-shell_absolute_path = "/var/www/html/runtime/temp"
+shell_path = "/"
+shell_absolute_path = "/var/www/html/"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################
@@ -83,8 +86,12 @@ rm_index = '/var/www/html/index.php'
 ####################
 #config for rm database
 db_user = 'root'
-db_passwd = 'root'
+db_passwd = ''
 db_name = ['performance_schema','mysql','tpshop2.0']
+if not db_passwd:
+    my_db_passwd = ""
+else:
+    my_db_passwd = "-p" + db_passwd
 ###################
 
 ####################

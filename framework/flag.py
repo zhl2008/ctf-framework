@@ -16,7 +16,7 @@ def check_flag(flag):
     if not flag:
 	return False
     for char in flag:
-	    if char not in flag_string: 
+	if char not in flag_string: 
 	    dump_warning("flag => "+flag)
             return False
     return True

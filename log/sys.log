@@ -1,1 +1,34 @@
 
+2017-12-06 13:36:38  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-06 13:39:47  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-06 13:43:26  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-06 13:43:33  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-06 13:43:39  [success] success to get flag success from flag server with the script:flag.py post_flag
+2017-12-09 20:19:47  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:19:47  [warning] fail to attack: 172.17.0.2:80 with error: execution cmd failed with the script: run.py
+2017-12-09 20:19:47  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py
+2017-12-09 20:20:19  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:20:19  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
+2017-12-09 20:23:04  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:23:04  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
+2017-12-09 20:23:54  [error] fail to attack: 172.17.0.2 with error: not enough arguments for format string with the script: run.py
+2017-12-09 20:24:46  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:24:46  [warning] fail to attack: 172.17.0.2:80 with error: execution cmd failed with the script: run.py
+2017-12-09 20:24:46  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py
+2017-12-09 20:27:55  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:27:55  [warning] fail to attack: 172.17.0.2:80 with error: execution cmd failed with the script: run.py
+2017-12-09 20:27:55  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py
+2017-12-09 20:28:55  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:28:55  [warning] fail to attack: 172.17.0.2:80 with error: execution cmd failed with the script: run.py
+2017-12-09 20:28:55  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py
+2017-12-09 20:34:30  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:34:30  [warning] fail to attack: 172.17.0.2:80 with error: execution cmd failed with the script: run.py
+2017-12-09 20:34:30  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py
+2017-12-09 20:35:28  [success] success to check_shell success from 172.17.0.2:80 with the script:function.py check_shell
+2017-12-09 20:35:28  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
+2017-12-09 20:35:57  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:35:57  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
+2017-12-09 20:36:04  [warning] fail to attack: 172.17.0.2:80 with error: check_shell failed with the script: function.py check_shell
+2017-12-09 20:36:04  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
+2017-12-09 20:36:15  [success] success to check_shell success from 172.17.0.2:80 with the script:function.py check_shell
+2017-12-09 20:36:15  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py

