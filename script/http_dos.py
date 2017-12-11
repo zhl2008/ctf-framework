@@ -23,29 +23,29 @@ socks=[]
 def conn_thread():
     global socks
     for i in range(0,MAX_CONN):
-	s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-	try:
-	    s.connect((HOST,PORT))
-	    s.send(buf)
-	    print "Send buf OK!,conn=%d\n"%i
-	    socks.append(s)
-	except Exception,ex:
-	    print "Could not connect to server or send error:%s"%ex
-	    time.sleep(10)
+        s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        try:
+            s.connect((HOST,PORT))
+            s.send(buf)
+            print "Send buf OK!,conn=%d\n"%i
+            socks.append(s)
+        except Exception,ex:
+            print "Could not connect to server or send error:%s"%ex
+            time.sleep(10)
 #end def
 
 def send_thread():
     global socks
     while True:
-	for s in socks:
-	    try:
-		s.send("f")
-		#print "send OK!"
-	    except Exception,ex:
-		print "Send Exception:%s\n"%ex
-		socks.remove(s)
-		s.close()
-	time.sleep(1)
+        for s in socks:
+            try:
+                s.send("f")
+                #print "send OK!"
+            except Exception,ex:
+                print "Send Exception:%s\n"%ex
+                socks.remove(s)
+                s.close()
+        time.sleep(1)
 #end def
 
 for i in xrange(10):

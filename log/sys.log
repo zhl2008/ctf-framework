@@ -32,3 +32,13 @@
 2017-12-09 20:36:04  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
 2017-12-09 20:36:15  [success] success to check_shell success from 172.17.0.2:80 with the script:function.py check_shell
 2017-12-09 20:36:15  [success] success to execution cmd from 172.17.0.2:80 with the script:run.py
+2017-12-11 17:10:05  [error] fail to attack: 172.17.0.2 with error: timed out with the script: function.py execute_shell
+2017-12-11 17:10:05  [error] fail to attack: 172.17.0.2:80 with error: connect timeout with the script: function.py check_shell
+2017-12-11 17:10:05  [warning] fail to attack: 172.17.0.2:80 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-11 17:10:05  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py
+2017-12-11 17:12:36  [error] fail to attack: 172.17.0.2 with error: timed out with the script: function.py execute_shell
+2017-12-11 17:12:36  [error] fail to attack: 172.17.0.2:80 with error: connect timeout with the script: function.py check_shell
+2017-12-11 17:34:03  [error] fail to attack: 172.17.0.2 with error: timed out with the script: function.py execute_shell
+2017-12-11 17:34:03  [error] fail to attack: 172.17.0.2:80 with error: connect timeout with the script: function.py check_shell
+2017-12-11 17:34:03  [warning] fail to attack: 172.17.0.2:80 with error: flag format error,you may need to rewrite the shell with the script: run.py attack
+2017-12-11 17:34:03  [error] fail to attack: 172.17.0.2:80 with error: server is not vulnerable with the script: run.py

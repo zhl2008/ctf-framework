@@ -7,7 +7,7 @@ from urllib import quote
 import traceback
 
 def vulnerable_attack(target,target_port,cmd):
-	
+        
     '''
     this is the payload script for vuln:
     
@@ -26,9 +26,9 @@ def vulnerable_attack(target,target_port,cmd):
         debug_print('system_cmd => ' + system_cmd)
         res = os.popen(system_cmd).read()
     except Exception,e:
-	debug_print(traceback.format_exc())	
-	dump_error(target,"attack failed","sample.py attack")
-	res = "error"
+        debug_print(traceback.format_exc())     
+        dump_error(target,"attack failed","sample.py attack")
+        res = "error"
 
     return res
 
