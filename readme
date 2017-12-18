@@ -1,0 +1,19 @@
+python run.py -m install -c get_shell
+
+python run.py -m install -c get_flag
+
+python run.py -m install -c crontab_submit_flag
+
+python run.py -m image -c get_shell
+
+python run.py -m image -c get_flag
+
+python run.py -m image -c crontab_submit_flag
+
+python run.py -m edit -c get_shell
+
+python run.py -m edit -c get_flag
+
+python run.py -m edit -c crontab_submit_flag
+
+python run.py -m edit -c  change_password

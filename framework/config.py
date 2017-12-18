@@ -4,14 +4,14 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 150
+script_runtime_span = 2
 cmd = "whoami"
 debug = 1
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
 cmd_postfix = "ZHANG777"
-timeout = 5
+timeout = 2
 #####################
 
 #############################
@@ -26,19 +26,18 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "172.16.0.30"
-flag_port = 80
-flag_url = "/index.php/wargame/submit"
-flag_token = "haozigege"
+flag_server = "192.168.1.110"
+flag_port = 3000
+flag_url = "Flag/submit"
+flag_token = "4928c834a9509772ec1cd7c89f0394c91744a5b1c150af3ffde3ee2002c8a58c"
 flag_cookie = "PHPSESSID=haozigege-test"
-flag_path = '/var/www/html/222/flag.txt'
-flag_url = "/flag.php"
-flag_token = "haozigege" # for user Xyth
-flag_path = '/flag'
+flag_path = '/opt/flag'
+
+
 # the server you need to visit to get the flag
 get_flag_url = "http://172.16.0.30:8000/flag" 
 flag_string = ['flagFLAGabcdef0123456789ABCDEF{}-_']
-flag_match_string = 'success'
+flag_match_string = 'validFrom'
 ##########################################
 
 ########################################
@@ -56,8 +55,8 @@ shell_type = 2
 
 #######################
 #config for web path and file path
-shell_path = "/"
-shell_absolute_path = "/var/www/html/"
+shell_path = "/files/"
+shell_absolute_path = "/var/www/html/files/"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################
@@ -79,8 +78,8 @@ executor = ''
 
 ####################
 #config for rm file
-rm_paths = '/var/www/html/index.php /tmp/* /home/ctf/*'
-rm_index = '/var/www/html/index.php'
+rm_paths = '/var/www/html/index.php /tmp/* /home/ctf/* /var/www/html/data/settings/install.dat'
+rm_index = '/var/www/html/admin.php'
 ###################
 
 ####################
@@ -98,3 +97,12 @@ else:
 #config for autossh
 ssh_password = 'Hence666'
 ###################
+
+####################
+#config for friend check
+friend_label = '/humensec.txt'
+chat_label = '/server53936ce6eef01d89d066ae900e9a1de5.php'
+chat_label = '/humen.txt'
+url_label = '/shell.php'
+#####################
+

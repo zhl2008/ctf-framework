@@ -6,12 +6,9 @@
 # In addition, it can check the specific url of all server
 
 import requests
+from framework.config import *
 
-friend_label = '/humensec.txt'
-chat_label = '/server53936ce6eef01d89d066ae900e9a1de5.php'
-chat_label = '/humen.txt'
-url_label = '/shell.php'
-timeout = 3
+
 def friend_check(target,target_port):
     url = 'http://%s:%d%s'%(target,int(target_port),friend_label)
     r = requests.get(url,timeout=timeout)
@@ -22,7 +19,7 @@ def friend_check(target,target_port):
     return False
 
 def chat_check(target,target_port):
-    url = 'http://%s:%d%s'%(target,int(target_port),chat_label)
+    url = 'http://%s:%d%s'%(targte,int(target_port),chat_label)
     r = requests.get(url,timeout=timeout)
     if r.status_code == 200:
         print '|chat__ok_|',
