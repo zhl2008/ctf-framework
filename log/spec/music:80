@@ -1,0 +1,8 @@
+2017-12-17 19:30:19  [-] check shell fail
+2017-12-17 19:30:21  [-] flag server check error
+2017-12-17 19:36:37  [-] check shell fail
+2017-12-17 19:36:37  [-] flag format wrong
+2017-12-17 19:37:34  [-] check shell fail
+2017-12-17 19:37:34  [-] flag format wrong
+2017-12-17 19:37:34  [-] execute cmd fail
+2017-12-17 19:37:34  [-] server is not vulnerable to current payload

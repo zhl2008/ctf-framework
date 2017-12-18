@@ -6,7 +6,7 @@
 first_run = 1
 script_runtime_span = 2
 cmd = "whoami"
-debug = 1
+debug = 0
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
@@ -36,7 +36,7 @@ flag_path = '/opt/flag'
 
 # the server you need to visit to get the flag
 get_flag_url = "http://172.16.0.30:8000/flag" 
-flag_string = ['flagFLAGabcdef0123456789ABCDEF{}-_']
+flag_string = 'flagFLAGabcdef0123456789ABCDEF{}-_'
 flag_match_string = 'validFrom'
 ##########################################
 

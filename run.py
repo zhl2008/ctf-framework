@@ -60,12 +60,13 @@ def attack(target,target_port,cmd,get_flag):
             is_flag = 1
             dump_info("flag => " + res.replace(" ","").replace("\n",""))
         else:
-            is_vuln = 0
+            #is_vuln = 0
             dump_warning("flag format error,you may need to rewrite the shell", target+":"+str(target_port) ,"run.py attack")
             write_specific_log(target,target_port,"[-] flag format wrong")
-    elif "error" in res:
+    if "error" in res:
         dump_warning("execution cmd failed",target+":"+str(target_port),"run.py")
         is_vuln = 0
+	is_flag = 0
         write_specific_log(target,target_port,"[-] execute cmd fail")
     else:
         dump_success("execution cmd",target+":"+str(target_port),"run.py")
