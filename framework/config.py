@@ -55,6 +55,7 @@ shell_type = 2
 
 #######################
 #config for web path and file path
+#The final / should not be delete!!!!!!!!
 shell_path = "/files/"
 shell_absolute_path = "/var/www/html/files/"
 crontab_path = "/tmp/"

@@ -17,3 +17,5 @@ python run.py -m edit -c get_flag
 python run.py -m edit -c crontab_submit_flag
 
 python run.py -m edit -c  change_password
+
+python run.py -m edit -c  create_p2p

@@ -66,7 +66,7 @@ def send_http(info,target,target_port):
     return r.headers,r.text
 
 def find_in_string(my_range,string):
-    print string
+    debug_print(string)
     prefix,postfix = my_range
     index_1 = string.find(prefix) 
     index_2 = string.find(postfix)
@@ -90,7 +90,7 @@ def parse_response(http_response,number):
     # Transform the response header from array to string
     for key in response_header:
         tmp_header += key + ":" + response_header[key] 
-    print 'res =>' + tmp_header
+    debug_print('res =>' + tmp_header)
     tmp = tmp_header + text
     for key in pattern:
         res = find_in_string(pattern[key],tmp)
