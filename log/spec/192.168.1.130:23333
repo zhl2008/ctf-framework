@@ -10,3 +10,7 @@
 2017-12-17 19:38:35  [-] connect timeout
 2017-12-17 19:38:35  [-] execute cmd fail
 2017-12-17 19:38:37  [-] server is not vulnerable to current payload
+2018-02-01 12:13:41  [-] connect timeout
+2018-02-01 12:13:41  [-] flag format wrong
+2018-02-01 12:13:41  [-] execute cmd fail
+2018-02-01 12:13:41  [-] server is not vulnerable to current payload
