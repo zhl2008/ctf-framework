@@ -42,8 +42,8 @@ for target in targets:
     print (target+":"+target_port).ljust(25," ") + " =>   ",
     try:
         url_check(target,target_port)
-        chat_check(target,target_port)
-        friend_check(target,target_port)
+        #chat_check(target,target_port)
+        #friend_check(target,target_port)
     except Exception,e:
         print '|fuck_error|',
     print ''     

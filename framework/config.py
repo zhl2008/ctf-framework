@@ -26,9 +26,9 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "192.168.1.110"
-flag_port = 3000
-flag_url = "Flag/submit"
+flag_server = "172.16.4.1"
+flag_port = 80
+flag_url = "Common/submitAnswer"
 flag_token = "4928c834a9509772ec1cd7c89f0394c91744a5b1c150af3ffde3ee2002c8a58c"
 flag_cookie = "PHPSESSID=haozigege-test"
 flag_path = '/opt/flag'

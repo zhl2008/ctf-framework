@@ -25,7 +25,7 @@ def post_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
     try:
         headers['Cookie'] = flag_cookie
-        res = http("post",flag_server,flag_port,flag_url,"flag="+flag+"&token="+flag_token,headers)
+        res = http("post",flag_server,flag_port,flag_url,"answer="+flag+"&token="+flag_token,headers)
 	debug_print(res)
     except Exception,e:
         dump_error("flag post error","flag server","flag.py post_flag")
