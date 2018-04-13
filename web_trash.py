@@ -134,7 +134,7 @@ headers = {
 
 if __name__ == '__main__':
     hosts = open("data/ip.data").readlines()
-    msgs = open("trash_traffic/msg_result").readlines()
+    msgs = open("data/msg.data").readlines()
     try:
         for i in xrange(0,5):
             print 'thread %s is running...' % threading.current_thread().name
