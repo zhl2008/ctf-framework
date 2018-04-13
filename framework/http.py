@@ -19,7 +19,8 @@ def http(method,host,port,url,data,headers):
     res = con.getresponse()
     if res.getheader('set-cookie'):
         #headers['Cookie'] = res.getheader('set-cookie')
-        extra =  "here is your cookie: " + res.getheader('set-cookie')
+        extra = ""
+        #extra =  "here is your cookie: " + res.getheader('set-cookie')
     else:
         extra = ""
     if res.getheader('Location'):

@@ -11,7 +11,7 @@ headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
 cmd_postfix = "ZHANG777"
-timeout = 2
+timeout = 0.5
 #####################
 
 #############################
