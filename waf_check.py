@@ -9,8 +9,8 @@ from framework.http import http
 
 timeout = 2
 url_label = '/index.php'
-get_payload = 'system=system(eval)&aaa=select,into,union&hash=shell&b=whoami&a=hackbyredbud'
-post_payload = 'eval=system(rm)&fuck=drop&script=alert&upload=1.php'
+get_payload = 'fileName=system(eval)&aaa=select,into,union&hash=shell&b=whoami&a=hackbyredbud'
+post_payload = 'fileName=system(rm)&fuck=drop&script=alert&upload=1.php'
 
 def waf_check(target,target_port):
     url = 'http://%s:%d%s'%(target,int(target_port),url_label)

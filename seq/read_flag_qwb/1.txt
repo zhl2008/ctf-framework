@@ -1,0 +1,7 @@
+GET /app.php/login HTTP/1.1
+Host: 172.16.5.28:5053
+Connection: keep-alive
+Accept-Encoding: gzip, deflate
+Accept: */*
+User-Agent: python-requests/2.18.1
+

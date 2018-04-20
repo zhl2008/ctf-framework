@@ -28,6 +28,7 @@ def chat_check(target,target_port):
     return False
 
 def url_check(target,target_port):
+    url_label = '/hzgg.txt'
     url = 'http://%s:%d%s'%(target,int(target_port),url_label)
     r = requests.get(url,timeout=timeout)
     if r.status_code == 200:
@@ -36,7 +37,7 @@ def url_check(target,target_port):
     print '|url_fail|',
     return False
 
-targets = open('data/all_ip.data').readlines()
+targets = open('data/ip.data').readlines()
 for target in targets:
     target,target_port = target.strip("\n").split(":")
     print (target+":"+target_port).ljust(25," ") + " =>   ",

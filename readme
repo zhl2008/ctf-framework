@@ -1,21 +1,17 @@
-python run.py -m install -c get_shell
-
-python run.py -m install -c get_flag
-
-python run.py -m install -c crontab_submit_flag
-
-python run.py -m image -c get_shell
-
-python run.py -m image -c get_flag
-
-python run.py -m image -c crontab_submit_flag
-
-python run.py -m edit -c get_shell
-
-python run.py -m edit -c get_flag
-
-python run.py -m edit -c crontab_submit_flag
 
 python run.py -m edit -c  change_password
 
 python run.py -m edit -c  create_p2p
+
+
+suggest cmd after u find a vulnerability:
+
+python run.py -m edit -c get_shell -r 
+python run.py -m edit -c get_flag -r
+python run.py -m edit -c crontab_submit_flag -r -l 1
+python run.py -m edit -c  create_p2p -r
+python run.py -m edit -c  run_p2p -r -l 1
+python run.py -m edit -c  create_p2p -r
+
+
+

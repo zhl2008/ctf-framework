@@ -4,14 +4,14 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 2
+script_runtime_span = 0
 cmd = "whoami"
 debug = 0
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
 cmd_postfix = "ZHANG777"
-timeout = 0.5
+timeout = 2
 #####################
 
 #############################
@@ -28,10 +28,10 @@ targets_status = ''
 # get flag
 flag_server = "172.16.4.1"
 flag_port = 80
-flag_url = "Common/submitAnswer"
-flag_token = "4928c834a9509772ec1cd7c89f0394c91744a5b1c150af3ffde3ee2002c8a58c"
+flag_url = "/Common/submitAnswer"
+flag_token = "c270ebc7e59cc76ad35f41c603dc7b9a"
 flag_cookie = "PHPSESSID=haozigege-test"
-flag_path = '/opt/flag'
+flag_path = '/home/ctf/flag'
 
 
 # the server you need to visit to get the flag
@@ -57,9 +57,9 @@ shell_type = 2
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
 shell_path = "/files/"
-shell_absolute_path = "/var/www/html/files/"
+shell_absolute_path = "/var/www/html/web/files/"
 crontab_path = "/tmp/"
-web_path = '/var/www/html/'
+web_path = '/var/www/html/web/'
 ######################
 
 
