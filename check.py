@@ -28,7 +28,7 @@ def chat_check(target,target_port):
     return False
 
 def url_check(target,target_port):
-    url_label = '/hzgg.txt'
+    url_label = '/logout'
     url = 'http://%s:%d%s'%(target,int(target_port),url_label)
     r = requests.get(url,timeout=timeout)
     if r.status_code == 200:

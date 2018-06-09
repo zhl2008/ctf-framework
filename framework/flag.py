@@ -13,6 +13,7 @@ from function import *
 #check wether the format of a flag is correct, suppose the format of a flag must be a string with hex value
 def check_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
+    return True
     if not flag:
         return False
     for char in flag:
@@ -25,12 +26,13 @@ def post_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
     try:
         headers['Cookie'] = flag_cookie
-        res = http("post",flag_server,flag_port,flag_url,"answer="+flag+"&token="+flag_token,headers)
+        res = http("post",flag_server,flag_port,flag_url,"flag="+flag+"&token="+flag_token,headers)
 	debug_print(res)
     except Exception,e:
         dump_error("flag post error","flag server","flag.py post_flag")
         return False
     if flag_match_string in res:
+        print res
         dump_success('get flag success','flag server','flag.py post_flag')
         return True
     return False

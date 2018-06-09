@@ -4,7 +4,7 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 0
+script_runtime_span = 20
 cmd = "whoami"
 debug = 0
 headers = {"User-Agent":"Hence Zhang"}
@@ -26,18 +26,18 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "172.16.4.1"
+flag_server = "172.16.123.123"
 flag_port = 80
-flag_url = "/Common/submitAnswer"
-flag_token = "c270ebc7e59cc76ad35f41c603dc7b9a"
+flag_url = "/commapi/account/submitFlag"
+flag_token = "b1pyte5oiwjd0oxugqv77vtk5qian0sf"
 flag_cookie = "PHPSESSID=haozigege-test"
-flag_path = '/home/ctf/flag'
+flag_path = '/home/tsctf/go/src/gotsctf2018/flag'
 
 
 # the server you need to visit to get the flag
 get_flag_url = "http://172.16.0.30:8000/flag" 
-flag_string = 'flagFLAGabcdef0123456789ABCDEF{}-_'
-flag_match_string = 'validFrom'
+flag_string = 'TSCTFflagFLAGabcdef0123456789ABCDEF{}-_'
+flag_match_string = 'ok'
 ##########################################
 
 ########################################
