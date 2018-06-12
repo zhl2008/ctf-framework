@@ -11,6 +11,7 @@ import base64
 from urllib import quote,unquote,urlencode
 import Cookie
 import threading
+from copy import deepcopy
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -30,7 +31,7 @@ sys.setdefaultencoding('utf8')
 '''
 #######  configuration  ########
 target_list = [y.split(':') for y in [x.strip() for x in open('./data/ip.data').readlines()]]
-log_dir = "./trash_traffic/logs/127.0.0.1:81/"
+log_dir = "./trash_traffic/logs/127.0.0.1:8889/"
 traffic_thread_num = 10
 payload_count = 10
 sleep_time = 1
@@ -38,7 +39,7 @@ timeout = 2
 debug = True
 
 # in crazy mod, all of the payloads are new 
-crazy_level = 2
+crazy_level = 0
 
 ###############################
 
@@ -173,7 +174,7 @@ class Traffic():
 		'''
 			try to modify the original traffic with our malicious data
 		'''
-		my_traffic = self.traffic[self.traffic_hashes[randint(0,len(self.traffic_hashes)-1)]]
+		my_traffic = deepcopy(self.traffic[self.traffic_hashes[randint(0,len(self.traffic_hashes)-1)]])
 		content = my_traffic['content']
 		query = my_traffic['query']
 		query = dict([(i, query[i][0]) if query[i] else (i, '') for i in query])
@@ -268,11 +269,11 @@ if __name__ == '__main__':
 	T.load_headers()
 
 	for i in xrange(0,traffic_thread_num):
-		print "start a new round of dirty"
-		print 'thread %s is running...' % threading.current_thread().name
 		t = threading.Thread(target=T.send_traffic, name='LoopThread')
 		t.setDaemon(True)
 		t.start()
+		print 'thread %s is running...' % threading.current_thread().name
+
 
 	try:
 		while True:

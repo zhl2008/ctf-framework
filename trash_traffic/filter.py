@@ -8,7 +8,7 @@ import urlparse
 
 log_path = './logs'
 #record_socket = ['47.75.2.217:80','www.baidu.com:443','coinx.im:443','ichunqiu.com:443','192.168.244.101:443']
-record_socket = ['127.0.0.1:81']
+record_socket = ['127.0.0.1:8889']
 not_record_ext = ['.css','.js','.jpg','.png','.ico','.txt','.gif']
 
 @concurrent  # Remove this and see what happens
@@ -29,7 +29,7 @@ def my_filter(r):
         return False
     if not r.path:
         return False
-    ext = '.' + r.path.split('.')[-1]
+    ext = '.' + urlparse.urlparse(r.path).path.split('.')[-1]
     if ext in not_record_ext:
         return False
     return True
