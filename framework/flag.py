@@ -32,7 +32,7 @@ def post_flag(flag):
         dump_error("flag post error","flag server","flag.py post_flag")
         return False
     if flag_match_string in res:
-        print res
+        debug_print(res)
         dump_success('get flag success','flag server','flag.py post_flag')
         return True
     return False

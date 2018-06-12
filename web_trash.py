@@ -99,7 +99,7 @@ def random_func():
         payload.append(args[random.randint(1,len(args)-1)]+'='+action_str[random.randint(1,len(action_str)-1)])
         for j in xrange(random.randint(1,6)):
             payload.append(argument_str[random.randint(0,len(argument_str)-1)])
-        #print random.randint(0,len(argument_str))
+        
         payload.append(file_str[random.randint(0,len(file_str)-1)])
         payload = ''.join(payload)
         result += payload+'&'
@@ -197,7 +197,7 @@ if __name__ == '__main__':
         "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2", 
         "Accept-Encoding": "gzip, deflate", 
         "Content-Type": "application/x-www-form-urlencoded",
-        "Connection": "keep-alive"
+        "Connection": "<kee></kee>p-alive"
     }
     init_msg_file()
     
