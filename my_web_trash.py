@@ -32,7 +32,7 @@ sys.setdefaultencoding('utf8')
 #######  configuration  ########
 target_list = [y.split(':') for y in [x.strip() for x in open('./data/ip.data').readlines()]]
 log_dir = "./trash_traffic/logs/127.0.0.1:8889/"
-traffic_thread_num = 10
+traffic_thread_num = 4
 payload_count = 10
 sleep_time = 1
 timeout = 2

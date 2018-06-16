@@ -4,7 +4,7 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 20
+script_runtime_span = 2
 cmd = "whoami"
 debug = 0
 headers = {"User-Agent":"Hence Zhang"}
@@ -26,12 +26,12 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "172.16.123.123"
+flag_server = "192.168.80.1"
 flag_port = 80
-flag_url = "/commapi/account/submitFlag"
+flag_url = "/lms/portal/sp/hz_flag.php"
 flag_token = "b1pyte5oiwjd0oxugqv77vtk5qian0sf"
-flag_cookie = "PHPSESSID=haozigege-test"
-flag_path = '/home/tsctf/go/src/gotsctf2018/flag'
+flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
+flag_path = '/flag.txt'
 
 
 # the server you need to visit to get the flag
@@ -56,16 +56,16 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/files/"
-shell_absolute_path = "/var/www/html/web/files/"
+shell_path = "/runtime/"
+shell_absolute_path = "/var/www/html/runtime/"
 crontab_path = "/tmp/"
-web_path = '/var/www/html/web/'
+web_path = '/var/www/html/'
 ######################
 
 
 ######################
 #config for reverse_shell
-reverse_ip = '192.168.37.133'
+reverse_ip = '192.168.2.115'
 reverse_port  =  6666
 #####################
 

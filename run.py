@@ -132,7 +132,7 @@ def run():
         
         #set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
         if not reserve and  is_vuln and flag!="hello world!":
-            res = post_flag(flag)
+            res = post_flag(flag,target)
             if res:
                 dump_success("get flag success",target+":"+str(target_port),"run.py")
                 write_specific_log(target,target_port,"[+] get flag success")
