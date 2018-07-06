@@ -26,12 +26,12 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "192.168.2.111"
-flag_port = 8080
-flag_url = "/flag_file.php"
+flag_server = "192.168.4.1"
+flag_port = 80
+flag_url = "/lms/portal/sp/hz_flag.php"
 flag_token = "team1"
 flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
-flag_path = '/flag'
+flag_path = '/flag.txt'
 
 
 # the server you need to visit to get the flag
@@ -56,8 +56,8 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/data/trash/"
-shell_absolute_path = "/var/www/html/data/trash/"
+shell_path = "/"
+shell_absolute_path = "/var/www/html/"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################

