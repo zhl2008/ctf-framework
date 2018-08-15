@@ -21,7 +21,7 @@ def parse_http(filename,number):
             break
         else:
             count += 1
-    request_header = lines[1:count-1]
+    request_header = lines[1:count]
     request_body = '\n'.join(lines[count+1:])
     # Parse the request line
     method,url,protocol = request_line.split(" ")

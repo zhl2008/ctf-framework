@@ -14,15 +14,17 @@ s = requests.session()
 request_1 = open(file_dir + '1.txt').read()
 reply_1 = send_http(s,parse_http(request_1),target,target_port)
 # print reply_1[1]
-token = re.findall('content="([\w|-]{15,100})"',reply_1[1])[0]
 
 request_2 = open(file_dir + '2.txt').read()
-request_2 = request_2.replace('{{token}}',token)
+request_2 = request_2.replace('{{cookie}}','')
+request_2 = request_2.replace('{{token}}','')
+print parse_http(request_2)
+exit()
 reply_2 = send_http(s,parse_http(request_2),target,target_port)
-# print reply_2[1]
-# exit()
+print reply_2[1]
 
 request_3 = open(file_dir + '3.txt').read()
+request_3 = request_3.replace('{{cookie}}','')
 reply_3 = send_http(s,parse_http(request_3),target,target_port)
 print reply_3[1]
 
