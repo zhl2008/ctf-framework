@@ -8,7 +8,7 @@ import urlparse
 
 log_path = './logs'
 #record_socket = ['47.75.2.217:80','www.baidu.com:443','coinx.im:443','ichunqiu.com:443','192.168.244.101:443']
-record_socket = ['192.168.2.127:80']
+record_socket = ['comp:8803']
 not_record_ext = ['.css','.js','.jpg','.png','.ico','.txt','.gif']
 
 @concurrent  # Remove this and see what happens

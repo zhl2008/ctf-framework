@@ -1,4 +1,4 @@
-GET /app.php/login HTTP/1.1
+GET /web/login HTTP/1.1
 Host: 172.16.5.28:5053
 Connection: keep-alive
 Accept-Encoding: gzip, deflate

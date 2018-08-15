@@ -31,7 +31,7 @@ sys.setdefaultencoding('utf8')
 '''
 #######  configuration  ########
 target_list = [y.split(':') for y in [x.strip() for x in open('./data/ip.data').readlines()]]
-log_dir = "./trash_traffic/logs/192.168.2.127/"
+log_dir = "./trash_traffic/logs/comp:8803/"
 traffic_thread_num = 4
 payload_count = 10
 sleep_time = 1
@@ -39,7 +39,7 @@ timeout = 2
 debug = True
 
 # in crazy mod, all of the payloads are new 
-crazy_level = 2
+crazy_level = 1
 
 ###############################
 
