@@ -45,7 +45,7 @@ flag_match_string = 'ok'
 shell_salt = "haozi"
 shell_salt_2 = "haozigege"
 #shell_type 1 is for normal php backdoor
-shell_type = 3
+shell_type = 2
 #shell_type 2 is for undead php backdoor
 #shell_type = 2
 #shell_type 3 is for weevely backdoor
@@ -56,10 +56,10 @@ shell_type = 3
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/charpter2-1.0-SNAPSHOT/"
-shell_absolute_path = "/var/lib/tomcat7/webapps/charpter2-1.0-SNAPSHOT/"
+shell_path = "/sites/"
+shell_absolute_path = "/home/admin/html/drupal/sites"
 crontab_path = "/tmp/"
-web_path = '/var/www/html/'
+web_path = '`/home/admin/html/drupal/'
 ######################
 
 

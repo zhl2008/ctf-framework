@@ -1,6 +1,6 @@
 open('ip.data','w').write("")
 
-for i in range(101,142):
-    open('ip.data','a').write("172.20.%d.101:80\n"%i)
+for i in range(101,116):
+    open('ip.data','a').write("10.0.3.%d:80\n"%i)
 
 
