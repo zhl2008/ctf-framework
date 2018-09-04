@@ -108,3 +108,10 @@ chat_label = '/humen.txt'
 url_label = '/shell.php'
 #####################
 
+
+########################
+# config for symbolic link backdoor
+
+ln_path = "/var/www/html/web/test"
+########################
+
