@@ -17,7 +17,7 @@ timeout = 4
 #############################
 # config for data and log
 target_list = "data/ip.data"
-status_list = "data/status.data"
+status_list = "log/status.data"
 sys_log = "log/sys.log"
 specific_status_log = "log/spec/"
 targets_status = ''
