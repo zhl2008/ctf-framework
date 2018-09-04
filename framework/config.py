@@ -6,7 +6,7 @@
 first_run = 1
 script_runtime_span = 2
 cmd = "whoami"
-debug = 0
+debug = 1
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
 cmd_prefix = "HENCE666"
