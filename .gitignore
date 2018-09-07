@@ -1,5 +1,4 @@
 log/**
 *.py[cod]
 log/sys.log
-samples/*.py
 samples/*.pyc

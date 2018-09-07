@@ -36,7 +36,7 @@ flag_path = '/flag'
 # the server you need to visit to get the flag
 get_flag_url = "http://172.16.0.30:8000/flag" 
 flag_string = 'TSCTFflagFLAGabcdef0123456789ABCDEF{}-_'
-flag_match_string = 'ok'
+flag_match_string = 'success'
 ##########################################
 
 ########################################
