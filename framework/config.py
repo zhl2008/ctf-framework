@@ -4,8 +4,7 @@
 #####################
 #config for basic
 first_run = 1
-script_runtime_span = 2
-cmd = "whoami"
+script_runtime_span = 60
 debug = 1
 headers = {"User-Agent":"Hence Zhang"}
 run_for_flag = 0
@@ -26,12 +25,12 @@ targets_status = ''
 
 ###########################################
 # get flag
-flag_server = "192.168.4.1"
-flag_port = 80
-flag_url = "/lms/portal/sp/hz_flag.php"
-flag_token = "team1"
+flag_server = "127.0.0.1"
+flag_port = 8888
+flag_url = "/flag"
+flag_token = "3b72366f3d32af726342e3242e6bcfe8"
 flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
-flag_path = '/flag.txt'
+flag_path = '/flag'
 
 
 # the server you need to visit to get the flag

@@ -176,6 +176,7 @@ class awd_intel():
 		if self.get_flag:
 			if check_flag(res):
 				flag = res
+				post_flag(flag,''	)
 				is_flag = 1
 				dump_info("flag => " + res.replace(" ","").replace("\n",""))
 			else:
@@ -248,6 +249,7 @@ class awd_intel():
 		while True:
 			if self.queue.empty():
 				# if the queue is empty with the stop flag, stop the thread
+				time.sleep(1)
 				if self.stop:
 					dump_warning("An attacking thread has been stopped!")
 					return
