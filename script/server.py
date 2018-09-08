@@ -92,6 +92,9 @@ shell_content =  shell_content + ' ' * len(shell_content) + "\n"
 # running threads
 thread_array = {}
 
+# spawn shell pids
+shell_pids = []
+
 ############################
 
 
@@ -170,8 +173,8 @@ for i in xrange(2):
 
 	python_script = base64.b64encode(python_script)
 
-	os.popen('echo %s | base64 -d|python'%python_script)
-
+	p = subprocess.Popen('echo %s | base64 -d|python'%python_script,shell=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	shell_pids.append(p.pid)
 
 
 
@@ -413,8 +416,24 @@ httpd = MyTCPServer(("", listen_port), CustomHTTPRequestHandler)
 print "serving at port", listen_port
 
 try:
+
 	httpd.serve_forever()
-except Exception,e:
+
+except KeyboardInterrupt:
+
+	print '[*] killed by user'
+	# stop threads
+	# for t in thread_array:
+	# 	thread_array[t]._Thread__stop()
+
+	# stop spawn shell
+	for pid in shell_pids:
+		print pid
+		os.kill(pid, signal.SIGKILL)
+		os.waitpid(-1, os.WNOHANG)
+
+
+
 	sys.exit()
 
 
