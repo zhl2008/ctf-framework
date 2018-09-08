@@ -29,14 +29,22 @@ def check_flag(flag):
             return False
     return True
 
-def post_flag(flag,target):
+def post_flag(flag,target,target_port):
     flag = flag.replace(" ","").replace("\n","")
+    
+    '''
+    # for debug use
+    headers['Cookie'] = flag_cookie
+    res = http("get",flag_server,flag_port,flag_url+"?flag="+flag+"&token="+flag_token + "&ip="+target+':'+str(target_port),'',headers)
+    debug_print(res)
+    return
+    '''
     try:
         headers['Cookie'] = flag_cookie
-        res = http("get",flag_server,flag_port,flag_url+"?flag="+flag+"&token="+flag_token + "&ip="+target,'',headers)
-	debug_print(res)
+        res = http("get",flag_server,flag_port,flag_url+"?flag="+flag+"&token="+flag_token + "&ip="+target+':'+str(target_port),'',headers)
+        debug_print(res)
     except Exception,e:
-        dump_error("flag post exception","flag server","flag.py post_flag")
+        dump_error("flag post exception: " + str(e),"flag server","flag.py post_flag")
         return False
     if flag_match_string in res:
         debug_print(res)

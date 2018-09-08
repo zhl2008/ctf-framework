@@ -41,8 +41,9 @@ def dump_error(e,target="",load_script=""):
 	msg = "[error] fail to attack: " + target + " with error: " + str(e) \
 	+ " with the script: " + load_script
 	Log.error(msg)
-	import traceback
-	traceback.print_exc(limit=100, file=sys.stdout)
+        if debug:
+	    import traceback
+	    traceback.print_exc(limit=100, file=sys.stdout)
 	write_sys_log(msg)
 
 def dump_warning(e,target="",load_script=""):

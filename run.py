@@ -46,7 +46,7 @@ class awd_intel():
 
 		# script_runtime_span
 		self.script_runtime_span = script_runtime_span
-		dump_info("script_runtime_spant set to %d "%int(script_runtime_span))
+		dump_info("script_runtime_span set to %d "%int(script_runtime_span))
 
 		# stop flag
 		self.stop = 0
@@ -176,7 +176,7 @@ class awd_intel():
 		if self.get_flag:
 			if check_flag(res):
 				flag = res
-				post_flag(flag,''	)
+				post_flag(flag,target,target_port)
 				is_flag = 1
 				dump_info("flag => " + res.replace(" ","").replace("\n",""))
 			else:
@@ -356,7 +356,7 @@ if __name__ == '__main__':
 	options = parse_options()
 
 	# init with the awd_intel
-	awd = awd_intel(options=options,get_flag=1,script_runtime_span=20)
+	awd = awd_intel(options=options,get_flag=1,script_runtime_span=script_runtime_span)
 
 
 	# start all of the threads
