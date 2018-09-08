@@ -16,7 +16,7 @@ Here are the routes:
 /$hash/shell: to get the report of the shell scan(including the malicious )
 /$hash/cmd: to execute the cmd sent by the client
 /$hash/state: to get the resource state of some target
-/$hash/
+/$hash/waf: to get the report of the waf
 
 active processes:
 1. get flag and submit (u should ensure the server could connect to the flag server)
@@ -152,6 +152,67 @@ class CustomHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 		else:
 			self.success_handle('server alive')
+
+
+	def state_handle(self,params):
+		pass
+
+		cmd = '''#!/bin/bash
+#get cpu number
+cpu_no=`grep -c 'model name' /proc/cpuinfo`  
+
+#get averge load in 15min
+avg_load=`uptime | awk '{print $NF}'` 
+
+#get current cpu occupy
+idle=`top -b -n 1 | grep Cpu | awk -F ',' '{print $4}' | cut -f 1 -d "."`
+cpu_load=$((100-$idle))
+
+#get free memory
+free_mem=$(free -m |grep - |awk -F : '{print $2}' |awk '{print $2}')
+
+#get total memory:
+all_mem=$(($(cat /proc/meminfo |grep 'MemTotal' |awk -F : '{print $2}' |sed 's/^[ \t]*//g'|cut -f 1 -d " ")/(1024)))
+
+
+#get free disk
+free_dk=$(($(df /| awk '/\//{print$4}')/(1024)))
+
+#get total disk 
+all_dk=$(($(df /| awk '/\//{print$2}')/(1024)))
+
+#get the tcp listening ports 
+tcp_ports=`netstat -an|grep LISTEN|egrep "0.0.0.0|:::"|awk '/^tcp/ {print $4}'|awk -F: '{print $2$4}' | sort -n| paste -d "," -s`
+
+#get the udp listening ports
+udp_ports=`netstat -an|grep udp|awk '{print $4}'|awk -F: '{print $2}'|sed '/^$/d'|sort -n | paste -d "," -s`
+
+#print res
+my_columns=("cpu_no" "avg_load" "cpu_load" "free_mem" "all_mem" "free_dk" "all_dk")
+for column in ${my_columns[@]}
+do
+printf "|%-10s" $column
+done
+
+echo ""
+
+my_results=($cpu_no $avg_load $cpu_load $free_mem $all_mem $free_dk $all_dk)
+for result in ${my_results[@]}
+do
+printf "|%-10s" $result
+done
+
+echo ""
+
+printf "tcp_listen: %s\n" $tcp_ports
+printf "udp_listen: %s\n" $udp_ports
+
+
+'''
+
+
+
+
 
 
 	def my_main_handle(self):
