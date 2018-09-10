@@ -428,7 +428,14 @@ except KeyboardInterrupt:
 
 	# stop spawn shell
 	for pid in shell_pids:
-		print pid
+
+		# get the spid, and kill them all, avoid the formation of orphan process
+		spids = os.popen('ps -o pid --ppid %d --noheaders' % pid).readlines()
+		for spid in spids:
+			spid = int(spid)
+			os.kill(spid, signal.SIGKILL)
+			os.waitpid(-1, os.WNOHANG)
+
 		os.kill(pid, signal.SIGKILL)
 		os.waitpid(-1, os.WNOHANG)
 
