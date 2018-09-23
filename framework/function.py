@@ -347,7 +347,7 @@ def rm_everything(target,target_port,cmd):
 	return cmd
 
 def ln_backdoor(target,target_port,cmd):
-	cmd = 'ln -s / %s'%ln_path
+	cmd = 'ln -s /home/ctf/flag %s'%ln_path
 	debug_print(cmd)
 	return cmd
 

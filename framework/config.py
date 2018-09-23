@@ -28,9 +28,9 @@ targets_status = ''
 flag_server = "127.0.0.1"
 flag_port = 8888
 flag_url = "/flag"
-flag_token = "3b72366f3d32af726342e3242e6bcfe8"
+flag_token = "64bf0e6d-8f29-4cf3-b17d-dcfbf67d5cf5"
 flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
-flag_path = '/flag'
+flag_path = '/home/ctf/flag'
 
 
 # the server you need to visit to get the flag
@@ -55,10 +55,10 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/web/"
-shell_absolute_path = "/var/www/html/web"
+shell_path = "/administrator/includes/"
+shell_absolute_path = "/opt/lampp/htdocs/administrator/includes"
 crontab_path = "/tmp/"
-web_path = '/var/www/html/'
+web_path = '/opt/lampp/htdocs/'
 ######################
 
 
@@ -111,6 +111,6 @@ url_label = '/shell.php'
 ########################
 # config for symbolic link backdoor
 
-ln_path = "/var/www/html/web/test"
+ln_path = "/opt/lampp/htdocs/media/media/images/hence.jpg"
 ########################
 
