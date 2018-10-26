@@ -301,6 +301,7 @@ class awd_intel():
 					# to exit the whole program, set the stop flag to 1
 					self.stop = 1
 					return
+			time.sleep(2)
 
 
 				 
@@ -378,6 +379,7 @@ if __name__ == '__main__':
 
 	try:
 		while True:
+			time.sleep(2)
 			if awd.dead:
 				break
 	except KeyboardInterrupt:

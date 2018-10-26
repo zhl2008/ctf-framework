@@ -28,7 +28,7 @@ targets_status = ''
 flag_server = "127.0.0.1"
 flag_port = 8888
 flag_url = "/flag"
-flag_token = "bQDGwZ92YhfSznhD3W3yuxWa2QM7sTRYSKvWgNzwCKxeZxQ9MFJHnmNymby3hTTsN7SDKtS7MXw"
+flag_token = ""
 flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
 flag_path = '/flag'
 
@@ -55,8 +55,8 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/data/attach/1810/"
-shell_absolute_path = "/var/www/html/data/attach/1810/"
+shell_path = "/"
+shell_absolute_path = "/var/www/html/"
 crontab_path = "/tmp/"
 web_path = '/var/www/html/'
 ######################
