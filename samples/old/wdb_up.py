@@ -20,7 +20,7 @@ def vulnerable_attack(target,target_port,cmd):
     try:
         data = cmd 
         #res = http("get",target,target_port,"/bigbrother?filename="+data,'',headers)
-	res = attack(target,target_port,data)
+	res = shit(target,target_port,data)
         # Even though we can not execute the cmd with the vuln, but we can read flag
         # and we want to use our framework to carry out this attack
         # not do the replicate tasks to code a new script
@@ -41,7 +41,7 @@ import os
 
 
 
-def attack(ip,port,cmd):
+def shit(ip,port,cmd):
 
     ### config ####
     pattern = 'name=\"([0-9a-f]{32})'

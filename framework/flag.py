@@ -18,7 +18,7 @@ def check_flag(flag):
     flag = flag.replace(" ","").replace("\n","")
     # leave the post-handle process to the flag service
     # so here, we just play with a simple check
-    if len(flag)> 50 or len(flag)<10:
+    if len(flag)> 100 or len(flag)<10:
         return False
     return True
     if not flag:

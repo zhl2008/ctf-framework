@@ -28,9 +28,9 @@ targets_status = ''
 flag_server = "127.0.0.1"
 flag_port = 8888
 flag_url = "/flag"
-flag_token = "64bf0e6d-8f29-4cf3-b17d-dcfbf67d5cf5"
+flag_token = "bQDGwZ92YhfSznhD3W3yuxWa2QM7sTRYSKvWgNzwCKxeZxQ9MFJHnmNymby3hTTsN7SDKtS7MXw"
 flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
-flag_path = '/home/ctf/flag'
+flag_path = '/flag'
 
 
 # the server you need to visit to get the flag
@@ -55,10 +55,10 @@ shell_type = 2
 #######################
 #config for web path and file path
 #The final / should not be delete!!!!!!!!
-shell_path = "/administrator/includes/"
-shell_absolute_path = "/opt/lampp/htdocs/administrator/includes"
+shell_path = "/data/attach/1810/"
+shell_absolute_path = "/var/www/html/data/attach/1810/"
 crontab_path = "/tmp/"
-web_path = '/opt/lampp/htdocs/'
+web_path = '/var/www/html/'
 ######################
 
 

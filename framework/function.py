@@ -101,9 +101,9 @@ def random_ua():
 
 def shell_hash(target,target_port):
 	if shell_type==1 or shell_type==2:
-		shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
+		shell_name =  hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
 	else:
-		shell_name = "." + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
+		shell_name =  hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
 
 	shell_arg = hashlib.md5(shell_salt_2 + target + ":" + target_port).hexdigest()
 	return shell_name,shell_arg
