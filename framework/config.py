@@ -111,6 +111,6 @@ url_label = '/shell.php'
 ########################
 # config for symbolic link backdoor
 
-ln_path = "/opt/lampp/htdocs/media/media/images/hence.jpg"
+ln_path = "/app"
 ########################
 

