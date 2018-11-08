@@ -28,7 +28,7 @@ targets_status = ''
 flag_server = "127.0.0.1"
 flag_port = 8888
 flag_url = "/flag"
-flag_token = ""
+flag_token = "GZsC5UJvATkFrZzvwEyGx7983ek7kV65SKky2BsqUMKBzNjKJ3gKcRDdZFkSkdSwzrcqQGFEGtj"
 flag_cookie = "zlms-sid=bs3h3gu7usjcvngvenm4p4cq55"
 flag_path = '/flag'
 
